@@ -1,42 +1,42 @@
 <edmx:Edmx xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Version="4.0">
     <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/UI.xml">
-        <edmx:Include Namespace="com.sap.vocabularies.UI.v1" Alias="UI"/>
+        <edmx:Include Namespace="com.sap.vocabularies.UI.v1" Alias="UI" />
     </edmx:Reference>
     <edmx:Reference Uri="/sap/opu/odata/nyx/BS_IN_CR_GP01_V01_SRV/$metadata">
-        <edmx:Include Namespace="NYX.BS_IN_CR_GP01_V01_SRV"/>
+        <edmx:Include Namespace="NYX.BS_IN_CR_GP01_V01_SRV" />
     </edmx:Reference>
     <edmx:DataServices>
         <Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="NYX">
-                    <Annotations Target="NYX.BS_IN_CR_GP01_V01_SRV.CR_Header">
+            <Annotations Target="NYX.BS_IN_CR_GP01_V01_SRV.CR_Header">
                 <Annotation Term="UI.LineItem">
                     <Collection>
                         <Record Type="UI.DataField">
-                            <PropertyValue Property="Value" Path="CrHeading"/>
-                            <PropertyValue Property="Label" String="{@i18n>crHeading}"/>
+                            <PropertyValue Property="Value" Path="CrHeading" />
+                            <PropertyValue Property="Label" String="{@i18n>crHeading}" />
                         </Record>
                         <Record Type="UI.DataField">
-                            <PropertyValue Property="Value" Path="CrNum"/>
-                            <PropertyValue Property="Label" String="{@i18n>crNum}"/>
+                            <PropertyValue Property="Value" Path="CrNum" />
+                            <PropertyValue Property="Label" String="{@i18n>crNum}" />
                         </Record>
                         <Record Type="UI.DataField">
-                            <PropertyValue Property="Value" Path="Requester"/>
-                            <PropertyValue Property="Label" String="{@i18n>crRequester}"/>
+                            <PropertyValue Property="Value" Path="Requester" />
+                            <PropertyValue Property="Label" String="{@i18n>crRequester}" />
                         </Record>
                         <Record Type="UI.DataField">
-                            <PropertyValue Property="Value" Path="CrClassification"/>
-                            <PropertyValue Property="Label" String="{@i18n>crClass}"/>
+                            <PropertyValue Property="Value" Path="CrClassification" />
+                            <PropertyValue Property="Label" String="{@i18n>crClass}" />
                         </Record>
                         <Record Type="UI.DataField">
-                            <PropertyValue Property="Value" Path="ProjectName"/>
-                            <PropertyValue Property="Label" String="{@i18n>crProject}"/>
+                            <PropertyValue Property="Value" Path="ProjectName" />
+                            <PropertyValue Property="Label" String="{@i18n>crProject}" />
                         </Record>
                         <Record Type="UI.DataField">
-                            <PropertyValue Property="Value" Path="Status"/>
-                            <PropertyValue Property="Label" String="{@i18n>crStatus}"/>
+                            <PropertyValue Property="Value" Path="Status" />
+                            <PropertyValue Property="Label" String="{@i18n>crStatus}" />
                         </Record>
                         <Record Type="UI.DataField">
-                            <PropertyValue Property="Value" Path="CreateDate"/>
-                            <PropertyValue Property="Label" String="{@i18n>crCreateDate}"/>
+                            <PropertyValue Property="Value" Path="CreateDate" />
+                            <PropertyValue Property="Label" String="{@i18n>crCreateDate}" />
                         </Record>
                     </Collection>
                 </Annotation>
@@ -48,15 +48,53 @@
                         <PropertyPath>CrNum</PropertyPath>
                     </Collection>
                 </Annotation>
-                        <Annotation Term="UI.Facets">
+                <Annotation Term="UI.DataPoint" Qualifier="op_cr_heading">
+                    <Record Type="UI.DataPointType">
+                        <PropertyValue Property="Value" Path="CrHeading" />
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.HeaderFacets">
+                    <Collection>
+                        <Record Type="UI.ReferenceFacet">
+                            <PropertyValue Property="Target" AnnotationPath="@UI.DataPoint#op_cr_heading" />
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.FieldGroup" Qualifier="op_cr_overview">
+                    <Record Type="UI.FieldGroupType">
+                        <PropertyValue Property="Data">
                             <Collection>
-                                <Record Type="UI.ReferenceFacet">
-                                    <PropertyValue Property="Target" AnnotationPath="REPLACE_WITH_PROPERTY_PATH"/>
-                                    <PropertyValue Property="Label" String="CR Details"/>
-                                    <PropertyValue Property="ID" String="cr_details"/>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="Requester" />
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="CreateDate" />
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="Status" />
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="CrClassification" />
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="ProjectName" />
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="CustomerName" />
                                 </Record>
                             </Collection>
-                        </Annotation>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.Facets">
+                    <Collection>
+                        <Record Type="UI.ReferenceFacet">
+                            <PropertyValue Property="Label" String="{@i18n>cr_overview}" />
+                            <PropertyValue Property="ID" String="op_cr_overview" />
+                            <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#op_cr_overview" />
+                        </Record>
+                    </Collection>
+                </Annotation>
             </Annotations>
         </Schema>
     </edmx:DataServices>
