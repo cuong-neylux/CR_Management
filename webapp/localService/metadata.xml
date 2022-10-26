@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="NYX.BS_IN_CR_GP01_V01_SRV" xml:lang="de" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityType Name="CR_Header" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Mandt"/>
+                    <PropertyRef Name="CrNum"/>
+                </Key>
+                <Property Name="Mandt" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Mandant"/>
+                <Property Name="CrNum" Type="Edm.String" Nullable="false" MaxLength="12"/>
+                <Property Name="Requester" Type="Edm.String" Nullable="false" MaxLength="8" sap:label="Personalnr"/>
+                <Property Name="CreateDate" Type="Edm.DateTime" Nullable="false" Precision="7" sap:label="Gültig ab"/>
+                <Property Name="Status" Type="Edm.String" Nullable="false" MaxLength="64"/>
+                <Property Name="CustomerName" Type="Edm.String" Nullable="false" MaxLength="64"/>
+                <Property Name="ProjectName" Type="Edm.String" Nullable="false" MaxLength="64"/>
+                <Property Name="CrHeading" Type="Edm.String" Nullable="false" MaxLength="255" sap:label="Text"/>
+                <Property Name="CrClassification" Type="Edm.String" Nullable="false" MaxLength="64"/>
+                <Property Name="CrDetails" Type="Edm.String" Nullable="false"/>
+                <Property Name="EffortEstimate" Type="Edm.Int16" Nullable="false"/>
+                <Property Name="Step" Type="Edm.String" Nullable="false" MaxLength="64"/>
+                <Property Name="LastProcessor" Type="Edm.String" Nullable="false" MaxLength="8" sap:label="Personalnr"/>
+                <Property Name="CurrentProcessor" Type="Edm.String" Nullable="false" MaxLength="8" sap:label="Personalnr"/>
+                <Property Name="NextProcessor" Type="Edm.String" Nullable="false" MaxLength="8" sap:label="Personalnr"/>
+                <Property Name="UserAction" Type="Edm.String" Nullable="false" MaxLength="64"/>
+                <Property Name="LastProcessedDate" Type="Edm.DateTime" Nullable="false" Precision="7" sap:label="Datum"/>
+                <Property Name="LastProcessedTime" Type="Edm.Time" Nullable="false" Precision="0" sap:label="Feld vom Typ TIMS"/>
+                <Property Name="CloseDate" Type="Edm.DateTime" Nullable="false" Precision="7" sap:label="Gültig bis"/>
+                <Property Name="CurrentNote" Type="Edm.String" Nullable="false"/>
+                <NavigationProperty Name="CR_Document" Relationship="NYX.BS_IN_CR_GP01_V01_SRV.CRHeader_Documents" FromRole="FromRole_CRHeader_Documents" ToRole="ToRole_CRHeader_Documents"/>
+                <NavigationProperty Name="CR_Comment" Relationship="NYX.BS_IN_CR_GP01_V01_SRV.CRHeader_Comments" FromRole="FromRole_CRHeader_Comments" ToRole="ToRole_CRHeader_Comments"/>
+            </EntityType>
+            <EntityType Name="Comment" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Mandt"/>
+                    <PropertyRef Name="CrNum"/>
+                    <PropertyRef Name="CommentId"/>
+                </Key>
+                <Property Name="Mandt" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Mandant"/>
+                <Property Name="CrNum" Type="Edm.String" Nullable="false" MaxLength="12"/>
+                <Property Name="CommentId" Type="Edm.String" Nullable="false" MaxLength="7"/>
+                <Property Name="CommentUser" Type="Edm.String" Nullable="false" MaxLength="8" sap:label="Personalnr"/>
+                <Property Name="CommentDate" Type="Edm.DateTime" Nullable="false" Precision="7" sap:label="Datum"/>
+                <Property Name="CommentTime" Type="Edm.Time" Nullable="false" Precision="0" sap:label="Feld vom Typ TIMS"/>
+                <Property Name="Note" Type="Edm.String" Nullable="false"/>
+            </EntityType>
+            <EntityType Name="User" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Mandt"/>
+                    <PropertyRef Name="PersonalNumber"/>
+                    <PropertyRef Name="RoleName"/>
+                </Key>
+                <Property Name="Mandt" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Mandant"/>
+                <Property Name="PersonalNumber" Type="Edm.String" Nullable="false" MaxLength="8" sap:label="Personalnr"/>
+                <Property Name="RoleName" Type="Edm.String" Nullable="false" MaxLength="64"/>
+                <Property Name="FirstName" Type="Edm.String" Nullable="false" MaxLength="64"/>
+                <Property Name="Surname" Type="Edm.String" Nullable="false" MaxLength="64"/>
+                <Property Name="Email" Type="Edm.String" Nullable="false" MaxLength="64"/>
+            </EntityType>
+            <EntityType Name="Document" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Mandt"/>
+                    <PropertyRef Name="CrNum"/>
+                    <PropertyRef Name="DocumentId"/>
+                </Key>
+                <Property Name="Mandt" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Mandant"/>
+                <Property Name="CrNum" Type="Edm.String" Nullable="false" MaxLength="12"/>
+                <Property Name="DocumentId" Type="Edm.String" Nullable="false" MaxLength="7"/>
+                <Property Name="FileName" Type="Edm.String" Nullable="false" MaxLength="255" sap:label="Text"/>
+                <Property Name="UploadUser" Type="Edm.String" Nullable="false" MaxLength="8" sap:label="Personalnr"/>
+                <Property Name="UploadTime" Type="Edm.Time" Nullable="false" Precision="0" sap:label="Feld vom Typ TIMS"/>
+                <Property Name="UploadDate" Type="Edm.DateTime" Nullable="false" Precision="7" sap:label="Datum"/>
+                <Property Name="Content" Type="Edm.Binary" Nullable="false"/>
+            </EntityType>
+            <EntityType Name="CR_Step" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Mandt"/>
+                    <PropertyRef Name="Step"/>
+                </Key>
+                <Property Name="Mandt" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Mandant"/>
+                <Property Name="Step" Type="Edm.String" Nullable="false" MaxLength="64"/>
+                <Property Name="Description" Type="Edm.String" Nullable="false" MaxLength="255" sap:label="Text"/>
+            </EntityType>
+            <EntityType Name="CR_Classification" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Mandt"/>
+                    <PropertyRef Name="Classification"/>
+                </Key>
+                <Property Name="Mandt" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Mandant"/>
+                <Property Name="Classification" Type="Edm.String" Nullable="false" MaxLength="64"/>
+                <Property Name="Description" Type="Edm.String" Nullable="false" MaxLength="255" sap:label="Text"/>
+            </EntityType>
+            <EntityType Name="Project" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Mandt"/>
+                    <PropertyRef Name="ProjectId"/>
+                </Key>
+                <Property Name="Mandt" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Mandant"/>
+                <Property Name="ProjectId" Type="Edm.String" Nullable="false" MaxLength="7"/>
+                <Property Name="ProjectName" Type="Edm.String" Nullable="false" MaxLength="64"/>
+                <Property Name="CustomerName" Type="Edm.String" Nullable="false" MaxLength="64"/>
+                <Property Name="BeginDate" Type="Edm.DateTime" Nullable="false" Precision="7" sap:label="Gültig ab"/>
+                <Property Name="EndDate" Type="Edm.DateTime" Nullable="false" Precision="7" sap:label="Gültig bis"/>
+                <Property Name="Description" Type="Edm.String" Nullable="false" MaxLength="255" sap:label="Text"/>
+            </EntityType>
+            <EntityType Name="Customer" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Mandt"/>
+                    <PropertyRef Name="NcId"/>
+                </Key>
+                <Property Name="Mandt" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Mandant"/>
+                <Property Name="NcId" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="NcName" Type="Edm.String" Nullable="false" MaxLength="64" sap:label="Kundenname"/>
+                <Property Name="Remark" Type="Edm.String" Nullable="false" MaxLength="255" sap:label="Anmerkung"/>
+            </EntityType>
+            <Association Name="CRHeader_Documents" sap:content-version="1">
+                <End Type="NYX.BS_IN_CR_GP01_V01_SRV.CR_Header" Multiplicity="1" Role="FromRole_CRHeader_Documents"/>
+                <End Type="NYX.BS_IN_CR_GP01_V01_SRV.Document" Multiplicity="*" Role="ToRole_CRHeader_Documents"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_CRHeader_Documents">
+                        <PropertyRef Name="Mandt"/>
+                        <PropertyRef Name="CrNum"/>
+                    </Principal>
+                    <Dependent Role="ToRole_CRHeader_Documents">
+                        <PropertyRef Name="Mandt"/>
+                        <PropertyRef Name="CrNum"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="CRHeader_Comments" sap:content-version="1">
+                <End Type="NYX.BS_IN_CR_GP01_V01_SRV.CR_Header" Multiplicity="1" Role="FromRole_CRHeader_Comments"/>
+                <End Type="NYX.BS_IN_CR_GP01_V01_SRV.Comment" Multiplicity="*" Role="ToRole_CRHeader_Comments"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_CRHeader_Comments">
+                        <PropertyRef Name="CrNum"/>
+                        <PropertyRef Name="Mandt"/>
+                    </Principal>
+                    <Dependent Role="ToRole_CRHeader_Comments">
+                        <PropertyRef Name="CrNum"/>
+                        <PropertyRef Name="Mandt"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <EntityContainer Name="NYX_BS_IN_CR_GP01_V01_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="CR_HeaderSet" EntityType="NYX.BS_IN_CR_GP01_V01_SRV.CR_Header" sap:content-version="1"/>
+                <EntitySet Name="CommentSet" EntityType="NYX.BS_IN_CR_GP01_V01_SRV.Comment" sap:content-version="1"/>
+                <EntitySet Name="UserSet" EntityType="NYX.BS_IN_CR_GP01_V01_SRV.User" sap:content-version="1"/>
+                <EntitySet Name="DocumentSet" EntityType="NYX.BS_IN_CR_GP01_V01_SRV.Document" sap:content-version="1"/>
+                <EntitySet Name="CR_StepSet" EntityType="NYX.BS_IN_CR_GP01_V01_SRV.CR_Step" sap:content-version="1"/>
+                <EntitySet Name="CR_ClassificationSet" EntityType="NYX.BS_IN_CR_GP01_V01_SRV.CR_Classification" sap:content-version="1"/>
+                <EntitySet Name="ProjectSet" EntityType="NYX.BS_IN_CR_GP01_V01_SRV.Project" sap:content-version="1"/>
+                <EntitySet Name="CustomerSet" EntityType="NYX.BS_IN_CR_GP01_V01_SRV.Customer" sap:content-version="1"/>
+                <AssociationSet Name="CRHeader_Comments" Association="NYX.BS_IN_CR_GP01_V01_SRV.CRHeader_Comments" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="CR_HeaderSet" Role="FromRole_CRHeader_Comments"/>
+                    <End EntitySet="CommentSet" Role="ToRole_CRHeader_Comments"/>
+                </AssociationSet>
+                <AssociationSet Name="CRHeader_Documents" Association="NYX.BS_IN_CR_GP01_V01_SRV.CRHeader_Documents" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="CR_HeaderSet" Role="FromRole_CRHeader_Documents"/>
+                    <End EntitySet="DocumentSet" Role="ToRole_CRHeader_Documents"/>
+                </AssociationSet>
+            </EntityContainer>
+            <atom:link rel="self" href="http://neylux.cloud.com:8004/sap/opu/odata/nyx/BS_IN_CR_GP01_V01_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="latest-version" href="http://neylux.cloud.com:8004/sap/opu/odata/nyx/BS_IN_CR_GP01_V01_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

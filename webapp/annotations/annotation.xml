@@ -1,0 +1,60 @@
+<edmx:Edmx xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Version="4.0">
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml">
+        <edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/UI.xml">
+        <edmx:Include Namespace="com.sap.vocabularies.UI.v1" Alias="UI"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Communication.xml">
+        <edmx:Include Namespace="com.sap.vocabularies.Communication.v1" Alias="Communication"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="/sap/opu/odata/nyx/BS_IN_CR_GP01_V01_SRV/$metadata">
+        <edmx:Include Namespace="NYX.BS_IN_CR_GP01_V01_SRV"/>
+    </edmx:Reference>
+    <edmx:DataServices>
+        <Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="NYX">
+                    <Annotations Target="NYX.BS_IN_CR_GP01_V01_SRV.CR_Header">
+                <Annotation Term="UI.LineItem">
+                    <Collection>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="CrHeading"/>
+                            <PropertyValue Property="Label" String="{@i18n>crHeading}"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="CrNum"/>
+                            <PropertyValue Property="Label" String="{@i18n>crNum}"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="Requester"/>
+                            <PropertyValue Property="Label" String="{@i18n>crRequester}"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="CrClassification"/>
+                            <PropertyValue Property="Label" String="{@i18n>crClass}"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="ProjectName"/>
+                            <PropertyValue Property="Label" String="{@i18n>crProject}"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="Status"/>
+                            <PropertyValue Property="Label" String="{@i18n>crStatus}"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="CreateDate"/>
+                            <PropertyValue Property="Label" String="{@i18n>crCreateDate}"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.SelectionFields">
+                    <Collection>
+                        <PropertyPath>CustomerName</PropertyPath>
+                        <PropertyPath>ProjectName</PropertyPath>
+                        <PropertyPath>CrClassification</PropertyPath>
+                        <PropertyPath>CrNum</PropertyPath>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>
