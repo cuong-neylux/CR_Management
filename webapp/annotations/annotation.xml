@@ -8,6 +8,7 @@
     <edmx:DataServices>
         <Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="NYX">
             <Annotations Target="NYX.BS_IN_CR_GP01_V01_SRV.CR_Header">
+            <!--                                                                                LIST REPORT PAGE                                                                -->            
                 <!-- Change Request table in list report page -->
                 <Annotation Term="UI.LineItem">
                     <Collection>
@@ -41,6 +42,8 @@
                         </Record>
                     </Collection>
                 </Annotation>
+
+                <!-- Selection Fields -->                
                 <Annotation Term="UI.SelectionFields">
                     <Collection>
                         <PropertyPath>CustomerName</PropertyPath>
@@ -49,6 +52,9 @@
                         <PropertyPath>CrNum</PropertyPath>
                     </Collection>
                 </Annotation>
+            
+            <!--                                                                                      OBJECT PAGE                                                               -->
+                <!-- Change Request Heading in the header of object page -->
                 <Annotation Term="UI.DataPoint" Qualifier="op_cr_heading">
                     <Record Type="UI.DataPointType">
                     <PropertyValue Property="Title" String="{@i18n>crHeading}" />
@@ -76,6 +82,8 @@
                         </Record>
                     </Collection>
                 </Annotation>
+
+                <!-- General information in the header of object page -->                
                 <Annotation Term="UI.FieldGroup" Qualifier="op_cr_general_information">
                     <Record Type="UI.FieldGroupType">
                         <PropertyValue Property="Data">
@@ -104,6 +112,8 @@
                         </PropertyValue>
                     </Record>
                 </Annotation>
+
+                <!-- Status in header of object page -->
                 <Annotation Term="UI.FieldGroup" Qualifier="op_cr_status">
                     <Record Type="UI.FieldGroupType">
                         <PropertyValue Property="Data">
@@ -116,6 +126,7 @@
                         </PropertyValue>
                     </Record>
                 </Annotation>
+            <!-- END OF OBJECT PAGE -->
             </Annotations>
         </Schema>
     </edmx:DataServices>
