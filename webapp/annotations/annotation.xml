@@ -54,15 +54,25 @@
                 </Annotation>
 
                 <!--                                                                                      OBJECT PAGE                                                               -->
-                <!-- Change Request Heading in the header of object page -->
-                <Annotation Term="UI.DataPoint" Qualifier="op_cr_heading">
-                    <Record Type="UI.DataPointType">
-                        <PropertyValue Property="Title" String="{@i18n>crHeading}" />
-                        <PropertyValue Property="Value" Path="CrHeading" />
+                <!-- Header Info in object page -->
+                <Annotation Term="UI.HeaderInfo">
+                    <Record Type="UI.HeaderInfoType">
+                        <PropertyValue Property="TypeName" String="{@i18n>changeRequest}" />
+                        <PropertyValue Property="TypeNamePlural" String="{@i18n>changeRequests}" />
+                        <PropertyValue Property="Title">
+                            <Record Type="UI.DataField">
+                                <PropertyValue Property="Value" Path="CrHeading" />
+                            </Record>
+                        </PropertyValue>
+                        <PropertyValue Property="Description">
+                            <Record Type="UI.DataField">
+                                <PropertyValue Property="Value" Path="CrNum" />
+                            </Record>
+                        </PropertyValue>
                     </Record>
                 </Annotation>
 
-                <!-- Annotate Object Page header -->
+                <!-- Object Page header -->
                 <Annotation Term="UI.HeaderFacets">
                     <Collection>
                         <!-- Second column in the the object page: General information -->
@@ -77,7 +87,6 @@
                         </Record>
                     </Collection>
                 </Annotation>
-
                 <!-- General information in the header of object page -->
                 <Annotation Term="UI.FieldGroup" Qualifier="op_cr_general_information">
                     <Record Type="UI.FieldGroupType">
@@ -107,7 +116,6 @@
                         </PropertyValue>
                     </Record>
                 </Annotation>
-
                 <!-- Status in header of object page -->
                 <Annotation Term="UI.FieldGroup" Qualifier="op_cr_status">
                     <Record Type="UI.FieldGroupType">
@@ -122,22 +130,16 @@
                     </Record>
                 </Annotation>
 
-                <!-- Header Info in object page -->
-                <Annotation Term="UI.HeaderInfo">
-                    <Record Type="UI.HeaderInfoType">
-                        <PropertyValue Property="TypeName" String="{@i18n>changeRequest}" />
-                        <PropertyValue Property="TypeNamePlural" String="{@i18n>changeRequests}" />
-                        <PropertyValue Property="Title">
-                            <Record Type="UI.DataField">
-                                <PropertyValue Property="Value" Path="CrHeading" />
-                            </Record>
-                        </PropertyValue>
-                        <PropertyValue Property="Description">
-                            <Record Type="UI.DataField">
-                                <PropertyValue Property="Value" Path="CrNum" />
-                            </Record>
-                        </PropertyValue>
-                    </Record>
+
+                <!-- Section 1: Change Request Details-->
+                <Annotation Term="UI.Facets">
+                    <Collection>
+                        <Record Type="UI.ReferenceFacet">
+                            <PropertyValue Property="Label" String="{@i18n>crDetails}"/>
+                            <PropertyValue Property="ID" String="op_cr_details_section"/>
+                            <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#op_cr_details_column1"/>
+                        </Record>
+                    </Collection>
                 </Annotation>
                 <!-- Object Page: CR Details Column 1 -->                
                 <Annotation Term="UI.FieldGroup" Qualifier="op_cr_details_column1">
@@ -173,6 +175,7 @@
                         </PropertyValue>
                     </Record>
                 </Annotation>
+                <!-- Object Page: CR Details Column 3 -->
                 <Annotation Term="UI.FieldGroup" Qualifier="op_cr_details_column3">
                     <Record Type="UI.FieldGroupType">
                         <PropertyValue Property="Data">
@@ -184,15 +187,7 @@
                         </PropertyValue>
                     </Record>
                 </Annotation>
-                <Annotation Term="UI.Facets">
-                    <Collection>
-                        <Record Type="UI.ReferenceFacet">
-                            <PropertyValue Property="Label" String="{@i18n>crDetails}"/>
-                            <PropertyValue Property="ID" String="op_cr_details_section"/>
-                            <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#op_cr_details_column1"/>
-                        </Record>
-                    </Collection>
-                </Annotation>
+
                 <!-- END OF OBJECT PAGE -->
             </Annotations>
         </Schema>
