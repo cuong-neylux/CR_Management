@@ -126,6 +126,18 @@
                         </PropertyValue>
                     </Record>
                 </Annotation>
+                <Annotation Term="UI.HeaderInfo">
+                    <Record Type="UI.HeaderInfoType">
+                        <PropertyValue Property="TypeName" String="{@i18n>changeRequest}"/>
+                        <PropertyValue Property="TypeNamePlural" String="{@i18n>changeRequests}"/>
+                        <PropertyValue Property="Title">
+                            <Record Type="UI.DataField">
+                                <PropertyValue Property="Value" Path="CrHeading"/>
+                            </Record>
+                        </PropertyValue>
+                        <PropertyValue Property="TypeImageUrl" String="https://www.google.com/url?sa=i&amp;url=https%3A%2F%2Fdzone.com%2Farticles%2Fautomating-the-change-request-process-1&amp;psig=AOvVaw1BvD2PAsjPF29O7yDl4wqL&amp;ust=1666938940942000&amp;source=images&amp;cd=vfe&amp;ved=0CA0QjRxqFwoTCPin9c7l__oCFQAAAAAdAAAAABAE"/>
+                    </Record>
+                </Annotation>
             <!-- END OF OBJECT PAGE -->
             </Annotations>
         </Schema>
