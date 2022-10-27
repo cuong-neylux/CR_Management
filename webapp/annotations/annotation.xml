@@ -144,7 +144,7 @@
                 <!-- Object Page: CR Details Column 1 -->                
                 <Annotation Term="UI.FieldGroup" Qualifier="op_cr_details_column1">
                     <Record Type="UI.FieldGroupType">
-                    <PropertyValue Property="Label" String="{@i18n>crDescription}"/>
+                    <PropertyValue Property="Label" String="{@i18n>op_crOverview}"/>
                         <PropertyValue Property="Data">
                             <Collection>
                                 <Record Type="UI.DataField">
@@ -160,6 +160,7 @@
                 <!-- Object Page: CR Details Column 2 --> 
                 <Annotation Term="UI.FieldGroup" Qualifier="op_cr_details_column2">
                     <Record Type="UI.FieldGroupType">
+                    <PropertyValue Property="Label" String="{@i18n>op_crClassification}"/>
                         <PropertyValue Property="Data">
                             <Collection>
                                 <Record Type="UI.DataField">
@@ -178,6 +179,7 @@
                 <!-- Object Page: CR Details Column 3 -->
                 <Annotation Term="UI.FieldGroup" Qualifier="op_cr_details_column3">
                     <Record Type="UI.FieldGroupType">
+                    <PropertyValue Property="Label" String="{@i18n>op_crEffortEstimation}"/>
                         <PropertyValue Property="Data">
                             <Collection>
                                 <Record Type="UI.DataField">
@@ -187,7 +189,6 @@
                         </PropertyValue>
                     </Record>
                 </Annotation>
-
                 <!-- END OF OBJECT PAGE -->
             </Annotations>
         </Schema>
