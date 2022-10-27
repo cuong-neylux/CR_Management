@@ -139,6 +139,60 @@
                         </PropertyValue>
                     </Record>
                 </Annotation>
+                <!-- Object Page: CR Details Column 1 -->                
+                <Annotation Term="UI.FieldGroup" Qualifier="op_cr_details_column1">
+                    <Record Type="UI.FieldGroupType">
+                    <PropertyValue Property="Label" String="{@i18n>crDescription}"/>
+                        <PropertyValue Property="Data">
+                            <Collection>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="CrHeading"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="CrDetails"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <!-- Object Page: CR Details Column 2 --> 
+                <Annotation Term="UI.FieldGroup" Qualifier="op_cr_details_column2">
+                    <Record Type="UI.FieldGroupType">
+                        <PropertyValue Property="Data">
+                            <Collection>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="CustomerName"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="ProjectName"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="CrClassification"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.FieldGroup" Qualifier="op_cr_details_column3">
+                    <Record Type="UI.FieldGroupType">
+                        <PropertyValue Property="Data">
+                            <Collection>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="EffortEstimate"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.Facets">
+                    <Collection>
+                        <Record Type="UI.ReferenceFacet">
+                            <PropertyValue Property="Label" String="{@i18n>crDetails}"/>
+                            <PropertyValue Property="ID" String="op_cr_details_section"/>
+                            <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#op_cr_details_column1"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
                 <!-- END OF OBJECT PAGE -->
             </Annotations>
         </Schema>
