@@ -42,7 +42,22 @@
                             <PropertyValue Property="Value" Path="CreateDate" />
                             <PropertyValue Property="Label" String="{@i18n>crCreateDate}" />
                         </Record>
+                        <Record Type="UI.DataFieldForAnnotation">
+                            <PropertyValue Property="Label" String="{@i18n>crProgress}" />
+                            <PropertyValue Property="Target" AnnotationPath="@UI.DataPoint#cr_progress" />
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High" />
+                        </Record>
                     </Collection>
+                </Annotation>
+
+                <!-- Progress indicator of the change request -->
+                <Annotation Term="UI.DataPoint" Qualifier="cr_progress">
+                    <Record Type="UI.DataPointType">
+                        <PropertyValue Property="Title" String="{@i18n>crProgress}" />
+                        <PropertyValue Property="Value" Path="Progress" />
+                        <PropertyValue Property="TargetValue" Int="100" />
+                        <PropertyValue Property="Visualization" EnumMember="UI.VisualizationType/Progress" />
+                    </Record>
                 </Annotation>
 
                 <!-- Selection Fields -->
@@ -77,17 +92,23 @@
                 <!--                                                           %%%%%%%%%%          Header Facet          %%%%%%%%%%                                                 -->
                 <Annotation Term="UI.HeaderFacets">
                     <Collection>
-                        <!-- Second column in the the object page: General information -->
+                        <!-- First column in the the object page: General information -->
                         <Record Type="UI.ReferenceFacet">
                             <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#op_cr_general_information" />
                             <PropertyValue Property="Label" String="{@i18n>op_cr_general_info}" />
                             <PropertyValue Property="ID" String="op_cr_general_info" />
                         </Record>
-                        <!-- Third column in the the object page: Status -->
+                        <!-- Second column in the the object page: Status -->
                         <Record Type="UI.ReferenceFacet">
-                            <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#op_cr_status" />
+                            <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#op_crStatus" />
                             <PropertyValue Property="Label" String="{@i18n>crStatus}" />
-                            <PropertyValue Property="ID" String="op_cr_status" />
+                            <PropertyValue Property="ID" String="op_crStatus" />
+                        </Record>
+                        <!-- Third column in the the object page: Progress -->
+                        <Record Type="UI.ReferenceFacet">
+                            <PropertyValue Property="Target" AnnotationPath="@UI.DataPoint#cr_progress" />
+                            <PropertyValue Property="Label" String="{@i18n>crProgress}" />
+                            <PropertyValue Property="ID" String="op_crProgress" />
                         </Record>
                     </Collection>
                 </Annotation>
@@ -123,7 +144,7 @@
                 </Annotation>
                 <!--                                                                =====          Status          =====                                                           -->
                 <!-- Status in header of object page -->
-                <Annotation Term="UI.FieldGroup" Qualifier="op_cr_status">
+                <Annotation Term="UI.FieldGroup" Qualifier="op_crStatus">
                     <Record Type="UI.FieldGroupType">
                         <PropertyValue Property="Data">
                             <Collection>
@@ -168,7 +189,9 @@
                                 </Collection>
                             </PropertyValue>
                         </Record>
+                        <!-- Section 2 -->
                         <Record Type="UI.ReferenceFacet">
+                            <!-- Todo List from task entitySet -->
                             <PropertyValue Property="Target" AnnotationPath="/NYX.BS_IN_CR_GP01_V01_SRV.Task/@UI.LineItem#op_taskList" />
                             <PropertyValue Property="Label" String="{@i18n>op_todoList}" />
                             <PropertyValue Property="ID" String="op_section_todoList" />
