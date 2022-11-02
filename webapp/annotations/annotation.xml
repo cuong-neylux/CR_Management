@@ -8,7 +8,6 @@
     <edmx:DataServices>
         <Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="NYX">
             <Annotations Target="NYX.BS_IN_CR_GP01_V01_SRV.CR_Header">
-                <!--                                                                                LIST REPORT PAGE                                                                -->
                 <!-- Change Request table in list report page -->
                 <Annotation Term="UI.LineItem">
                     <Collection>
@@ -35,6 +34,8 @@
                         <Record Type="UI.DataField">
                             <PropertyValue Property="Value" Path="Status" />
                             <PropertyValue Property="Label" String="{@i18n>crStatus}" />
+                            <PropertyValue Property="Criticality" Path="StatusColor" />
+                            <PropertyValue Property="CriticalityRepresentation" EnumMember="UI.CriticalityRepresentationType/WithoutIcon" />
                         </Record>
                         <Record Type="UI.DataField">
                             <PropertyValue Property="Value" Path="CreateDate" />
@@ -53,7 +54,6 @@
                     </Collection>
                 </Annotation>
 
-                <!--                                                                                      OBJECT PAGE                                                               -->
                 <!-- Header Info in object page -->
                 <Annotation Term="UI.HeaderInfo">
                     <Record Type="UI.HeaderInfoType">
@@ -78,11 +78,13 @@
                         <!-- Second column in the the object page: General information -->
                         <Record Type="UI.ReferenceFacet">
                             <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#op_cr_general_information" />
+                            <PropertyValue Property="Label" String="{@i18n>op_cr_general_info}" />
                             <PropertyValue Property="ID" String="op_cr_general_info" />
                         </Record>
                         <!-- Third column in the the object page: Status -->
                         <Record Type="UI.ReferenceFacet">
                             <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#op_cr_status" />
+                            <PropertyValue Property="Label" String="{@i18n>crStatus}" />
                             <PropertyValue Property="ID" String="op_cr_status" />
                         </Record>
                     </Collection>
@@ -122,55 +124,55 @@
                         <PropertyValue Property="Data">
                             <Collection>
                                 <Record Type="UI.DataField">
-                                    <PropertyValue Property="Label" String="{@i18n>crStatus}" />
                                     <PropertyValue Property="Value" Path="Status" />
+                                    <PropertyValue Property="Criticality" Path="StatusColor" />
+                                    <PropertyValue Property="CriticalityRepresentation" EnumMember="UI.CriticalityRepresentationType/WithoutIcon" />
                                 </Record>
                             </Collection>
                         </PropertyValue>
                     </Record>
                 </Annotation>
-
 
                 <!-- Section 1: Change Request Details-->
                 <Annotation Term="UI.Facets">
                     <Collection>
                         <Record Type="UI.ReferenceFacet">
-                            <PropertyValue Property="Label" String="{@i18n>crDetails}"/>
-                            <PropertyValue Property="ID" String="op_cr_details_section"/>
-                            <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#op_cr_details_column1"/>
+                            <PropertyValue Property="Label" String="{@i18n>crDetails}" />
+                            <PropertyValue Property="ID" String="op_cr_details_section" />
+                            <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#op_cr_details_column1" />
                         </Record>
                     </Collection>
                 </Annotation>
-                <!-- Object Page: CR Details Column 1 -->                
+                <!-- Object Page: CR Details Column 1 -->
                 <Annotation Term="UI.FieldGroup" Qualifier="op_cr_details_column1">
                     <Record Type="UI.FieldGroupType">
-                    <PropertyValue Property="Label" String="{@i18n>op_crOverview}"/>
+                        <PropertyValue Property="Label" String="{@i18n>op_crOverview}" />
                         <PropertyValue Property="Data">
                             <Collection>
                                 <Record Type="UI.DataField">
-                                    <PropertyValue Property="Value" Path="CrHeading"/>
+                                    <PropertyValue Property="Value" Path="CrHeading" />
                                 </Record>
                                 <Record Type="UI.DataField">
-                                    <PropertyValue Property="Value" Path="CrDetails"/>
+                                    <PropertyValue Property="Value" Path="CrDetails" />
                                 </Record>
                             </Collection>
                         </PropertyValue>
                     </Record>
                 </Annotation>
-                <!-- Object Page: CR Details Column 2 --> 
+                <!-- Object Page: CR Details Column 2 -->
                 <Annotation Term="UI.FieldGroup" Qualifier="op_cr_details_column2">
                     <Record Type="UI.FieldGroupType">
-                    <PropertyValue Property="Label" String="{@i18n>op_crClassification}"/>
+                        <PropertyValue Property="Label" String="{@i18n>op_crClassification}" />
                         <PropertyValue Property="Data">
                             <Collection>
                                 <Record Type="UI.DataField">
-                                    <PropertyValue Property="Value" Path="CustomerName"/>
+                                    <PropertyValue Property="Value" Path="CustomerName" />
                                 </Record>
                                 <Record Type="UI.DataField">
-                                    <PropertyValue Property="Value" Path="ProjectName"/>
+                                    <PropertyValue Property="Value" Path="ProjectName" />
                                 </Record>
                                 <Record Type="UI.DataField">
-                                    <PropertyValue Property="Value" Path="CrClassification"/>
+                                    <PropertyValue Property="Value" Path="CrClassification" />
                                 </Record>
                             </Collection>
                         </PropertyValue>
@@ -179,17 +181,54 @@
                 <!-- Object Page: CR Details Column 3 -->
                 <Annotation Term="UI.FieldGroup" Qualifier="op_cr_details_column3">
                     <Record Type="UI.FieldGroupType">
-                    <PropertyValue Property="Label" String="{@i18n>op_crEffortEstimation}"/>
+                        <PropertyValue Property="Label" String="{@i18n>op_crEffortEstimation}" />
                         <PropertyValue Property="Data">
                             <Collection>
                                 <Record Type="UI.DataField">
-                                    <PropertyValue Property="Value" Path="EffortEstimate"/>
+                                    <PropertyValue Property="Value" Path="EffortEstimate" />
                                 </Record>
                             </Collection>
                         </PropertyValue>
                     </Record>
                 </Annotation>
-                <!-- END OF OBJECT PAGE -->
+            </Annotations>
+
+            <!-- Section TODO List -->
+            <Annotation Term="UI.Facets">
+                <Collection>
+                    <Record Type="UI.ReferenceFacet">
+                        <PropertyValue Property="Target" AnnotationPath="@UI.LineItem#op_taskList" />
+                        <PropertyValue Property="Label" String="{@i18n>op_todoList}" />
+                        <PropertyValue Property="ID" String="op_section_todoList" />
+                    </Record>
+                </Collection>
+            </Annotation>
+            <!-- Task EntitySet -->
+            <Annotations Target="NYX.BS_IN_CR_GP01_V01_SRV.Task">
+                <Annotation Term="UI.LineItem" Qualifier="op_taskList">
+                    <Collection>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="TaskNum" />
+                            <PropertyValue Property="Label" String="{@i18n>op_taskNum}" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="Description" />
+                            <PropertyValue Property="Label" String="{@i18n>op_taskDetails}" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="Creator" />
+                            <PropertyValue Property="Label" String="{@i18n>op_taskCreator}" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="CreateDate" />
+                            <PropertyValue Property="Label" String="{@i18n>op_taskCreateDate}" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="AssignedTeam" />
+                            <PropertyValue Property="Label" String="{@i18n>op_taskAssignTo}" />
+                        </Record>
+                    </Collection>
+                </Annotation>
             </Annotations>
         </Schema>
     </edmx:DataServices>
