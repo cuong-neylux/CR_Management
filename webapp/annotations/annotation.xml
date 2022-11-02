@@ -189,12 +189,21 @@
                                 </Collection>
                             </PropertyValue>
                         </Record>
+                        
                         <!-- Section 2 -->
                         <Record Type="UI.ReferenceFacet">
                             <!-- Todo List from task entitySet -->
                             <PropertyValue Property="Target" AnnotationPath="/NYX.BS_IN_CR_GP01_V01_SRV.Task/@UI.LineItem#op_taskList" />
                             <PropertyValue Property="Label" String="{@i18n>op_todoList}" />
                             <PropertyValue Property="ID" String="op_section_todoList" />
+                        </Record>
+                        
+                        <!-- Section 3 -->
+                        <Record Type="UI.ReferenceFacet">
+                            <!-- Document list from document entitySet -->
+                            <PropertyValue Property="Target" AnnotationPath="/NYX.BS_IN_CR_GP01_V01_SRV.Document/@UI.LineItem#op_documentList" />
+                            <PropertyValue Property="Label" String="{@i18n>op_docList}" />
+                            <PropertyValue Property="ID" String="op_section_docList" />
                         </Record>
                     </Collection>
                 </Annotation>
@@ -278,6 +287,36 @@
                         <Record Type="UI.DataField">
                             <PropertyValue Property="Value" Path="AssignedTeam" />
                             <PropertyValue Property="Label" String="{@i18n>op_taskAssignTo}" />
+                        </Record>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+
+            <!--                                                                =====          Section 3          =====                                                          -->
+            <!-- Document List -->            
+            <Annotations Target="NYX.BS_IN_CR_GP01_V01_SRV.Document">
+                <Annotation Term="UI.LineItem" Qualifier="op_documentList">
+                    <Collection>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="DocumentId"/>
+                            <PropertyValue Property="Label" String="{@i18n>op_docID}"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="FileName"/>
+                            <PropertyValue Property="Label" String="{@i18n>op_docName}"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="UploadUser"/>
+                            <PropertyValue Property="Label" String="{@i18n>op_docUploader}"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="Content"/>
+                            <PropertyValue Property="Label" String="{@i18n>op_docContent}"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="UploadDate"/>
+                            <PropertyValue Property="Label" String="{@i18n>op_docUploadDate}"/>
                         </Record>
                     </Collection>
                 </Annotation>
