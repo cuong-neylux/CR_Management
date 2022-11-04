@@ -57,6 +57,7 @@
                         <PropertyValue Property="Value" Path="Progress" />
                         <PropertyValue Property="TargetValue" Int="100" />
                         <PropertyValue Property="Visualization" EnumMember="UI.VisualizationType/Progress" />
+                        <PropertyValue Property="Criticality" Path="ProgressColor"/>
                     </Record>
                 </Annotation>
 
