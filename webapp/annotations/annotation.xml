@@ -33,14 +33,14 @@
                             <PropertyValue Property="Label" String="{@i18n>crProject}" />
                         </Record>
                         <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="CreateDate" />
+                            <PropertyValue Property="Label" String="{@i18n>crCreateDate}" />
+                        </Record>
+                        <Record Type="UI.DataField">
                             <PropertyValue Property="Value" Path="Status" />
                             <PropertyValue Property="Label" String="{@i18n>crStatus}" />
                             <PropertyValue Property="Criticality" Path="StatusColor" />
                             <PropertyValue Property="CriticalityRepresentation" EnumMember="UI.CriticalityRepresentationType/WithoutIcon" />
-                        </Record>
-                        <Record Type="UI.DataField">
-                            <PropertyValue Property="Value" Path="CreateDate" />
-                            <PropertyValue Property="Label" String="{@i18n>crCreateDate}" />
                         </Record>
                         <Record Type="UI.DataFieldForAnnotation">
                             <PropertyValue Property="Label" String="{@i18n>crProgress}" />
@@ -55,9 +55,9 @@
                     <Record Type="UI.DataPointType">
                         <PropertyValue Property="Title" String="{@i18n>crProgress}" />
                         <PropertyValue Property="Value" Path="Progress" />
-                        <PropertyValue Property="TargetValue" Int="100" />
+                        <PropertyValue Property="TargetValue" Decimal="100" />
                         <PropertyValue Property="Visualization" EnumMember="UI.VisualizationType/Progress" />
-                        <PropertyValue Property="Criticality" Path="ProgressColor"/>
+                        <PropertyValue Property="Criticality" Path="ProgressColor" />
                     </Record>
                 </Annotation>
 
@@ -190,7 +190,7 @@
                                 </Collection>
                             </PropertyValue>
                         </Record>
-                        
+
                         <!-- Section 2 -->
                         <Record Type="UI.ReferenceFacet">
                             <!-- Todo List from task entitySet -->
@@ -198,7 +198,7 @@
                             <PropertyValue Property="Label" String="{@i18n>op_todoList}" />
                             <PropertyValue Property="ID" String="op_section_todoList" />
                         </Record>
-                        
+
                         <!-- Section 3 -->
                         <Record Type="UI.ReferenceFacet">
                             <!-- Document list from document entitySet -->
@@ -294,30 +294,30 @@
             </Annotations>
 
             <!--                                                                =====          Section 3          =====                                                          -->
-            <!-- Document List -->            
+            <!-- Document List -->
             <Annotations Target="NYX.BS_IN_CR_GP01_V01_SRV.Document">
                 <Annotation Term="UI.LineItem" Qualifier="op_documentList">
                     <Collection>
                         <Record Type="UI.DataField">
-                            <PropertyValue Property="Value" Path="DocumentId"/>
-                            <PropertyValue Property="Label" String="{@i18n>op_docID}"/>
-                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                            <PropertyValue Property="Value" Path="DocumentId" />
+                            <PropertyValue Property="Label" String="{@i18n>op_docID}" />
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High" />
                         </Record>
                         <Record Type="UI.DataField">
-                            <PropertyValue Property="Value" Path="FileName"/>
-                            <PropertyValue Property="Label" String="{@i18n>op_docName}"/>
+                            <PropertyValue Property="Value" Path="FileName" />
+                            <PropertyValue Property="Label" String="{@i18n>op_docName}" />
                         </Record>
                         <Record Type="UI.DataField">
-                            <PropertyValue Property="Value" Path="UploadUser"/>
-                            <PropertyValue Property="Label" String="{@i18n>op_docUploader}"/>
+                            <PropertyValue Property="Value" Path="UploadUser" />
+                            <PropertyValue Property="Label" String="{@i18n>op_docUploader}" />
                         </Record>
                         <Record Type="UI.DataField">
-                            <PropertyValue Property="Value" Path="Content"/>
-                            <PropertyValue Property="Label" String="{@i18n>op_docContent}"/>
+                            <PropertyValue Property="Value" Path="Content" />
+                            <PropertyValue Property="Label" String="{@i18n>op_docContent}" />
                         </Record>
                         <Record Type="UI.DataField">
-                            <PropertyValue Property="Value" Path="UploadDate"/>
-                            <PropertyValue Property="Label" String="{@i18n>op_docUploadDate}"/>
+                            <PropertyValue Property="Value" Path="UploadDate" />
+                            <PropertyValue Property="Label" String="{@i18n>op_docUploadDate}" />
                         </Record>
                     </Collection>
                 </Annotation>
