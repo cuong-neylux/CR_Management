@@ -117,6 +117,36 @@
                                 }
                             }
                         }
+                    },
+                    "sap.suite.ui.generic.template.ObjectPage.view.Details": {
+                        "controllerName": "NYX.bsincrv01.ext.controller.ObjectPageExt",
+                        "sap.ui.generic.app": {
+                            "CR_HeaderSet": {
+                                "EntitySet": "CR_HeaderSet",
+                                "Header": {
+                                    "Actions": {
+                                        "submitButton": {
+                                            "id": "submitButton",
+                                            "text": "Submit",
+                                            "press": "onSubmitClick",
+                                            "requiresSelection": false
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "sap.ui.viewExtensions": {
+                    "sap.suite.ui.generic.template.ObjectPage.view.Details": {
+                        "ReplaceFacet|CR_HeaderSet|op_taskList": {
+                            "type": "XML",
+                            "className": "sap.ui.core.mvc.View",
+                            "viewName": "NYX.bsincrv01.ext.view.Timeline",
+                            "sap.ui.generic.app": {
+                                "title": "Message History"
+                            }
+                        }
                     }
                 }
             }
