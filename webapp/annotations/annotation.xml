@@ -206,12 +206,16 @@
                             <PropertyValue Property="Label" String="{@i18n>op_docList}" />
                             <PropertyValue Property="ID" String="op_section_docList" />
                         </Record>
-                        <!-- Section 5 -->                        
+
+                        <!-- Section 4 -->
+                        <!-- Message History -->
+                        
+                        <!-- Section 5 -->
+                        <!-- Information for sending to the next processor -->
                         <Record Type="UI.ReferenceFacet">
-                            <!-- Information for sending to the next processor -->
-                            <PropertyValue Property="Label" String="{@i18n>op_sendToNextProcessor}"/>
-                            <PropertyValue Property="ID" String="op_section_nextProcesssor"/>
-                            <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#op_sendToNextProcessor"/>
+                            <PropertyValue Property="Label" String="{@i18n>op_nextStep}" />
+                            <PropertyValue Property="ID" String="op_section_nextProcesssor" />
+                            <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#op_sendToNextProcessor" />
                         </Record>
                     </Collection>
                 </Annotation>
@@ -268,19 +272,22 @@
                         </PropertyValue>
                     </Record>
                 </Annotation>
-                <!-- Object Page: Information for sending to the next processor -->                
+                <!-- Object Page: Information for sending to the next processor -->
                 <Annotation Term="UI.FieldGroup" Qualifier="op_sendToNextProcessor">
                     <Record Type="UI.FieldGroupType">
                         <PropertyValue Property="Data">
                             <Collection>
                                 <Record Type="UI.DataField">
-                                    <PropertyValue Property="Value" Path="Step"/>
+                                <PropertyValue Property="Label" String="{@i18n>op_nextStep}" />
+                                    <PropertyValue Property="Value" Path="Step" />
                                 </Record>
                                 <Record Type="UI.DataField">
-                                    <PropertyValue Property="Value" Path="CR_User/FirstName"/>
+                                <PropertyValue Property="Label" String="{@i18n>op_nextProcessor}" />
+                                    <PropertyValue Property="Value" Path="NextProcessor" />
                                 </Record>
                                 <Record Type="UI.DataField">
-                                    <PropertyValue Property="Value" Path="CurrentNote"/>
+                                <PropertyValue Property="Label" String="{@i18n>op_message}" />
+                                    <PropertyValue Property="Value" Path="CurrentNote" />
                                 </Record>
                             </Collection>
                         </PropertyValue>
