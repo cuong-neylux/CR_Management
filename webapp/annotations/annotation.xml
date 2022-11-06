@@ -206,6 +206,13 @@
                             <PropertyValue Property="Label" String="{@i18n>op_docList}" />
                             <PropertyValue Property="ID" String="op_section_docList" />
                         </Record>
+                        <!-- Section 5 -->                        
+                        <Record Type="UI.ReferenceFacet">
+                            <!-- Information for sending to the next processor -->
+                            <PropertyValue Property="Label" String="{@i18n>op_sendToNextProcessor}"/>
+                            <PropertyValue Property="ID" String="op_section_nextProcesssor"/>
+                            <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#op_sendToNextProcessor"/>
+                        </Record>
                     </Collection>
                 </Annotation>
 
@@ -256,6 +263,24 @@
                                 <Record Type="UI.DataField">
                                     <PropertyValue Property="Label" String="{@i18n>op_estimationInDays}" />
                                     <PropertyValue Property="Value" Path="EffortEstimate" />
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <!-- Object Page: Information for sending to the next processor -->                
+                <Annotation Term="UI.FieldGroup" Qualifier="op_sendToNextProcessor">
+                    <Record Type="UI.FieldGroupType">
+                        <PropertyValue Property="Data">
+                            <Collection>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="Step"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="CR_User/FirstName"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="CurrentNote"/>
                                 </Record>
                             </Collection>
                         </PropertyValue>
