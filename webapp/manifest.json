@@ -139,7 +139,7 @@
                 },
                 "sap.ui.viewExtensions": {
                     "sap.suite.ui.generic.template.ObjectPage.view.Details": {
-                        "AfterFacet|CR_HeaderSet|op_taskList": {
+                        "AfterFacet|CR_HeaderSet|op_section_docList": {
                             "type": "XML",
                             "className": "sap.ui.core.mvc.View",
                             "viewName": "NYX.bsincrv01.ext.view.Timeline",
