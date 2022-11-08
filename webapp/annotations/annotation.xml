@@ -82,11 +82,6 @@
                                 <PropertyValue Property="Value" Path="CrHeading" />
                             </Record>
                         </PropertyValue>
-                        <PropertyValue Property="Description">
-                            <Record Type="UI.DataField">
-                                <PropertyValue Property="Value" Path="CrNum" />
-                            </Record>
-                        </PropertyValue>
                     </Record>
                 </Annotation>
 
@@ -128,16 +123,8 @@
                                     <PropertyValue Property="Value" Path="CreateDate" />
                                 </Record>
                                 <Record Type="UI.DataField">
-                                    <PropertyValue Property="Label" String="{@i18n>crClass}" />
-                                    <PropertyValue Property="Value" Path="CrClassification" />
-                                </Record>
-                                <Record Type="UI.DataField">
-                                    <PropertyValue Property="Label" String="{@i18n>crProject}" />
-                                    <PropertyValue Property="Value" Path="ProjectName" />
-                                </Record>
-                                <Record Type="UI.DataField">
-                                    <PropertyValue Property="Label" String="{@i18n>crCustomer}" />
-                                    <PropertyValue Property="Value" Path="CustomerName" />
+                                    <PropertyValue Property="Label" String="{@i18n>crNum}" />
+                                    <PropertyValue Property="Value" Path="CrNum" />
                                 </Record>
                             </Collection>
                         </PropertyValue>
@@ -209,7 +196,7 @@
 
                         <!-- Section 4 -->
                         <!-- Message History -->
-                        
+
                         <!-- Section 5 -->
                         <!-- Information for sending to the next processor -->
                         <Record Type="UI.ReferenceFacet">
@@ -278,15 +265,15 @@
                         <PropertyValue Property="Data">
                             <Collection>
                                 <Record Type="UI.DataField">
-                                <PropertyValue Property="Label" String="{@i18n>op_nextStep}" />
+                                    <PropertyValue Property="Label" String="{@i18n>op_nextStep}" />
                                     <PropertyValue Property="Value" Path="Step" />
                                 </Record>
                                 <Record Type="UI.DataField">
-                                <PropertyValue Property="Label" String="{@i18n>op_nextProcessor}" />
+                                    <PropertyValue Property="Label" String="{@i18n>op_nextProcessor}" />
                                     <PropertyValue Property="Value" Path="NextProcessor" />
                                 </Record>
                                 <Record Type="UI.DataField">
-                                <PropertyValue Property="Label" String="{@i18n>op_message}" />
+                                    <PropertyValue Property="Label" String="{@i18n>op_message}" />
                                     <PropertyValue Property="Value" Path="CurrentNote" />
                                 </Record>
                             </Collection>
