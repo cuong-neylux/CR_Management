@@ -115,16 +115,16 @@
                         <PropertyValue Property="Data">
                             <Collection>
                                 <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="{@i18n>crNum}" />
+                                    <PropertyValue Property="Value" Path="CrNum" />
+                                </Record>
+                                <Record Type="UI.DataField">
                                     <PropertyValue Property="Label" String="{@i18n>crRequester}" />
                                     <PropertyValue Property="Value" Path="Requester" />
                                 </Record>
                                 <Record Type="UI.DataField">
                                     <PropertyValue Property="Label" String="{@i18n>crCreateDate}" />
                                     <PropertyValue Property="Value" Path="CreateDate" />
-                                </Record>
-                                <Record Type="UI.DataField">
-                                    <PropertyValue Property="Label" String="{@i18n>crNum}" />
-                                    <PropertyValue Property="Value" Path="CrNum" />
                                 </Record>
                             </Collection>
                         </PropertyValue>
