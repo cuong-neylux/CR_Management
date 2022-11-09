@@ -14,7 +14,7 @@
 		          liveChange="sliderChanged"
 		          min="300"
 		          max="800"
-		          value="350"
+		          value="300"
 		          enableTickmarks="true"
 		          step="20"
 		          class="sapUiSmallMarginTop"/>
