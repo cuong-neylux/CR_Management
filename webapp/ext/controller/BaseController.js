@@ -3,7 +3,7 @@ sap.ui.define([
 ], function(Controller) {
 	"use strict";
 
-	return Controller.extend("myCompany.myApp.controller.BaseController", {
+	return Controller.extend("NYX.bsincrv01.ext.controller.BaseController", {
 		/**
 		 * Convenience method for accessing the router.
 		 * @public
@@ -13,13 +13,31 @@ sap.ui.define([
 			return sap.ui.core.UIComponent.getRouterFor(this);
 		},
 
+		// Get user list from Odata
+		loadUsers: function(){
+			oModel = this.getOwnerComponent.getModel();
+			oModel.read("/UserSet", {
+				success: function (oData) {
+					var users = oData.results;
+					window.users = this.users;
+				},
+				error: function () {
+					console.log("Load UserSet", "Could not load the user list");
+				}
+			});
+		},
+
+		getUserSet:function(){
+			return this.users;
+		},
+
         /**
 		 * Convenience method for setting the controller.
 		 * @public
 		 * @param {sap.ui.model.Controller} controller the controller instance
 		 */
 		setController: function(controller) {
-			this = controller;
+			this.globalController = controller;
 		},
         		/**
 		 * Convenience method for getting the view model by name.
@@ -27,7 +45,7 @@ sap.ui.define([
 		 * @returns {sap.ui.model.Controller} the controller instance
 		 */
 		getController: function() {
-			return this;
+			return this.globalController;
 		},
 
 		/**

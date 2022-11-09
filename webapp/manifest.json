@@ -135,6 +135,33 @@
                                 }
                             }
                         }
+                    },
+                    
+                    "sap.suite.ui.generic.template.ObjectPage.view.Timeline": {
+                        "controllerName": "NYX.bsincrv01.ext.controller.Timeline",
+                        "sap.ui.generic.app": {
+                            "CR_HeaderSet": {
+                                "EntitySet": "CommentSet",
+                                "Header": {
+                                    "testButton": {
+                                        "id": "testButton",
+                                        "text": "Test",
+                                        "press": "onTestClick",
+                                        "requiresSelection": false
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "sap.suite.ui.generic.template.ObjectPage.view.BaseController": {
+                        "controllerName": "NYX.bsincrv01.ext.controller.BaseController",
+                        "sap.ui.generic.app": {
+                            "CR_HeaderSet": {
+                                "EntitySet": "CR_HeaderSet",
+                                "Header": {
+                                }
+                            }
+                        }
                     }
                 },
                 "sap.ui.viewExtensions": {
