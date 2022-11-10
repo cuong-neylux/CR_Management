@@ -27,17 +27,17 @@
 			enableDoubleSided="false"
 			lazyLoading="true"
 			textHeight="automatic"
-			content="{timelineModel>/Items}"
+			content="{CR_Comment}"
 			showHeaderBar="false"
 			showIcons="false">
 			<content>
 				<TimelineItem
 					id="idTemplateItem"
 					maxCharacters="5000"
-					dateTime="{timelineModel>Date}"
-					title="{timelineModel>Title}"
-					text="{timelineModel>Text}"
-					userName="{timelineModel>User}">
+					dateTime="{CommentDate}"
+					title=""
+					text="{Note}"
+					userName="{CommentUser}">
 				</TimelineItem>
 			</content>
 		</Timeline>
