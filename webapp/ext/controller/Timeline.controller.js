@@ -44,7 +44,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller", "sap/ui/model/json/JSONModel", "sap
 
 				var lModel = new JSONModel(aData);
 				controller.getView().setModel(lModel, "timelineModel");
-				this._timeline = this.byId("idTimeline");
+				//controller._timeline = controller.byId("idTimeline");
 			},
 
 			sliderChanged: function (oEvent) {

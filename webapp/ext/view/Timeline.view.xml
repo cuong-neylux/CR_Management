@@ -34,10 +34,10 @@
 				<TimelineItem
 					id="idTemplateItem"
 					maxCharacters="5000"
-					dateTime="{Date}"
-					text="{Text}"
-					title="{Title}"
-					userName="{UserName}">
+					dateTime="{timelineModel>Date}"
+					title="{timelineModel>Title}"
+					text="{timelineModel>Text}"
+					userName="{timelineModel>User}">
 				</TimelineItem>
 			</content>
 		</Timeline>
