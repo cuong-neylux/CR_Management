@@ -13,8 +13,8 @@ sap.ui.define([
 			return sap.ui.core.UIComponent.getRouterFor(this);
 		},
 
-		// Get user list from Odata
-		loadUsers: function(){
+		// Get user list from Odata and find the user name that matches the given personal number
+		loadUsers: function(pNumber){
 			oModel = this.getOwnerComponent.getModel();
 			oModel.read("/UserSet", {
 				success: function (oData) {

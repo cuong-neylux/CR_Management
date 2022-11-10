@@ -33,7 +33,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller", "sap/ui/model/json/JSONModel", "sap
 				var oDate;
 				for (var i = 0; i < messages.length; i++) {
 					oDate = new Date(messages[i].CommentDate);
-					oDate.setTime(oDate.getTime() + messages[i].CommentTime - 3600000)						
+					//oDate.setTime(oDate.getTime() + messages[i].CommentTime - 3600000)						
 					aData.Items.push({
 						Date: oDate,
 						Title: i + "",

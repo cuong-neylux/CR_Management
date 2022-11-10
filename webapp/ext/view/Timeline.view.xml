@@ -27,17 +27,17 @@
 			enableDoubleSided="false"
 			lazyLoading="true"
 			textHeight="automatic"
-			content="{/Items}"
+			content="{timelineModel>/Items}"
 			showHeaderBar="false"
 			showIcons="false">
 			<content>
 				<TimelineItem
 					id="idTemplateItem"
 					maxCharacters="5000"
-					dateTime="{timelineModel>Date}"
-					text="{timelineModel>Text}"
-					title="{timelineModel>Title}"
-					userName="{timelineModel>UserName}">
+					dateTime="{Date}"
+					text="{Text}"
+					title="{Title}"
+					userName="{UserName}">
 				</TimelineItem>
 			</content>
 		</Timeline>
