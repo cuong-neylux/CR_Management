@@ -28,6 +28,8 @@
 			lazyLoading="true"
 			textHeight="automatic"
 			content="{CR_Comment}"
+			enableScroll="true"
+			growingThreshold="5"
 			showHeaderBar="false"
 			showIcons="false">
 			<content>

@@ -2,7 +2,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller", "sap/ui/model/json/JSONModel", "sap
 	function (Controller, JSONModel, MessageToast) {
 		"use strict";
 
-		return Controller.extend("sap.suite.ui.commons.sample.TimelineTextHeight.Timeline", {
+		return Controller.extend("NYX.bsincrv01.ext.controller.Timeline", {
 
 			onInit: function () {
 				this._timeline = this.byId("idTimeline");
