@@ -58,6 +58,7 @@
                     <PropertyRef Name="RoleName"/>
                 </Key>
                 <Property Name="Mandt" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Mandant"/>
+                <Property Name="PhotoPath" Type="Edm.String" MaxLength="64"/>
                 <Property Name="PersonalNumber" Type="Edm.String" Nullable="false" MaxLength="8" sap:label="Personalnr"/>
                 <Property Name="RoleName" Type="Edm.String" Nullable="false" MaxLength="64"/>
                 <Property Name="FirstName" Type="Edm.String" Nullable="false" MaxLength="64"/>
@@ -126,7 +127,9 @@
                     <PropertyRef Name="TaskNum"/>
                 </Key>
                 <Property Name="CreateTimestamp" Type="Edm.DateTime" Nullable="false" Precision="0" sap:label="Zeitstempel"/>
+                <Property Name="TaskStatus" Type="Edm.String" MaxLength="64"/>
                 <Property Name="Creator" Type="Edm.String" Nullable="false" MaxLength="8" sap:label="Personalnr"/>
+                <Property Name="StatusColor" Type="Edm.Byte" sap:label="int"/>
                 <Property Name="Mandt" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Mandant"/>
                 <Property Name="CrNum" Type="Edm.String" Nullable="false" MaxLength="12"/>
                 <Property Name="TaskNum" Type="Edm.String" Nullable="false" MaxLength="7"/>
