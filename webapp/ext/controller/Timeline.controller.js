@@ -12,7 +12,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller", "sap/ui/model/json/JSONModel", "sap
 				var panel = this.byId("idPanel");
 				var timeline = this.byId("idTimeline");
 				var currentHeight = oEvent.getParameter("value");
-				panel.setHeight((currentHeight + 50) + "px");
+				panel.setHeight((currentHeight) + "px");
 				timeline.setHeight(currentHeight + "px");
 			},
 

@@ -15,8 +15,8 @@
 		          min="300"
 		          max="800"
 		          value="300"
-		          enableTickmarks="true"
-		          step="20"
+		          enableTickmarks="false"
+		          step="1"
 		          class="sapUiSmallMarginTop"/>
 	</m:Toolbar>
 	<m:Panel id="idPanel"
@@ -28,7 +28,7 @@
 			lazyLoading="true"
 			textHeight="automatic"
 			content="{CR_Comment}"
-			enableScroll="true"
+			enableScroll="false"
 			growingThreshold="10000"
 			showHeaderBar="false"
 			showIcons="true">
