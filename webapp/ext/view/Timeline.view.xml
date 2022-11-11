@@ -29,7 +29,7 @@
 			textHeight="automatic"
 			content="{CR_Comment}"
 			enableScroll="true"
-			growingThreshold="5"
+			growingThreshold="10"
 			showHeaderBar="false"
 			showIcons="false">
 			<content>
