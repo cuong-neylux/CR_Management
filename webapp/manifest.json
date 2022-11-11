@@ -139,7 +139,6 @@
                             }
                         }
                     },
-                    
                     "sap.suite.ui.generic.template.ObjectPage.view.Timeline": {
                         "controllerName": "NYX.bsincrv01.ext.controller.Timeline",
                         "sap.ui.generic.app": {
@@ -161,8 +160,7 @@
                         "sap.ui.generic.app": {
                             "CR_HeaderSet": {
                                 "EntitySet": "CR_HeaderSet",
-                                "Header": {
-                                }
+                                "Header": {}
                             }
                         }
                     }

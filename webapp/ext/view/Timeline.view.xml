@@ -20,7 +20,7 @@
 		          class="sapUiSmallMarginTop"/>
 	</m:Toolbar>
 	<m:Panel id="idPanel"
-	         height="350px">
+	         height="300px">
 		<Timeline
 			id="idTimeline"
 			axisOrientation="Horizontal"
@@ -36,7 +36,7 @@
 				<TimelineItem
 					id="idTemplateItem"
 					maxCharacters="5000"
-					dateTime="{CommentDate}"
+					dateTime="{Timestamp}"
 					title="added an Note."
 					text="{Note}"
 					userName="{CommentUser}">

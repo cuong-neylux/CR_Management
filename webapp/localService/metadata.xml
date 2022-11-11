@@ -44,6 +44,7 @@
                     <PropertyRef Name="CommentId"/>
                 </Key>
                 <Property Name="Mandt" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Mandant"/>
+                <Property Name="Timestamp" Type="Edm.DateTime" Nullable="false" Precision="0" sap:label="Zeitstempel"/>
                 <Property Name="CrNum" Type="Edm.String" Nullable="false" MaxLength="12"/>
                 <Property Name="CommentId" Type="Edm.String" Nullable="false" MaxLength="7"/>
                 <Property Name="CommentUser" Type="Edm.String" Nullable="false" MaxLength="8" sap:label="Personalnr"/>
