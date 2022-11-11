@@ -11,9 +11,9 @@ sap.ui.define(["sap/ui/core/mvc/Controller", "sap/ui/model/json/JSONModel", "sap
 			sliderChanged: function (oEvent) {
 				var panel = this.byId("idPanel");
 				var timeline = this.byId("idTimeline");
-				var currentHeigh = oEvent.getParameter("value");
-				panel.setHeight((currentHeigh + 50) + "px");
-				timeline.setHeight(currentHeigh + "px");
+				var currentHeight = oEvent.getParameter("value");
+				panel.setHeight((currentHeight + 50) + "px");
+				timeline.setHeight(currentHeight + "px");
 			},
 
 			onTestClick: function(){

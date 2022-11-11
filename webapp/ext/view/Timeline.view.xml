@@ -31,15 +31,16 @@
 			enableScroll="true"
 			growingThreshold="10000"
 			showHeaderBar="false"
-			showIcons="false">
+			showIcons="true">
 			<content>
 				<TimelineItem
 					id="idTemplateItem"
-					maxCharacters="5000"
-					dateTime="{Timestamp}"
-					title="added an Note."
+					maxCharacters="50000"
+					dateTime="{CommentTimestamp}"
+					title="{Title}"
 					text="{Note}"
-					userName="{CommentUser}">
+					userName="{CommentUser}"
+					userPicture="../sources/images/cr.png">
 				</TimelineItem>
 			</content>
 		</Timeline>
