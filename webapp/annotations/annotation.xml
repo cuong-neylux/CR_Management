@@ -2,6 +2,9 @@
     <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/UI.xml">
         <edmx:Include Namespace="com.sap.vocabularies.UI.v1" Alias="UI" />
     </edmx:Reference>
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml">
+        <edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common" />
+    </edmx:Reference>
     <edmx:Reference Uri="/sap/opu/odata/nyx/BS_IN_CR_GP01_V01_SRV/$metadata">
         <edmx:Include Namespace="NYX.BS_IN_CR_GP01_V01_SRV" />
     </edmx:Reference>
@@ -341,6 +344,88 @@
                     </Collection>
                 </Annotation>
             </Annotations>
+
+            <!-- Customer: Dropdown list -->
+            <Annotations Target="NYX.BS_IN_CR_GP01_V01_SRV.CR_Header/CustomerName">
+                <Annotation Term="Common.Label" String="{@i18n>crCustomer}" />
+                <Annotation Term="Common.Text" Path="CustomerName">
+                    <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextOnly" />
+                </Annotation>
+                <!--Value List for Hdr/Land -> Make CountrySet as value input-->
+                <Annotation Term="Common.ValueListWithFixedValues" Bool="true" />
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="CollectionPath" String="CustomerSet" />
+                        <PropertyValue Property="SearchSupported" Bool="true" />
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="ValueListProperty" String="NcName" />
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="CustomerName" />
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="NcName" />
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+
+            <!-- Project: Dropdown list -->
+            <Annotations Target="NYX.BS_IN_CR_GP01_V01_SRV.CR_Header/ProjectName">
+                <Annotation Term="Common.Label" String="{@i18n>crProject}" />
+                <Annotation Term="Common.Text" Path="ProjectName">
+                    <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextOnly" />
+                </Annotation>
+                <!--Value List for Hdr/Land -> Make CountrySet as value input-->
+                <Annotation Term="Common.ValueListWithFixedValues" Bool="true" />
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="CollectionPath" String="ProjectSet" />
+                        <PropertyValue Property="SearchSupported" Bool="true" />
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="ValueListProperty" String="ProjectName" />
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="ProjectName" />
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="ProjectName" />
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+
+            <!-- Project: Dropdown list -->
+            <Annotations Target="NYX.BS_IN_CR_GP01_V01_SRV.CR_Header/CrClassification">
+                <Annotation Term="Common.Label" String="{@i18n>crClass}" />
+                <Annotation Term="Common.Text" Path="CrClassification">
+                    <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextOnly" />
+                </Annotation>
+                <!--Value List for Hdr/Land -> Make CountrySet as value input-->
+                <Annotation Term="Common.ValueListWithFixedValues" Bool="true" />
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="CollectionPath" String="CR_ClassificationSet" />
+                        <PropertyValue Property="SearchSupported" Bool="true" />
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="ValueListProperty" String="Classification" />
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="CrClassification" />
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="Classification" />
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+
         </Schema>
     </edmx:DataServices>
 </edmx:Edmx>
