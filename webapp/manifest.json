@@ -132,7 +132,8 @@
                                             "id": "submitButton",
                                             "text": "Submit",
                                             "press": "onSubmitClick",
-                                            "requiresSelection": false
+                                            "requiresSelection": false,
+                                            "determining": true
                                         }
                                     }
                                 }
