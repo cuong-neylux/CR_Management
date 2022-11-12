@@ -214,7 +214,7 @@
                         <!-- Section 2 -->
                         <Record Type="UI.ReferenceFacet">
                             <!-- Todo List from task entitySet -->
-                            <PropertyValue Property="Target" AnnotationPath="/NYX.BS_IN_CR_GP01_V01_SRV.Task/@UI.LineItem#op_taskList" />
+                            <PropertyValue Property="Target" AnnotationPath="CR_Task/@UI.LineItem#op_taskList" />
                             <PropertyValue Property="Label" String="{@i18n>op_todoList}" />
                             <PropertyValue Property="ID" String="op_section_todoList" />
                         </Record>
