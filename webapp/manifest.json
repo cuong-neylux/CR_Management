@@ -211,24 +211,8 @@
                         "entitySet": "CR_HeaderSet",
                         "defaultLayoutTypeIfExternalNavigation": "MidColumnFullScreen",
                         "component": {
-                            "name": "sap.suite.ui.generic.template.ObjectPage",
-                            "settings": {
-                                "editableHeaderContent": false,
-                                "tableType": "ResponsiveTable",
-                                "hideTableVarientManagement": false,
-                                "sections": {
-                                    "idTableFacet": {
-                                        "quickVariantSelection": {
-                                            "variants": {}
-                                        },
-                                        "navigationProperty": "CR_Task",
-                                        "entitySet": "TaskSet",
-                                        "createMode": "inline"
-                                    }
-                                }
-                            }
-                        },
-                        "pages": {}
+                            "name": "sap.suite.ui.generic.template.ObjectPage"
+                        }
                     }
                 }
             }
