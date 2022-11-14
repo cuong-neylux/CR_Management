@@ -498,7 +498,7 @@
                         <PropertyValue Property="SearchSupported" Bool="true" />
                         <PropertyValue Property="Parameters">
                             <Collection>
-                                <Record Type="Common.ValueListParameterOut">
+                                <Record Type="Common.ValueListParameterInOut">
                                     <PropertyValue Property="ValueListProperty" String="PersonalNumber" />
                                     <PropertyValue Property="LocalDataProperty" PropertyPath="NextProcessor" />
                                 </Record>
