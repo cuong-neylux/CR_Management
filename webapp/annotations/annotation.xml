@@ -71,7 +71,6 @@
                         <PropertyPath>ProjectName</PropertyPath>
                         <PropertyPath>CrClassification</PropertyPath>
                         <PropertyPath>CrNum</PropertyPath>
-                        <PropertyPath>NextProcessor</PropertyPath>
                     </Collection>
                 </Annotation>
 
@@ -502,14 +501,19 @@
                                     <PropertyValue Property="ValueListProperty" String="PersonalNumber" />
                                     <PropertyValue Property="LocalDataProperty" PropertyPath="NextProcessor" />
                                 </Record>
-                                <Record Type="Common.ValueListParameterDisplayOnly">
-                                    <PropertyValue Property="ValueListProperty" String="Fullname" />
-                                </Record>
                             </Collection>
                         </PropertyValue>
                     </Record>
                 </Annotation>
             </Annotations>
+            <!--Value Helper for Next Processor-->
+            <Annotations Target="NYX.BS_IN_CR_GP01_V01_SRV.User/PersonalNumber">
+                <Annotation Term="Common.Label" String="{@i18n>op_nextProcessor}" />
+                <Annotation Term="Common.Text" Path="Fullname">
+                    <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextOnly" />
+                </Annotation>
+            </Annotations>
+
         </Schema>
     </edmx:DataServices>
 </edmx:Edmx>
