@@ -39,7 +39,7 @@
 					dateTime="{CommentTimestamp}"
 					title="{Title}"
 					text="{Note}"
-					userName="{CommentUser}"
+					userName="{CommentUserFullname}"
 					userPicture="../sources/images/cr.png">
 				</TimelineItem>
 			</content>
