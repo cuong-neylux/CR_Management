@@ -4,7 +4,8 @@
             <m:HBox id="taskViewHbox" renderType="Bare">
                 <Table id="taskViewLeftTable" selectionMode="Single" ariaLabelledBy="title" rows="{
 						path: 'CR_Task',
-						filters: {path: 'Rank', operator: 'EQ', value1: '0'}
+						filters: {path: 'Status', operator: 'EQ', value1: 'In Process'},
+						sorter: {path: 'AssignedTeam', ascending: true}
 					}" visibleRowCount="10">
                     <extension>
                         <m:OverflowToolbar id="taskViewLeftTableOverflowToolbar" style="Clear">
@@ -12,13 +13,13 @@
                         </m:OverflowToolbar>
                     </extension>
                     <columns>
-                        <Column id="taskViewLeftTableColumn1" sortProperty="Name" filterProperty="Name">
+                        <Column id="taskViewLeftTableColumn1">
                             <m:Text id="taskViewLeftTable1Column1ColumnName" text="Task" />
                             <template>
                                 <m:Text id="taskViewLeftTable1Column1TaskDescription" text="{Description}" wrapping="false" />
                             </template>
                         </Column>
-                        <Column id="taskViewLeftTableColumn2" sortProperty="Category" filterProperty="Category">
+                        <Column id="taskViewLeftTableColumn2" sortProperty="AssignedTeam" filterProperty="AssignedTeam">
                             <m:Text id="taskViewLeftTable1Column2ColumnName" text="Category" />
                             <template>
                                 <m:Text id="taskViewLeftTable1Column1AssignedTeam" text="{AssignedTeam}" wrapping="false" />
@@ -36,7 +37,7 @@
                 </m:VBox>
                 <Table id="taskViewRightTable" selectionMode="Single" ariaLabelledBy="title2" rows="{
 						path: 'CR_Task',
-						filters: {path: 'Status', operator: 'EQ', value1: 'In Process'},
+						filters: {path: 'Status', operator: 'EQ', value1: 'Done'},
 						sorter: {path: 'AssignedTeam', ascending: true}
 					}" visibleRowCount="10" noData="Please drag-and-drop products here.">
                     <extension>
@@ -49,13 +50,13 @@
                     </extension>
                     <columns>
                         <Column id="taskViewRightTableColumn1">
-                            <m:Text id="taskViewRightTableColumn1ColumnName" text="Product Name" />
+                            <m:Text id="taskViewRightTableColumn1ColumnName" text="Description" />
                             <template>
                                 <m:Text id="taskViewRightTableColumn1TaskDescription" text="{Description}" wrapping="false" />
                             </template>
                         </Column>
                         <Column id="taskViewRightTableColumn2">
-                            <m:Text id="taskViewRightTableColumn2ColumnName" text="Category" />
+                            <m:Text id="taskViewRightTableColumn2ColumnName" text="AssignedTeam" />
                             <template>
                                 <m:Text id="taskViewRightTableColumn2AssignedTeam" text="{AssignedTeam}" wrapping="false" />
                             </template>

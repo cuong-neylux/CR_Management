@@ -506,7 +506,7 @@
                     </Record>
                 </Annotation>
             </Annotations>
-            <!--Value Helper for Next Processor-->
+            <!--Convert all the PersonalNumber fields to Fullname-->
             <Annotations Target="NYX.BS_IN_CR_GP01_V01_SRV.User/PersonalNumber">
                 <Annotation Term="Common.Label" String="{@i18n>op_nextProcessor}" />
                 <Annotation Term="Common.Text" Path="Fullname">
