@@ -63,7 +63,8 @@
                 "sap.f": {},
                 "sap.ui.comp": {},
                 "sap.ui.generic.app": {},
-                "sap.suite.ui.generic.template": {}
+                "sap.suite.ui.generic.template": {},
+                "sap.ui.table": {}
             }
         },
         "contentDensities": {
@@ -145,14 +146,7 @@
                         "sap.ui.generic.app": {
                             "CR_HeaderSet": {
                                 "EntitySet": "CommentSet",
-                                "Header": {
-                                    "testButton": {
-                                        "id": "testButton",
-                                        "text": "Test",
-                                        "press": "onTestClick",
-                                        "requiresSelection": false
-                                    }
-                                }
+                                "Header": {}
                             }
                         }
                     },
@@ -174,6 +168,14 @@
                             "viewName": "NYX.bsincrv01.ext.view.Timeline",
                             "sap.ui.generic.app": {
                                 "title": "Message History"
+                            }
+                        },
+                        "AfterFacet|CR_HeaderSet|op_section_todoList": {
+                            "type": "XML",
+                            "className": "sap.ui.core.mvc.View",
+                            "viewName": "NYX.bsincrv01.ext.view.TaskTable",
+                            "sap.ui.generic.app": {
+                                "title": "ToDo List"
                             }
                         }
                     }

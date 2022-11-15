@@ -14,10 +14,6 @@ sap.ui.define(["sap/ui/core/mvc/Controller", "sap/ui/model/json/JSONModel", "sap
 				var currentHeight = oEvent.getParameter("value");
 				panel.setHeight((currentHeight) + "px");
 				timeline.setHeight(currentHeight + "px");
-			},
-
-			onTestClick: function(){
-
 			}
 		});
 	});

@@ -341,6 +341,10 @@
                             <PropertyValue Property="Value" Path="AssignedTeam" />
                             <PropertyValue Property="Label" String="{@i18n>op_taskAssignTo}" />
                         </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="TaskStatus" />
+                            <PropertyValue Property="Label" String="{@i18n>op_taskStatus}" />
+                        </Record>
                     </Collection>
                 </Annotation>
             </Annotations>

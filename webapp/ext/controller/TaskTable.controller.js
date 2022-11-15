@@ -8,26 +8,35 @@ sap.ui.define([
 ], function(Controller, JSONModel, MessageToast, ToolbarSpacer, TableRow, jQuery) {
 	"use strict";
 
-	return Controller.extend("sap.ui.table.sample.DnD.Controller", {
-
+	return Controller.extend("NYX.bsincrv01.ext.controller.TaskTable", {
+		test: function(){
+			console.log("Test", 1+1);
+		}
+		,
 		onInit: function() {
 			var oView = this.getView();
 
 			// set explored app's demo model on this sample
-			this.oProductsModel = this.initSampleProductsModel();
-			oView.setModel(this.oProductsModel);
+			//this.oProductsModel = this.initSampleProductsModel();
+			//oView.setModel(this.oProductsModel);
 
-			sap.ui.require(["sap/ui/table/sample/TableExampleUtils"], function(TableExampleUtils) {
-				var oTb = oView.byId("infobar");
-				oTb.addContent(new ToolbarSpacer());
-				oTb.addContent(TableExampleUtils.createInfoButton("sap/ui/table/sample/DnD"));
-			}, function(oError){/*ignore*/});
+			//sap.ui.require(["sap/ui/table/sample/TableExampleUtils"], function(TableExampleUtils) {
+			//	var oTb = oView.byId("infobar");
+			//	oTb.addContent(new ToolbarSpacer());
+			//	oTb.addContent(TableExampleUtils.createInfoButton("NYX/bsincrv01"));
+			//}, function(oError){/*ignore*/});
 		},
-
+		
 		onExit: function() {
 			this.oProductsModel.destroy();
 		},
 
+		onBeforeRendering: function(oEvent){
+			console.log("Test", 1+1);
+		},
+		onAfterRendering: function(oEvent){
+			console.log("Test", 2+1);
+		},
 		config: {
 			initialRank: 0,
 			defaultRank: 1024,

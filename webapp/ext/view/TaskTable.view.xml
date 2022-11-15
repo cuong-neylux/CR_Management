@@ -1,71 +1,88 @@
-<mvc:View controllerName="sap.ui.table.sample.DnD.Controller" xmlns="sap.ui.table" xmlns:dnd="sap.ui.core.dnd" xmlns:mvc="sap.ui.core.mvc" xmlns:c="sap.ui.core" xmlns:m="sap.m" height="100%">
+<mvc:View id="idTaskView" controllerName="NYX.bsincrv01.ext.controller.TaskTable" xmlns="sap.ui.table" xmlns:dnd="sap.ui.core.dnd" xmlns:mvc="sap.ui.core.mvc" xmlns:c="sap.ui.core" xmlns:m="sap.m" height="100%">
     <m:Page id="taskViewPage" showHeader="false" enableScrolling="false" class="sapUiContentPadding">
         <m:content>
             <m:HBox id="taskViewHbox" renderType="Bare">
-                <Table id="taskViewLeftTable" selectionMode="Single" ariaLabelledBy="title" rows="{
+                <Table id="table1" selectionMode="Single" ariaLabelledBy="title" rows="{
 						path: 'CR_Task',
-						filters: {path: 'Status', operator: 'EQ', value1: 'In Process'},
-						sorter: {path: 'AssignedTeam', ascending: true}
+						filters: {path: 'TaskStatus', operator: 'EQ', value1: 'In Process'}
 					}" visibleRowCount="10">
                     <extension>
-                        <m:OverflowToolbar id="taskViewLeftTableOverflowToolbar" style="Clear">
-                            <m:Title id="title" text="In Process" />
+                        <m:OverflowToolbar id="infobar" style="Clear">
+                            <m:Title id="title" text="Available Products" />
                         </m:OverflowToolbar>
                     </extension>
                     <columns>
-                        <Column id="taskViewLeftTableColumn1">
-                            <m:Text id="taskViewLeftTable1Column1ColumnName" text="Task" />
+                        <Column id="taskViewTable1Column1" sortProperty="Description" filterProperty="Description">
+                            <m:Text id="taskViewTable1Column1ColumnName" text="Product Name" />
                             <template>
-                                <m:Text id="taskViewLeftTable1Column1TaskDescription" text="{Description}" wrapping="false" />
+                                <m:Text id="taskViewTable1Column1Content" text="{Description}" wrapping="false" />
                             </template>
                         </Column>
-                        <Column id="taskViewLeftTableColumn2" sortProperty="AssignedTeam" filterProperty="AssignedTeam">
-                            <m:Text id="taskViewLeftTable1Column2ColumnName" text="Category" />
+                        <Column id="taskViewTable1Column2" sortProperty="AssignedTeam" filterProperty="AssignedTeam">
+                            <m:Text id="taskViewTable1Column2ColumnName" text="AssignedTeam" />
                             <template>
-                                <m:Text id="taskViewLeftTable1Column1AssignedTeam" text="{AssignedTeam}" wrapping="false" />
+                                <m:Text id="taskViewTable1Column2Content" text="{AssignedTeam}" wrapping="false" />
+                            </template>
+                        </Column>
+                        <Column id="taskViewTable1Column3" hAlign="End" width="6rem" sortProperty="Creator">
+                            <m:Text id="taskViewTable1Column3ColumnName" text="Creator" />
+                            <template>
+                                <m:Text id="taskViewTable1Column3Content" text="{
+									path: 'Creator',
+									type: 'sap.ui.model.type.Integer'
+								}" />
                             </template>
                         </Column>
                     </columns>
                     <dragDropConfig>
-                        <dnd:DragInfo id="taskViewLeftTableDragInfo" groupName="moveToTable2" sourceAggregation="rows" dragStart="onDragStart" />
-                        <dnd:DropInfo id="taskViewLeftTableDropInfo" groupName="moveToTable1" drop="onDropTable1" />
+                        <dnd:DragInfo id="taskViewTable1DragInfo" groupName="moveToTable2" sourceAggregation="rows" dragStart="onDragStart" />
+                        <dnd:DropInfo id="taskViewTable1DropInfo" groupName="moveToTable1" drop="onDropTable1" />
                     </dragDropConfig>
                 </Table>
-                <m:VBox id="taksTableVBox" justifyContent="Center" class="sapUiTinyMarginBeginEnd">
-                    <m:Button id="moveToRightTableButton" class="sapUiTinyMarginBottom" icon="sap-icon://navigation-right-arrow" tooltip="Move to selected" press="moveToTable2" />
-                    <m:Button id="moveToLeftTableButton" icon="sap-icon://navigation-left-arrow" tooltip="Move to available" press="moveToTable1" />
+                <m:VBox id="taskViewVbox" justifyContent="Center" class="sapUiTinyMarginBeginEnd">
+                    <m:Button id="taskViewMoveToTable2Button" class="sapUiTinyMarginBottom" icon="sap-icon://navigation-right-arrow" tooltip="Move to selected" press="moveToTable2" />
+                    <m:Button id="taskViewMoveToTable1Button" icon="sap-icon://navigation-left-arrow" tooltip="Move to available" press="moveToTable1" />
                 </m:VBox>
-                <Table id="taskViewRightTable" selectionMode="Single" ariaLabelledBy="title2" rows="{
+                <Table id="table2" selectionMode="Single" ariaLabelledBy="title2" rows="{
 						path: 'CR_Task',
-						filters: {path: 'Status', operator: 'EQ', value1: 'Done'},
-						sorter: {path: 'AssignedTeam', ascending: true}
+						filters: {path: 'TaskStatus', operator: 'EQ', value1: 'Done'},
+						sorter: {path: 'AssignedTeam', descending: true}
 					}" visibleRowCount="10" noData="Please drag-and-drop products here.">
                     <extension>
-                        <m:OverflowToolbar id="taskViewRightTableOverflowToolbar" style="Clear">
-                            <m:Title id="title2" text="Done" />
-                            <m:ToolbarSpacer  id="taskViewRightTableToobarSpacer"/>
-                            <m:Button id="taskViewRightTableMoveUpButton" icon="sap-icon://navigation-up-arrow" tooltip="Move up" press="moveUp" />
-                            <m:Button id="taskViewRightTableMoveDownButton" icon="sap-icon://navigation-down-arrow" tooltip="Move down" press="moveDown" />
+                        <m:OverflowToolbar id="taskViewTable2OverflowToolbar" style="Clear">
+                            <m:Title id="title2" text="Selected Products" />
+                            <m:ToolbarSpacer id="taskViewToolbarSpacer" />
+                            <m:Button id="taskViewTable2MoveUpButton" icon="sap-icon://navigation-up-arrow" tooltip="Move up" press="moveUp" />
+                            <m:Button id="taskViewTable2MoveDownButton" icon="sap-icon://navigation-down-arrow" tooltip="Move down" press="moveDown" />
                         </m:OverflowToolbar>
                     </extension>
                     <columns>
-                        <Column id="taskViewRightTableColumn1">
-                            <m:Text id="taskViewRightTableColumn1ColumnName" text="Description" />
+                        <Column id="taskViewTable2Column1">
+                            <m:Text id="taskViewTable2Column1ColumnName" text="Product Name" />
                             <template>
-                                <m:Text id="taskViewRightTableColumn1TaskDescription" text="{Description}" wrapping="false" />
+                                <m:Text id="taskViewTable2Column1Content" text="{Description}" wrapping="false" />
                             </template>
                         </Column>
-                        <Column id="taskViewRightTableColumn2">
-                            <m:Text id="taskViewRightTableColumn2ColumnName" text="AssignedTeam" />
+                        <Column id="taskViewTable2Column2">
+                            <m:Text id="taskViewTable2Column2ColumnName" text="Category" />
                             <template>
-                                <m:Text id="taskViewRightTableColumn2AssignedTeam" text="{AssignedTeam}" wrapping="false" />
+                                <m:Text id="taskViewTable2Column2Content" text="{AssignedTeam}" wrapping="false" />
+                            </template>
+                        </Column>
+                        <Column id="taskViewTable2Column3" hAlign="End" width="6rem">
+                            <m:Text id="taskViewTable2Column3ColumnName" text="Quantity" />
+                            <template>
+                                <m:Text id="taskViewTable2Column3Content" text="{
+									path: 'Creator',
+									type: 'sap.ui.model.type.Integer'
+								}" />
                             </template>
                         </Column>
                     </columns>
                     <dragDropConfig>
-                        <dnd:DragInfo id="taskViewRightTableDragInfo" groupName="moveToTable1" sourceAggregation="rows" dragStart="onDragStart" />
-                        <dnd:DropInfo id="taskViewRightTableDropInfo" groupName="moveToTable2" targetAggregation="rows" dropPosition="Between" drop="onDropTable2" />
-                        <dnd:DragDropInfo id="taskViewRightTableDragDropInfo" sourceAggregation="rows" targetAggregation="rows" dropPosition="Between" dragStart="onDragStart" drop="onDropTable2" />
+                        <dnd:DragInfo id="taskViewTable2DragInfo" groupName="moveToTable1" sourceAggregation="rows" dragStart="onDragStart" />
+                        <dnd:DropInfo id="taskViewTable2DropInfo" groupName="moveToTable2" targetAggregation="rows" dropPosition="Between" drop="onDropTable2" />
+                        <dnd:DragDropInfo id="taskViewTable2DragDropInfo" sourceAggregation="rows" targetAggregation="rows" dropPosition="Between" dragStart="onDragStart" drop="onDropTable2" />
                     </dragDropConfig>
                 </Table>
             </m:HBox>
