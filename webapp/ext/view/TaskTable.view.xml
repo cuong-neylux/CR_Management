@@ -24,15 +24,6 @@
                                 <m:Text id="taskViewTable1Column2Content" text="{AssignedTeam}" wrapping="false" />
                             </template>
                         </Column>
-                        <Column id="taskViewTable1Column3" hAlign="End" width="6rem" sortProperty="Creator">
-                            <m:Text id="taskViewTable1Column3ColumnName" text="Creator" />
-                            <template>
-                                <m:Text id="taskViewTable1Column3Content" text="{
-									path: 'Creator',
-									type: 'sap.ui.model.type.Integer'
-								}" />
-                            </template>
-                        </Column>
                     </columns>
                     <dragDropConfig>
                         <dnd:DragInfo id="taskViewTable1DragInfo" groupName="moveToTable2" sourceAggregation="rows" dragStart="onDragStart" />
@@ -67,15 +58,6 @@
                             <m:Text id="taskViewTable2Column2ColumnName" text="Category" />
                             <template>
                                 <m:Text id="taskViewTable2Column2Content" text="{AssignedTeam}" wrapping="false" />
-                            </template>
-                        </Column>
-                        <Column id="taskViewTable2Column3" hAlign="End" width="6rem">
-                            <m:Text id="taskViewTable2Column3ColumnName" text="Quantity" />
-                            <template>
-                                <m:Text id="taskViewTable2Column3Content" text="{
-									path: 'Creator',
-									type: 'sap.ui.model.type.Integer'
-								}" />
                             </template>
                         </Column>
                     </columns>
