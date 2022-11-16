@@ -5,72 +5,82 @@ sap.ui.define([
 	"sap/m/ToolbarSpacer",
 	"sap/ui/table/Row",
 	"jquery.sap.sjax"
-], function(Controller, JSONModel, MessageToast, ToolbarSpacer, TableRow, jQuery) {
+], function (Controller, JSONModel, MessageToast, ToolbarSpacer, TableRow, jQuery) {
 	"use strict";
-
+	var thisController;
 	return Controller.extend("NYX.bsincrv01.ext.controller.TaskTable", {
-		test: function(){
-			console.log("Test", 1+1);
+		test: function () {
+			console.log("Test", 1 + 1);
 		}
 		,
-		onInit: function() {
+		onInit: function () {
+			thisController = this;
 			var oView = this.getView();
 
-			// set explored app's demo model on this sample
+			//set explored app's demo model on this sample
 			//this.oProductsModel = this.initSampleProductsModel();
 			//oView.setModel(this.oProductsModel);
 
-			sap.ui.require(["sap/ui/table/sample/TableExampleUtils"], function(TableExampleUtils) {
-				var oTb = oView.byId("infobar");
-				oTb.addContent(new ToolbarSpacer());
-				oTb.addContent(TableExampleUtils.createInfoButton("NYX/bsincrv01"));
-			}, function(oError){});
+			/* 			sap.ui.require(["sap/ui/table/sample/TableExampleUtils"], function(TableExampleUtils) {
+							var oTb = oView.byId("infobar");
+							oTb.addContent(new ToolbarSpacer());
+							oTb.addContent(TableExampleUtils.createInfoButton("NYX/bsincrv01"));
+						}, function(oError){}); */
 		},
-		
-		onExit: function() {
+
+		onExit: function () {
 			this.oProductsModel.destroy();
 		},
 
-		onBeforeRendering: function(oEvent){
-			console.log("Test", 1+1);
+		onBeforeRendering: function (oEvent) {
+			console.log("Test", 1 + 1);
 		},
-		onAfterRendering: function(oEvent){
-			console.log("Test", 2+1);
+		onAfterRendering: function (oEvent) {
+			console.log("Test", 2 + 1);
 		},
 		config: {
 			initialRank: 0,
 			defaultRank: 1024,
 			rankAlgorithm: {
-				Before: function(iRank) {
+				Before: function (iRank) {
 					return iRank + 1024;
 				},
-				Between: function(iRank1, iRank2) {
+				Between: function (iRank1, iRank2) {
 					// limited to 53 rows
 					return (iRank1 + iRank2) / 2;
 				},
-				After: function(iRank) {
+				After: function (iRank) {
 					return iRank / 2;
 				}
 			}
 		},
 
-		initSampleProductsModel: function() {
-			var oData = jQuery.sap.sjax({
-				url: sap.ui.require.toUrl("sap/ui/demo/mock/products.json"),
-				dataType: "json"
-			}).data;
-
-			// prepare and initialize the rank property
-			oData.ProductCollection.forEach(function(oProduct) {
-				oProduct.Rank = this.config.initialRank;
-			}, this);
-
-			var oModel = new JSONModel();
-			oModel.setData(oData);
+		initSampleProductsModel: function () {
+			var oModel;
+			$.ajax({
+				type: 'GET',
+				dataType: 'json',
+				async: false,
+				url: 'mockdata/products.json',
+				success: function (oData) {
+					console.log(oData);
+					// prepare and initialize the rank property
+					oData.ProductCollection.forEach(function (oProduct) {
+						oProduct.Rank = thisController.config.initialRank;
+					}, thisController);
+					oModel = new JSONModel();
+					oModel.setData(oData);
+					
+				},
+				error: function (error) {
+					alert(error);
+				}
+				
+			});
 			return oModel;
 		},
 
-		getSelectedRowContext: function(sTableId, fnCallback) {
+		getSelectedRowContext: function (sTableId, fnCallback) {
 			var oTable = this.byId(sTableId);
 			var iSelectedIndex = oTable.getSelectedIndex();
 
@@ -87,7 +97,7 @@ sap.ui.define([
 			return oSelectedContext;
 		},
 
-		onDragStart: function(oEvent) {
+		onDragStart: function (oEvent) {
 			var oDraggedRow = oEvent.getParameter("target");
 			var oDragSession = oEvent.getParameter("dragSession");
 
@@ -95,7 +105,7 @@ sap.ui.define([
 			oDragSession.setComplexData("draggedRowContext", oDraggedRow.getBindingContext());
 		},
 
-		onDropTable1: function(oEvent) {
+		onDropTable1: function (oEvent) {
 			var oDragSession = oEvent.getParameter("dragSession");
 			var oDraggedRowContext = oDragSession.getComplexData("draggedRowContext");
 			if (!oDraggedRowContext) {
@@ -107,8 +117,8 @@ sap.ui.define([
 			this.oProductsModel.refresh(true);
 		},
 
-		moveToTable1: function() {
-			this.getSelectedRowContext("table2", function(oSelectedRowContext, iSelectedRowIndex, oTable2) {
+		moveToTable1: function () {
+			this.getSelectedRowContext("table2", function (oSelectedRowContext, iSelectedRowIndex, oTable2) {
 				// reset the rank property and update the model to refresh the bindings
 				this.oProductsModel.setProperty("Rank", this.config.initialRank, oSelectedRowContext);
 				this.oProductsModel.refresh(true);
@@ -121,7 +131,7 @@ sap.ui.define([
 			});
 		},
 
-		onDropTable2: function(oEvent) {
+		onDropTable2: function (oEvent) {
 			var oDragSession = oEvent.getParameter("dragSession");
 			var oDraggedRowContext = oDragSession.getComplexData("draggedRowContext");
 			if (!oDraggedRowContext) {
@@ -157,15 +167,15 @@ sap.ui.define([
 			this.oProductsModel.refresh(true);
 		},
 
-		moveToTable2: function() {
-			this.getSelectedRowContext("table1", function(oSelectedRowContext) {
+		moveToTable2: function () {
+			this.getSelectedRowContext("table1", function (oSelectedRowContext) {
 				var oTable2 = this.byId("table2");
 				var oFirstRowContext = oTable2.getContextByIndex(0);
 
 				// insert always as a first row
 				var iNewRank = this.config.defaultRank;
 				if (oFirstRowContext) {
-					iNewRank =  this.config.rankAlgorithm.Before(oFirstRowContext.getProperty("Rank"));
+					iNewRank = this.config.rankAlgorithm.Before(oFirstRowContext.getProperty("Rank"));
 				}
 
 				this.oProductsModel.setProperty("Rank", iNewRank, oSelectedRowContext);
@@ -176,8 +186,8 @@ sap.ui.define([
 			});
 		},
 
-		moveSelectedRow: function(sDirection) {
-			this.getSelectedRowContext("table2", function(oSelectedRowContext, iSelectedRowIndex, oTable2) {
+		moveSelectedRow: function (sDirection) {
+			this.getSelectedRowContext("table2", function (oSelectedRowContext, iSelectedRowIndex, oTable2) {
 				var iSiblingRowIndex = iSelectedRowIndex + (sDirection === "Up" ? -1 : 1);
 				var oSiblingRowContext = oTable2.getContextByIndex(iSiblingRowIndex);
 				if (!oSiblingRowContext) {
@@ -196,11 +206,11 @@ sap.ui.define([
 			});
 		},
 
-		moveUp: function() {
+		moveUp: function () {
 			this.moveSelectedRow("Up");
 		},
 
-		moveDown: function() {
+		moveDown: function () {
 			this.moveSelectedRow("Down");
 		}
 	});

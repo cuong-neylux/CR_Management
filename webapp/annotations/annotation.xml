@@ -212,8 +212,8 @@
                         </Record>
 
                         <!-- Section 2 -->
+                        <!-- Todo List from task entitySet -->
                         <Record Type="UI.ReferenceFacet">
-                            <!-- Todo List from task entitySet -->
                             <PropertyValue Property="Target" AnnotationPath="CR_Task/@UI.LineItem#op_taskList" />
                             <PropertyValue Property="Label" String="{@i18n>op_todoList}" />
                             <PropertyValue Property="ID" String="op_section_todoList" />
@@ -517,7 +517,6 @@
                     <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextOnly" />
                 </Annotation>
             </Annotations>
-
         </Schema>
     </edmx:DataServices>
 </edmx:Edmx>

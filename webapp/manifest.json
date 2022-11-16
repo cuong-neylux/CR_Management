@@ -54,6 +54,11 @@
     },
     "sap.ui5": {
         "flexEnabled": true,
+        "rootView": {
+            "viewName": "NYX.bsincrv01.ext.view.TaskTable",
+            "type": "XML",
+            "async": true
+        },
         "dependencies": {
             "minUI5Version": "1.71.46",
             "libs": {
@@ -67,7 +72,16 @@
                 "sap.ui.table": {}
             }
         },
-		
+		"config": {
+			"sample": {
+				"stretch": true,
+				"files": [
+					"TaskTable.view.xml",
+					"TaskTable.controller.js",
+					"manifest.json"
+				]
+			}
+		},
         "contentDensities": {
             "compact": true,
             "cozy": true
@@ -145,20 +159,20 @@
                 },
                 "sap.ui.viewExtensions": {
                     "sap.suite.ui.generic.template.ObjectPage.view.Details": {
+                        "ReplaceFacet|CR_HeaderSet|op_section_todoList": {
+                            "type": "XML",
+                            "className": "sap.ui.core.mvc.View",
+                            "viewName": "NYX.bsincrv01.ext.view.TaskTable",
+                            "sap.ui.generic.app": {
+                                "title": "ToDo List"
+                            }
+                        },
                         "AfterFacet|CR_HeaderSet|op_section_docList": {
                             "type": "XML",
                             "className": "sap.ui.core.mvc.View",
                             "viewName": "NYX.bsincrv01.ext.view.Timeline",
                             "sap.ui.generic.app": {
                                 "title": "Message History"
-                            }
-                        },
-                        "AfterFacet|CR_HeaderSet|op_section_todoList": {
-                            "type": "XML",
-                            "className": "sap.ui.core.mvc.View",
-                            "viewName": "NYX.bsincrv01.ext.view.TaskTable",
-                            "sap.ui.generic.app": {
-                                "title": "ToDo List"
                             }
                         }
                     }
