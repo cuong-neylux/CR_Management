@@ -9,68 +9,6 @@ sap.ui.define([
 	"use strict";
 	var thisController;
 	return Controller.extend("NYX.bsincrv01.ext.controller.TaskTable", {
-		test: function () {
-			console.log("Test", 1 + 1);
-		}
-		,
-		onInit: function () {
-			thisController = this;
-			var oView = this.getView();
-			var app = this.getView().byId();
-		},
-
-		onExit: function () {
-			this.oProductsModel.destroy();
-		},
-
-		onBeforeRendering: function (oEvent) {
-			console.log("Test", 1 + 1);
-		},
-		onAfterRendering: function (oEvent) {
-			console.log("Test", 2 + 1);
-		},
-		config: {
-			initialRank: 0,
-			defaultRank: 1024,
-			rankAlgorithm: {
-				Before: function (iRank) {
-					return iRank + 1024;
-				},
-				Between: function (iRank1, iRank2) {
-					// limited to 53 rows
-					return (iRank1 + iRank2) / 2;
-				},
-				After: function (iRank) {
-					return iRank / 2;
-				}
-			}
-		},
-
-		initSampleProductsModel: function () {
-			var oModel;
-			$.ajax({
-				type: 'GET',
-				dataType: 'json',
-				async: false,
-				url: 'mockdata/products.json',
-				success: function (oData) {
-					console.log(oData);
-					// prepare and initialize the rank property
-					oData.ProductCollection.forEach(function (oProduct) {
-						oProduct.Rank = thisController.config.initialRank;
-					}, thisController);
-					oModel = new JSONModel();
-					oModel.setData(oData);
-					
-				},
-				error: function (error) {
-					alert(error);
-				}
-				
-			});
-			return oModel;
-		},
-
 		getSelectedRowContext: function (sTableId, fnCallback) {
 			var oTable = this.byId(sTableId);
 			var iSelectedIndex = oTable.getSelectedIndex();

@@ -3,7 +3,7 @@
         <Table id="table1" selectionMode="Single" ariaLabelledBy="title" rows="{
 						path: 'CR_Task',
 						filters: {path: 'TaskStatus', operator: 'EQ', value1: 'In Process'}
-					}" visibleRowCount="10" visibleRowCountMode="Auto">
+					}" visibleRowCountMode="Auto" enableGrouping="true" >
             <extension>
                 <m:OverflowToolbar id="infobar" style="Clear">
                     <m:Title id="title" text="TODO" textAlign="Center" titleStyle="H5" width="100%" />
@@ -16,7 +16,7 @@
                         <m:Text id="taskViewTable1Column1Content" text="{Description}" wrapping="false" />
                     </template>
                 </Column>
-                <Column id="taskViewTable1Column2" sortProperty="AssignedTeam" filterProperty="AssignedTeam">
+                <Column id="taskViewTable1Column2" sortProperty="AssignedTeam" filterProperty="AssignedTeam" width="20%">
                     <m:Text id="taskViewTable1Column2ColumnName" text="Assigned Team" />
                     <template>
                         <m:Text id="taskViewTable1Column2Content" text="{AssignedTeam}" wrapping="false" />
@@ -35,7 +35,7 @@
         <Table id="table2" selectionMode="Single" ariaLabelledBy="title2" rows="{
 						path: 'CR_Task',
 						filters: {path: 'TaskStatus', operator: 'EQ', value1: 'Done'}
-					}" visibleRowCount="10" visibleRowCountMode="Auto" noData="Please drag-and-drop tasks here.">
+					}" visibleRowCountMode="Auto" noData="Please drag-and-drop tasks here.">
             <extension>
                 <m:OverflowToolbar id="taskViewTable2OverflowToolbar" style="Clear">
                     <m:Title id="title2" text="DONE" textAlign="Center" titleStyle="H5" width="100%" />
@@ -51,7 +51,7 @@
                         <m:Text id="taskViewTable2Column1Content" text="{Description}" wrapping="false" />
                     </template>
                 </Column>
-                <Column id="taskViewTable2Column2">
+                <Column id="taskViewTable2Column2" width="20%">
                     <m:Text id="taskViewTable2Column2ColumnName" text="Assigned Team" />
                     <template>
                         <m:Text id="taskViewTable2Column2Content" text="{AssignedTeam}" wrapping="false" />
