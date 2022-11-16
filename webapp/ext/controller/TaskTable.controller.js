@@ -16,16 +16,7 @@ sap.ui.define([
 		onInit: function () {
 			thisController = this;
 			var oView = this.getView();
-
-			//set explored app's demo model on this sample
-			//this.oProductsModel = this.initSampleProductsModel();
-			//oView.setModel(this.oProductsModel);
-
-			/* 			sap.ui.require(["sap/ui/table/sample/TableExampleUtils"], function(TableExampleUtils) {
-							var oTb = oView.byId("infobar");
-							oTb.addContent(new ToolbarSpacer());
-							oTb.addContent(TableExampleUtils.createInfoButton("NYX/bsincrv01"));
-						}, function(oError){}); */
+			var app = this.getView().byId();
 		},
 
 		onExit: function () {

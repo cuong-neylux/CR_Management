@@ -1,15 +1,15 @@
 <mvc:View id="taskView" controllerName="NYX.bsincrv01.ext.controller.TaskTable" xmlns="sap.ui.table" xmlns:dnd="sap.ui.core.dnd" xmlns:mvc="sap.ui.core.mvc" xmlns:c="sap.ui.core" xmlns:m="sap.m" height="100%">
-    <m:App id="taskViewApp">
+    <m:App id="taskViewApp" height="100%">
         <m:Page id="taskViewPage" showHeader="false" enableScrolling="false" class="sapUiContentPadding">
             <m:content>
                 <m:HBox id="taskViewHbox" renderType="Bare">
                     <Table id="table1" selectionMode="Single" ariaLabelledBy="title" rows="{
 						path: 'CR_Task',
 						filters: {path: 'TaskStatus', operator: 'EQ', value1: 'In Process'}
-					}" visibleRowCount="10">
+					}" visibleRowCount="10" visibleRowCountMode="Auto">
                         <extension>
                             <m:OverflowToolbar id="infobar" style="Clear">
-                                <m:Title id="title" text="TODO" />
+                                <m:Title id="title" text="TODO" textAlign="Center" titleStyle="H5" width="100%" />
                             </m:OverflowToolbar>
                         </extension>
                         <columns>
@@ -38,10 +38,10 @@
                     <Table id="table2" selectionMode="Single" ariaLabelledBy="title2" rows="{
 						path: 'CR_Task',
 						filters: {path: 'TaskStatus', operator: 'EQ', value1: 'Done'}
-					}" visibleRowCount="10" noData="Please drag-and-drop products here.">
+					}" visibleRowCount="10" visibleRowCountMode="Auto" noData="Please drag-and-drop tasks here.">
                         <extension>
                             <m:OverflowToolbar id="taskViewTable2OverflowToolbar" style="Clear">
-                                <m:Title id="title2" text="Tasks Done" />
+                                <m:Title id="title2" text="DONE" textAlign="Center" titleStyle="H5" width="100%" />
                                 <m:ToolbarSpacer id="taskViewToolbarSpacer" />
                                 <m:Button id="taskViewTable2MoveUpButton" icon="sap-icon://navigation-up-arrow" tooltip="Move up" press="moveUp" />
                                 <m:Button id="taskViewTable2MoveDownButton" icon="sap-icon://navigation-down-arrow" tooltip="Move down" press="moveDown" />
