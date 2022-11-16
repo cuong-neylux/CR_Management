@@ -54,11 +54,6 @@
     },
     "sap.ui5": {
         "flexEnabled": true,
-        "rootView": {
-            "viewName": "NYX.bsincrv01.ext.view.TaskTable",
-            "type": "XML",
-            "async": true
-        },
         "dependencies": {
             "minUI5Version": "1.71.46",
             "libs": {
@@ -72,16 +67,6 @@
                 "sap.ui.table": {}
             }
         },
-		"config": {
-			"sample": {
-				"stretch": true,
-				"files": [
-					"TaskTable.view.xml",
-					"TaskTable.controller.js",
-					"manifest.json"
-				]
-			}
-		},
         "contentDensities": {
             "compact": true,
             "cozy": true
