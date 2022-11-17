@@ -3,14 +3,14 @@
         <Table id="table1" selectionMode="Single" ariaLabelledBy="title" rows="{
 						path: 'CR_Task',
 						filters: {path: 'TaskStatus', operator: 'EQ', value1: 'In Process'}
-					}" visibleRowCountMode="Interactive" enableGrouping="true" groupBy="Assigned Team" editable="true" >
+					}" visibleRowCountMode="Auto" enableGrouping="true" groupBy="Assigned Team" editable="true" >
             <extension>
                 <m:OverflowToolbar id="infobar" style="Clear">
                     <m:Title id="title" text="In Process" textAlign="Center" titleStyle="H5" width="100%" />
                 </m:OverflowToolbar>
             </extension>
             <columns>
-                <Column id="taskViewTable1Column1">
+                <Column id="taskViewTable1Column1" >
                     <m:Text id="taskViewTable1Column1ColumnName" text="Task" />
                     <template>
                         <m:Text id="taskViewTable1Column1Content" text="{Description}" wrapping="true" />
@@ -29,13 +29,13 @@
             </dragDropConfig>
         </Table>
         <m:VBox id="taskViewVbox" justifyContent="Center" class="sapUiTinyMarginBeginEnd">
-            <m:Button id="taskViewMoveToTable2Button" class="sapUiTinyMarginBottom" icon="sap-icon://navigation-right-arrow" tooltip="Move to DONE list" press="moveToTable2" />
-            <m:Button id="taskViewMoveToTable1Button" icon="sap-icon://navigation-left-arrow" tooltip="Move to TODO list" press="moveToTable1" />
+            <m:Button id="taskViewMoveToTable2Button" class="sapUiTinyMarginBottom" icon="sap-icon://navigation-right-arrow" tooltip="Move to 'DONE' list" press="moveToTable2" />
+            <m:Button id="taskViewMoveToTable1Button" icon="sap-icon://navigation-left-arrow" tooltip="Move to 'In Process' list" press="moveToTable1" />
         </m:VBox>
         <Table id="table2" selectionMode="Single" ariaLabelledBy="title2" rows="{
 						path: 'CR_Task',
 						filters: {path: 'TaskStatus', operator: 'EQ', value1: 'Done'}
-					}" visibleRowCountMode="Interactive" noData="Please drag-and-drop tasks here." editable="true">
+					}" visibleRowCountMode="Auto" noData="Please drag-and-drop tasks here." editable="true">
             <extension>
                 <m:OverflowToolbar id="taskViewTable2OverflowToolbar" style="Clear">
                     <m:Title id="title2" text="DONE" textAlign="Center" titleStyle="H5" width="100%" />
@@ -43,13 +43,13 @@
                 </m:OverflowToolbar>
             </extension>
             <columns>
-                <Column id="taskViewTable2Column1">
+                <Column id="taskViewTable2Column1" >
                     <m:Text id="taskViewTable2Column1ColumnName" text="Task" />
                     <template>
                         <m:Text id="taskViewTable2Column1Content" text="{Description}" wrapping="true" />
                     </template>
                 </Column>
-                <Column id="taskViewTable2Column2" width="20%">
+                <Column id="taskViewTable2Column2" filterProperty="AssignedTeam" width="20%">
                     <m:Text id="taskViewTable2Column2ColumnName" text="Assigned Team" />
                     <template>
                         <m:Text id="taskViewTable2Column2Content" text="{AssignedTeam}" wrapping="true" />

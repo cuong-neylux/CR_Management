@@ -42,87 +42,78 @@ sap.ui.define([
 				return;
 			}
 			var sPath = oDraggedRowContext.sPath;
-			newTask.TaskStatus = "In Process"; 
+			newTask.TaskStatus = "In Process";
 			oModel.update(sPath, newTask, {
 				method: "PUT",
-				success: function(){
+				success: function () {
 					oModel.refresh();
 				},
-				error: function(error){
+				error: function (error) {
 					alert(error);
 				}
 			})
-			// reset the rank property and update the model to refresh the bindings
-/* 			this.oProductsModel.setProperty("Rank", this.config.initialRank, oDraggedRowContext);
-			this.oProductsModel.refresh(true); */
+
 		},
 
 		moveToTable1: function () {
-			this.getSelectedRowContext("table2", function (oSelectedRowContext, iSelectedRowIndex, oTable2) {
-				// reset the rank property and update the model to refresh the bindings
-/* 				this.oProductsModel.setProperty("Rank", this.config.initialRank, oSelectedRowContext);
-				this.oProductsModel.refresh(true); */
-
-				// select the previous row when there is no row to select
-				var oNextContext = oTable2.getContextByIndex(iSelectedRowIndex + 1);
-				if (!oNextContext) {
-					oTable2.setSelectedIndex(iSelectedRowIndex - 1);
-				}
+			this.getSelectedRowContext("table2", function (oSelectedRowContext) {
+				var oModel = this.getOwnerComponent().getModel();
+				var newTask = {};
+				var sPath = oSelectedRowContext.sPath;
+				newTask.TaskStatus = "In Process";
+				oModel.update(sPath, newTask, {
+					method: "PUT",
+					success: function () {
+						oModel.refresh();
+					},
+					error: function (error) {
+						alert(error);
+					}
+				});
+				var oTable2 = this.byId("table2");
+				oTable2.setSelectedIndex( -1 );
 			});
 		},
 
 		onDropTable2: function (oEvent) {
+			var oModel = this.getOwnerComponent().getModel();
+			var newTask = {};
 			var oDragSession = oEvent.getParameter("dragSession");
 			var oDraggedRowContext = oDragSession.getComplexData("draggedRowContext");
 			if (!oDraggedRowContext) {
 				return;
 			}
+			var sPath = oDraggedRowContext.sPath;
+			newTask.TaskStatus = "Done";
+			oModel.update(sPath, newTask, {
+				method: "PUT",
+				success: function () {
+					oModel.refresh();
+				},
+				error: function (error) {
+					alert(error);
+				}
+			})
 
-/* 			var oConfig = this.config;
-			var iNewRank = oConfig.defaultRank; */
-			var oDroppedRow = oEvent.getParameter("droppedControl");
-
-			if (oDroppedRow && oDroppedRow instanceof TableRow) {
-				// get the dropped row data
-				var sDropPosition = oEvent.getParameter("dropPosition");
-				var oDroppedRowContext = oDroppedRow.getBindingContext();
-				//var iDroppedRowRank = oDroppedRowContext.getProperty("Rank");
-				var iDroppedRowIndex = oDroppedRow.getIndex();
-				var oDroppedTable = oDroppedRow.getParent();
-
-				// find the new index of the dragged row depending on the drop position
-				var iNewRowIndex = iDroppedRowIndex + (sDropPosition === "After" ? 1 : -1);
-				var oNewRowContext = oDroppedTable.getContextByIndex(iNewRowIndex);
-/* 				if (!oNewRowContext) {
-					// dropped before the first row or after the last row
-					iNewRank = oConfig.rankAlgorithm[sDropPosition](iDroppedRowRank);
-				} else {
-					// dropped between first and the last row
-					iNewRank = oConfig.rankAlgorithm.Between(iDroppedRowRank, oNewRowContext.getProperty("Rank"));
-				} */
-			}
-
-			// set the rank property and update the model to refresh the bindings
-/* 			this.oProductsModel.setProperty("Rank", iNewRank, oDraggedRowContext);
-			this.oProductsModel.refresh(true); */
 		},
 
 		moveToTable2: function () {
 			this.getSelectedRowContext("table1", function (oSelectedRowContext) {
-				var oTable2 = this.byId("table2");
-				var oFirstRowContext = oTable2.getContextByIndex(0);
-
-				// insert always as a first row
-/* 				var iNewRank = this.config.defaultRank;
-				if (oFirstRowContext) {
-					iNewRank = this.config.rankAlgorithm.Before(oFirstRowContext.getProperty("Rank"));
-				}
-
-				this.oProductsModel.setProperty("Rank", iNewRank, oSelectedRowContext);
-				this.oProductsModel.refresh(true); */
-
-				// select the inserted row
-				oTable2.setSelectedIndex(0);
+				var oModel = this.getOwnerComponent().getModel();
+				var newTask = {};
+				var sPath = oSelectedRowContext.sPath;
+				newTask.TaskStatus = "Done";
+				oModel.update(sPath, newTask, {
+					method: "PUT",
+					success: function () {
+						oModel.refresh();
+					},
+					error: function (error) {
+						alert(error);
+					}
+				})
+				var oTable1 = this.byId("table1");
+				oTable1.setSelectedIndex( -1 );
 			});
 		}
 	});
