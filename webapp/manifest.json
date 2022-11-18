@@ -64,7 +64,8 @@
                 "sap.ui.comp": {},
                 "sap.ui.generic.app": {},
                 "sap.suite.ui.generic.template": {},
-                "sap.ui.table": {}
+                "sap.ui.table": {},
+                "sap.ui.layout": {}
             }
         },
         "contentDensities": {

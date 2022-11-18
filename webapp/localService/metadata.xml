@@ -73,8 +73,9 @@
                     <PropertyRef Name="CrNum"/>
                     <PropertyRef Name="DocumentId"/>
                 </Key>
-                <Property Name="UploadUserFullname" Type="Edm.String" Nullable="false" MaxLength="64"/>
                 <Property Name="Mandt" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Mandant"/>
+                <Property Name="UploadUserFullname" Type="Edm.String" Nullable="false" MaxLength="64"/>
+                <Property Name="MimeType" Type="Edm.String" Nullable="false" MaxLength="100" sap:label="Charakter 100"/>
                 <Property Name="UploadTimestamp" Type="Edm.DateTime" Nullable="false" Precision="0" sap:label="Zeitstempel"/>
                 <Property Name="CrNum" Type="Edm.String" Nullable="false" MaxLength="12"/>
                 <Property Name="DocumentId" Type="Edm.String" Nullable="false" MaxLength="7"/>
@@ -154,12 +155,12 @@
                 <End Type="NYX.BS_IN_CR_GP01_V01_SRV.Document" Multiplicity="*" Role="ToRole_CRHeader_Documents"/>
                 <ReferentialConstraint>
                     <Principal Role="FromRole_CRHeader_Documents">
-                        <PropertyRef Name="Mandt"/>
                         <PropertyRef Name="CrNum"/>
+                        <PropertyRef Name="Mandt"/>
                     </Principal>
                     <Dependent Role="ToRole_CRHeader_Documents">
-                        <PropertyRef Name="Mandt"/>
                         <PropertyRef Name="CrNum"/>
+                        <PropertyRef Name="Mandt"/>
                     </Dependent>
                 </ReferentialConstraint>
             </Association>
@@ -172,12 +173,12 @@
                 <End Type="NYX.BS_IN_CR_GP01_V01_SRV.Comment" Multiplicity="*" Role="ToRole_CRHeader_Comments"/>
                 <ReferentialConstraint>
                     <Principal Role="FromRole_CRHeader_Comments">
-                        <PropertyRef Name="Mandt"/>
                         <PropertyRef Name="CrNum"/>
+                        <PropertyRef Name="Mandt"/>
                     </Principal>
                     <Dependent Role="ToRole_CRHeader_Comments">
-                        <PropertyRef Name="Mandt"/>
                         <PropertyRef Name="CrNum"/>
+                        <PropertyRef Name="Mandt"/>
                     </Dependent>
                 </ReferentialConstraint>
             </Association>
