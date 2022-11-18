@@ -1,9 +1,9 @@
 <mvc:View id="taskView" controllerName="NYX.bsincrv01.ext.controller.TaskTable" xmlns="sap.ui.table" xmlns:dnd="sap.ui.core.dnd" xmlns:mvc="sap.ui.core.mvc" xmlns:c="sap.ui.core" xmlns:m="sap.m" height="100%">
-    <m:HBox id="taskViewHbox" renderType="Bare">
+    <m:HBox id="taskViewHbox" renderType="Div">
         <Table id="table1" selectionMode="Single" ariaLabelledBy="title" rows="{
 						path: 'CR_Task',
 						filters: {path: 'TaskStatus', operator: 'EQ', value1: 'In Process'}
-					}" minAutoRowCount="5" visibleRowCountMode="Interactive" enableGrouping="true" groupBy="Assigned Team" editable="true" >
+					}" visibleRowCount="7" visibleRowCountMode="Interactive" enableGrouping="true" groupBy="Assigned Team" editable="true" >
             <extension>
                 <m:OverflowToolbar id="infobar" style="Clear">
                     <m:Title id="title" text="In Process" textAlign="Center" titleStyle="H5" width="100%" />
@@ -35,7 +35,7 @@
         <Table id="table2" selectionMode="Single" ariaLabelledBy="title2" rows="{
 						path: 'CR_Task',
 						filters: {path: 'TaskStatus', operator: 'EQ', value1: 'Done'}
-					}" minAutoRowCount="5" visibleRowCountMode="Interactive" noData="Please drag-and-drop tasks here." editable="true">
+					}" visibleRowCount="7" visibleRowCountMode="Interactive" noData="Please drag-and-drop tasks here." editable="true">
             <extension>
                 <m:OverflowToolbar id="taskViewTable2OverflowToolbar" style="Clear">
                     <m:Title id="title2" text="DONE" textAlign="Center" titleStyle="H5" width="100%" />
