@@ -73,15 +73,15 @@
                     <PropertyRef Name="CrNum"/>
                     <PropertyRef Name="DocumentId"/>
                 </Key>
+                <Property Name="Content" Type="Edm.Binary" Nullable="false" sap:label="binärer String"/>
+                <Property Name="MimeType" Type="Edm.String" Nullable="false" MaxLength="100" sap:label="Charakter 100"/>
                 <Property Name="Mandt" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Mandant"/>
                 <Property Name="UploadUserFullname" Type="Edm.String" Nullable="false" MaxLength="64"/>
-                <Property Name="MimeType" Type="Edm.String" Nullable="false" MaxLength="100" sap:label="Charakter 100"/>
                 <Property Name="UploadTimestamp" Type="Edm.DateTime" Nullable="false" Precision="0" sap:label="Zeitstempel"/>
                 <Property Name="CrNum" Type="Edm.String" Nullable="false" MaxLength="12"/>
                 <Property Name="DocumentId" Type="Edm.String" Nullable="false" MaxLength="7"/>
-                <Property Name="FileName" Type="Edm.String" Nullable="false" MaxLength="255" sap:label="Text"/>
+                <Property Name="FileName" Type="Edm.String" Nullable="false" MaxLength="255" m:FC_TargetPath="SyndicationTitle" m:FC_KeepInContent="false" sap:label="Text"/>
                 <Property Name="UploadUser" Type="Edm.String" Nullable="false" MaxLength="8" sap:label="Personalnr"/>
-                <Property Name="Content" Type="Edm.Binary" Nullable="false"/>
             </EntityType>
             <EntityType Name="CR_Step" sap:content-version="1">
                 <Key>

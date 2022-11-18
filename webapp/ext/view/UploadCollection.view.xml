@@ -9,7 +9,7 @@
         filenameLengthExceed="onFilenameLengthExceed"
         fileRenamed="onFileRenamed"
         fileSizeExceed="onFileSizeExceed"
-        fileType="{fileTypes>/selected}"
+        fileType="['jpg', 'txt', 'ppt', 'doc', 'xlsx', 'pdf', 'png', 'xls']"
         selectionChange="onSelectionChange"
         typeMissmatch="onTypeMissmatch"
         uploadComplete="onUploadComplete"
@@ -43,7 +43,6 @@
                 visibleDelete="true"
                 visibleEdit="true"
                 attributes="{path : 'attributes', templateShareable : false}"
-                statuses="{path : 'statuses', templateShareable : false}"
                 markers="{path : 'markers', factory: '.createObjectMarker'}"
                 selected="{selected}"
             >
