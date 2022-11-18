@@ -1,0 +1,75 @@
+<mvc:View id="upLoadCollectionView" height="100%" controllerName="NYX.bsincrv01.ext.controller.UploadCollection" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m">
+    <App id="upLoadCollectionApp">
+        <Page id="uploadCollectionPage" showHeader="false">
+            <content>
+                <OverflowToolbar id="uploadCollectionOverflowToolbar">
+                    <core:Icon id="uploadCollectionIcon" class="sapUiSmallMarginBegin" visible="{=!${device>/browser/mobile}}" src="sap-icon://message-information" />
+                    <Text id="uploadCollectionOverflowToolbarText" wrapping="false" visible="{=!${device>/browser/mobile}}" text="To add files, you can also use drag &amp; drop on your desktop or tablet." />
+                    <ToolbarSpacer id="upLoadCollectionToolbarSpacer1" />
+                </OverflowToolbar>
+                <UploadCollection
+                    id="UploadCollection"
+                    maximumFilenameLength="{settings>/maximumFilenameLength}"
+                    maximumFileSize="{settings>/maximumFileSize}"
+                    multiple="true"
+                    change="onChange"
+                    fileDeleted="onFileDeleted"
+                    filenameLengthExceed="onFilenameLengthExceed"
+                    fileRenamed="onFileRenamed"
+                    fileSizeExceed="onFileSizeExceed"
+                    fileType="{fileTypes>/selected}"
+                    selectionChange="onSelectionChange"
+                    typeMissmatch="onTypeMissmatch"
+                    uploadComplete="onUploadComplete"
+                    beforeUploadStarts="onBeforeUploadStarts"
+                    uploadTerminated="onUploadTerminated"
+                    items="{
+					path: '/items',
+					templateShareable: false
+				}"
+                    numberOfAttachmentsText="Uploaded (8)"
+                    showSeparators="{settings>/showSeparators}"
+                    uploadEnabled="{settings>/uploadEnabled}"
+                    uploadButtonInvisible="{=!${settings>/uploadButtonVisible}}"
+                    mode="{settings>/mode}"
+                >
+                    <toolbar>
+                        <OverflowToolbar id="myId">
+                            <Title id="attachmentTitle" />
+                            <ToolbarSpacer id="upLoadCollectionToolbarSpacer2" />
+                            <SearchField id="upLoadCollection" width="10rem" search="onSearch" />
+                            <Button id="deleteSelectedButton" text="Delete" press="onDeleteSelectedItems" enabled="false" visible="false" type="Transparent" />
+                            <ToggleButton id="selectAllButton" text="Select all" press="onSelectAllPress" enabled="false" visible="false" type="Transparent" />
+                            <UploadCollectionToolbarPlaceholder id="upLoadCollectionToolbarPlaceholder" />
+                        </OverflowToolbar>
+                    </toolbar>
+                    <items>
+                        <UploadCollectionItem
+                            id="upLoadCollectionItem"
+                            documentId="{documentId}"
+                            fileName="{fileName}"
+                            mimeType="{mimeType}"
+                            thumbnailUrl="{thumbnailUrl}"
+                            url="{url}"
+                            enableEdit="{settings>/enableEdit}"
+                            enableDelete="{settings>/enableDelete}"
+                            visibleDelete="{settings>/visibleDelete}"
+                            visibleEdit="{settings>/visibleEdit}"
+                            attributes="{path : 'attributes', templateShareable : false}"
+                            statuses="{path : 'statuses', templateShareable : false}"
+                            markers="{path : 'markers', factory: '.createObjectMarker'}"
+                            selected="{selected}"
+                        >
+                            <attributes>
+                                <ObjectAttribute id="upLoadCollectionObjectAttribute" title="{title}" text="{path : 'text', formatter : '.formatAttribute'}" active="{active}" press="onAttributePress" />
+                            </attributes>
+                            <statuses>
+                                <ObjectStatus id="upLoadCollectionObjectStatus" title="{title}" text="{text}" state="{state}" />
+                            </statuses>
+                        </UploadCollectionItem>
+                    </items>
+                </UploadCollection>
+            </content>
+        </Page>
+    </App>
+</mvc:View>

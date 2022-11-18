@@ -3,7 +3,7 @@
         <Table id="table1" selectionMode="Single" ariaLabelledBy="title" rows="{
 						path: 'CR_Task',
 						filters: {path: 'TaskStatus', operator: 'EQ', value1: 'In Process'}
-					}" visibleRowCountMode="Auto" enableGrouping="true" groupBy="Assigned Team" editable="true" >
+					}" minAutoRowCount="5" visibleRowCountMode="Interactive" enableGrouping="true" groupBy="Assigned Team" editable="true" >
             <extension>
                 <m:OverflowToolbar id="infobar" style="Clear">
                     <m:Title id="title" text="In Process" textAlign="Center" titleStyle="H5" width="100%" />
@@ -35,7 +35,7 @@
         <Table id="table2" selectionMode="Single" ariaLabelledBy="title2" rows="{
 						path: 'CR_Task',
 						filters: {path: 'TaskStatus', operator: 'EQ', value1: 'Done'}
-					}" visibleRowCountMode="Auto" noData="Please drag-and-drop tasks here." editable="true">
+					}" minAutoRowCount="5" visibleRowCountMode="Interactive" noData="Please drag-and-drop tasks here." editable="true">
             <extension>
                 <m:OverflowToolbar id="taskViewTable2OverflowToolbar" style="Clear">
                     <m:Title id="title2" text="DONE" textAlign="Center" titleStyle="H5" width="100%" />
