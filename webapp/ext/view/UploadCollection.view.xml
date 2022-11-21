@@ -9,7 +9,7 @@
         filenameLengthExceed="onFilenameLengthExceed"
         fileRenamed="onFileRenamed"
         fileSizeExceed="onFileSizeExceed"
-        fileType="['jpg', 'txt', 'ppt', 'doc', 'xlsx', 'pdf', 'png', 'xls']"
+        fileType= "jpg,txt,ppt,doc,xls,pdf,png,xlsx"
         selectionChange="onSelectionChange"
         typeMissmatch="onTypeMissmatch"
         uploadComplete="onUploadComplete"
