@@ -136,6 +136,10 @@
                                     <PropertyValue Property="Label" String="{@i18n>crCreateDate}" />
                                     <PropertyValue Property="Value" Path="CreateTimestamp" />
                                 </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="{@i18n>crNum}" />
+                                    <PropertyValue Property="Value" Path="CrNum" />
+                                </Record>
                             </Collection>
                         </PropertyValue>
                     </Record>
@@ -253,6 +257,10 @@
                                 <Record Type="UI.DataField">
                                     <PropertyValue Property="Label" String="{@i18n>op_crDescription}" />
                                     <PropertyValue Property="Value" Path="CrDetails" />
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="{@i18n>crNum}" />
+                                    <PropertyValue Property="Value" Path="CrNum" />
                                 </Record>
                             </Collection>
                         </PropertyValue>

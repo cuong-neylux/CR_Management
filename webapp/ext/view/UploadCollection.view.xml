@@ -37,7 +37,7 @@
                 documentId="{DocumentId}"
                 fileName="{FileName}"
                 mimeType="{MimeType}"
-                url="/sap/opu/odata/nyx/BS_IN_CR_GP01_V01_SRV/DocumentSet(Mandt='001',CrNum='{CrNum}',DocumentId='{DocumentId}')/$Content"
+                url="/sap/opu/odata/nyx/BS_IN_CR_GP01_V01_SRV/DocumentSet(Mandt='001',CrNum='{CrNum}',DocumentId='{DocumentId}')/$value"
                 enableEdit="true"
                 enableDelete="true"
                 visibleDelete="true"

@@ -11,60 +11,43 @@ sap.ui.define([
 	"sap/ui/core/format/FileSizeFormat",
 	"sap/ui/Device",
 	"sap/ui/core/Fragment"
-], function(jQuery, deepExtend, syncStyleClass, Controller, ObjectMarker, MessageToast, UploadCollectionParameter, MobileLibrary, JSONModel, FileSizeFormat, Device, Fragment) {
+], function (jQuery, deepExtend, syncStyleClass, Controller, ObjectMarker, MessageToast, UploadCollectionParameter, MobileLibrary, JSONModel, FileSizeFormat, Device, Fragment) {
 	"use strict";
 
 	var ListMode = MobileLibrary.ListMode,
 		ListSeparators = MobileLibrary.ListSeparators;
 
 	return Controller.extend("NYX.bsincrv01.ext.controller.UploadCollection", {
-		onInit: function() {
-			// set mock data
-			var sPath = sap.ui.require.toUrl("mockdata/uploadCollection.json");
-			this.getView().setModel(new JSONModel(sPath));
-
-			this.getView().setModel(new JSONModel(Device), "device");
-
-			this.getView().setModel(new JSONModel({
-				"maximumFilenameLength": 55,
-				"maximumFileSize": 1000,
-				"mode": ListMode.SingleSelectMaster,
-				"uploadEnabled": true,
-				"uploadButtonVisible": true,
-				"enableEdit": true,
-				"enableDelete": true,
-				"visibleEdit": true,
-				"visibleDelete": true,
-				"listSeparatorItems": [
-					ListSeparators.All,
-					ListSeparators.None
-				],
-				"showSeparators": ListSeparators.All,
-				"listModeItems": [
-					{
-						"key": ListMode.SingleSelectMaster,
-						"text": "Single"
-					}, {
-						"key": ListMode.MultiSelect,
-						"text": "Multi"
-					}
-				]
-			}), "settings");
-
-			this.getView().setModel(new JSONModel({
-				"items": ["jpg", "txt", "ppt", "doc", "xls", "pdf", "png"],
-				"selected": ["jpg", "txt", "ppt", "doc", "xls", "pdf", "png"]
-			}), "fileTypes");
+		onInit: function () {
+			var oModel = new sap.ui.model.odata.ODataModel("/sap/opu/odata/nyx/BS_IN_CR_GP01_V01_SRV", false);
+			this.getView().setModel(oModel);
 
 			// Sets the text to the label
 			this.byId("UploadCollection").addEventDelegate({
-				onBeforeRendering: function() {
+				onBeforeRendering: function () {
 					this.byId("attachmentTitle").setText(this.getAttachmentTitleText());
 				}.bind(this)
 			});
 		},
-
-		createObjectMarker: function(sId, oContext) {
+		onBeforeUploadStarts: function (oEvent) {
+			// Header Slug
+			var oCustomerHeaderSlug = new UploadCollectionParameter({
+				name: "slug",
+				value: oEvent.getParameter("fileName")
+			});
+			oEvent.getParameters().addHeaderParameter(oCustomerHeaderSlug);
+			
+			var oModel = this.getView().getModel();
+			oModel.refreshSecurityToken();
+			var oHeaders = oModel.oHeaders;
+			var sToken = oHeaders['x-csrf-token'];
+			var oCustomerHeaderToken = new sap.m.UploadCollectionParameter({
+				name: "x-csrf-token",
+				value: sToken
+			});
+			oEvent.getParameters().addHeaderParameter(oCustomerHeaderToken);
+		},
+		createObjectMarker: function (sId, oContext) {
 			var mSettings = null;
 
 			if (oContext.getProperty("type")) {
@@ -76,7 +59,7 @@ sap.ui.define([
 			return new ObjectMarker(sId, mSettings);
 		},
 
-		formatAttribute: function(sValue) {
+		formatAttribute: function (sValue) {
 			if (jQuery.isNumeric(sValue)) {
 				return FileSizeFormat.getInstance({
 					binaryFilesize: false,
@@ -88,25 +71,19 @@ sap.ui.define([
 			}
 		},
 
-		onChange: function(oEvent) {
+		onChange: function (oEvent) {
 			var oUploadCollection = oEvent.getSource();
-			// Header Token
-			var oCustomerHeaderToken = new UploadCollectionParameter({
-				name: "x-csrf-token",
-				value: "securityTokenFromModel"
-			});
-			oUploadCollection.addHeaderParameter(oCustomerHeaderToken);
 		},
 
-		onFileDeleted: function(oEvent) {
+		onFileDeleted: function (oEvent) {
 			this.deleteItemById(oEvent.getParameter("documentId"));
 			MessageToast.show("FileDeleted event triggered.");
 		},
 
-		deleteItemById: function(sItemToDeleteId) {
+		deleteItemById: function (sItemToDeleteId) {
 			var oData = this.byId("UploadCollection").getModel().getData();
 			var aItems = deepExtend({}, oData).items;
-			jQuery.each(aItems, function(index) {
+			jQuery.each(aItems, function (index) {
 				if (aItems[index] && aItems[index].documentId === sItemToDeleteId) {
 					aItems.splice(index, 1);
 				}
@@ -117,12 +94,12 @@ sap.ui.define([
 			this.byId("attachmentTitle").setText(this.getAttachmentTitleText());
 		},
 
-		deleteMultipleItems: function(aItemsToDelete) {
+		deleteMultipleItems: function (aItemsToDelete) {
 			var oData = this.byId("UploadCollection").getModel().getData();
 			var nItemsToDelete = aItemsToDelete.length;
 			var aItems = deepExtend({}, oData).items;
 			var i = 0;
-			jQuery.each(aItems, function(index) {
+			jQuery.each(aItems, function (index) {
 				if (aItems[index]) {
 					for (i = 0; i < nItemsToDelete; i++) {
 						if (aItems[index].documentId === aItemsToDelete[i].getDocumentId()) {
@@ -137,15 +114,15 @@ sap.ui.define([
 			this.byId("attachmentTitle").setText(this.getAttachmentTitleText());
 		},
 
-		onFilenameLengthExceed: function() {
+		onFilenameLengthExceed: function () {
 			MessageToast.show("FilenameLengthExceed event triggered.");
 		},
 
-		onFileRenamed: function(oEvent) {
+		onFileRenamed: function (oEvent) {
 			var oData = this.byId("UploadCollection").getModel().getData();
 			var aItems = deepExtend({}, oData).items;
 			var sDocumentId = oEvent.getParameter("documentId");
-			jQuery.each(aItems, function(index) {
+			jQuery.each(aItems, function (index) {
 				if (aItems[index] && aItems[index].documentId === sDocumentId) {
 					aItems[index].fileName = oEvent.getParameter("item").getFileName();
 				}
@@ -156,76 +133,22 @@ sap.ui.define([
 			MessageToast.show("FileRenamed event triggered.");
 		},
 
-		onFileSizeExceed: function() {
+		onFileSizeExceed: function () {
 			MessageToast.show("FileSizeExceed event triggered.");
 		},
 
-		onTypeMissmatch: function() {
+		onTypeMissmatch: function () {
 			MessageToast.show("TypeMissmatch event triggered.");
 		},
 
-		onUploadComplete: function(oEvent) {
-			var oUploadCollection = this.byId("UploadCollection");
-			var oData = oUploadCollection.getModel().getData();
-
-			oData.items.unshift({
-				"documentId": Date.now().toString(), // generate Id,
-				"fileName": oEvent.getParameter("files")[0].fileName,
-				"mimeType": "",
-				"thumbnailUrl": "",
-				"url": "",
-				"attributes": [
-					{
-						"title": "Uploaded By",
-						"text": "You",
-						"active": false
-					},
-					{
-						"title": "Uploaded On",
-						"text": new Date().toLocaleDateString(),
-						"active": false
-					},
-					{
-						"title": "File Size",
-						"text": "505000",
-						"active": false
-					}
-				],
-				"statuses": [
-					{
-						"title": "",
-						"text": "",
-						"state": "None"
-					}
-				],
-				"markers": [
-					{
-					}
-				],
-				"selected": false
-			});
+		onUploadComplete: function (oEvent) {
 			this.getView().getModel().refresh();
 
 			// Sets the text to the label
 			this.byId("attachmentTitle").setText(this.getAttachmentTitleText());
-
-			// delay the success message for to notice onChange message
-			setTimeout(function() {
-				MessageToast.show("UploadComplete event triggered.");
-			}, 4000);
 		},
 
-		onBeforeUploadStarts: function(oEvent) {
-			// Header Slug
-			var oCustomerHeaderSlug = new UploadCollectionParameter({
-				name: "slug",
-				value: oEvent.getParameter("fileName")
-			});
-			oEvent.getParameters().addHeaderParameter(oCustomerHeaderSlug);
-			MessageToast.show("BeforeUploadStarts event triggered.");
-		},
-
-		onUploadTerminated: function() {
+		onUploadTerminated: function () {
 			/*
 			// get parameter file name
 			var sFileName = oEvent.getParameter("fileName");
@@ -234,11 +157,11 @@ sap.ui.define([
 			*/
 		},
 
-		onFileTypeChange: function(oEvent) {
+		onFileTypeChange: function (oEvent) {
 			this.byId("UploadCollection").setFileType(oEvent.getSource().getSelectedKeys());
 		},
 
-		onSelectAllPress: function(oEvent) {
+		onSelectAllPress: function (oEvent) {
 			var oUploadCollection = this.byId("UploadCollection");
 			if (!oEvent.getSource().getPressed()) {
 				this.deselectAllItems(oUploadCollection);
@@ -253,19 +176,19 @@ sap.ui.define([
 			this.onSelectionChange(oEvent);
 		},
 
-		deselectAllItems: function(oUploadCollection) {
+		deselectAllItems: function (oUploadCollection) {
 			var aItems = oUploadCollection.getItems();
 			for (var i = 0; i < aItems.length; i++) {
 				oUploadCollection.setSelectedItem(aItems[i], false);
 			}
 		},
 
-		getAttachmentTitleText: function() {
+		getAttachmentTitleText: function () {
 			var aItems = this.byId("UploadCollection").getItems();
 			return "Uploaded (" + aItems.length + ")";
 		},
 
-		onModeChange: function(oEvent) {
+		onModeChange: function (oEvent) {
 			var oSettingsModel = this.getView().getModel("settings");
 			if (oEvent.getParameters().selectedItem.getProperty("key") === ListMode.MultiSelect) {
 				oSettingsModel.setProperty("/visibleEdit", false);
@@ -278,7 +201,7 @@ sap.ui.define([
 			}
 		},
 
-		enableToolbarItems: function(status) {
+		enableToolbarItems: function (status) {
 			this.byId("selectAllButton").setVisible(status);
 			this.byId("deleteSelectedButton").setVisible(status);
 			this.byId("selectAllButton").setEnabled(status);
@@ -288,7 +211,7 @@ sap.ui.define([
 			}
 		},
 
-		onDeleteSelectedItems: function() {
+		onDeleteSelectedItems: function () {
 			var aSelectedItems = this.byId("UploadCollection").getSelectedItems();
 			this.deleteMultipleItems(aSelectedItems);
 			if (this.byId("UploadCollection").getSelectedItems().length < 1) {
@@ -298,11 +221,11 @@ sap.ui.define([
 			MessageToast.show("Delete selected items button press.");
 		},
 
-		onSearch: function() {
+		onSearch: function () {
 			MessageToast.show("Search feature isn't available in this sample");
 		},
 
-		onSelectionChange: function() {
+		onSelectionChange: function () {
 			var oUploadCollection = this.byId("UploadCollection");
 			// Only it is enabled if there is a selected item in multi-selection mode
 			if (oUploadCollection.getMode() === ListMode.MultiSelect) {
@@ -314,11 +237,11 @@ sap.ui.define([
 			}
 		},
 
-		onAttributePress: function(oEvent) {
+		onAttributePress: function (oEvent) {
 			MessageToast.show("Attribute press event - " + oEvent.getSource().getTitle() + ": " + oEvent.getSource().getText());
 		},
 
-		onMarkerPress: function(oEvent) {
+		onMarkerPress: function (oEvent) {
 			MessageToast.show("Marker press event - " + oEvent.getSource().getType());
 		},
 
