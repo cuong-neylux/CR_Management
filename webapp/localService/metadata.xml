@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:Reference Uri=".4/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CORE',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Core.V1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri=".4/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_VALIDATION',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Validation.V1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri=".4/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_UI',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.UI.v1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri=".4/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMUNICATION',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.Communication.v1"/>
+    </edmx:Reference>
     <edmx:DataServices m:DataServiceVersion="2.0">
         <Schema Namespace="NYX.BS_IN_CR_GP01_V01_SRV" xml:lang="de" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
             <EntityType Name="CR_Header" sap:content-version="1">
@@ -67,21 +79,21 @@
                 <Property Name="RoleName" Type="Edm.String" Nullable="false" MaxLength="64"/>
                 <Property Name="Email" Type="Edm.String" Nullable="false" MaxLength="64"/>
             </EntityType>
-            <EntityType Name="Document" sap:content-version="1">
+            <EntityType Name="Document" m:HasStream="true" sap:content-version="1">
                 <Key>
                     <PropertyRef Name="Mandt"/>
                     <PropertyRef Name="CrNum"/>
                     <PropertyRef Name="DocumentId"/>
                 </Key>
-                <Property Name="Content" Type="Edm.Binary" Nullable="false" sap:label="binärer String"/>
-                <Property Name="MimeType" Type="Edm.String" Nullable="false" MaxLength="100" sap:label="Charakter 100"/>
+                <Property Name="MimeType" Type="Edm.String" MaxLength="100" sap:label="Charakter 100"/>
+                <Property Name="Url" Type="Edm.String" Nullable="false" MaxLength="255" sap:label="Text"/>
                 <Property Name="Mandt" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Mandant"/>
-                <Property Name="UploadUserFullname" Type="Edm.String" Nullable="false" MaxLength="64"/>
-                <Property Name="UploadTimestamp" Type="Edm.DateTime" Nullable="false" Precision="0" sap:label="Zeitstempel"/>
+                <Property Name="UploadUserFullname" Type="Edm.String" MaxLength="64"/>
+                <Property Name="UploadTimestamp" Type="Edm.DateTime" Precision="0" sap:label="Zeitstempel"/>
                 <Property Name="CrNum" Type="Edm.String" Nullable="false" MaxLength="12"/>
                 <Property Name="DocumentId" Type="Edm.String" Nullable="false" MaxLength="7"/>
-                <Property Name="FileName" Type="Edm.String" Nullable="false" MaxLength="255" m:FC_TargetPath="SyndicationTitle" m:FC_KeepInContent="false" sap:label="Text"/>
-                <Property Name="UploadUser" Type="Edm.String" Nullable="false" MaxLength="8" sap:label="Personalnr"/>
+                <Property Name="FileName" Type="Edm.String" MaxLength="255" m:FC_TargetPath="SyndicationTitle" m:FC_KeepInContent="false" sap:label="Text"/>
+                <Property Name="UploadUser" Type="Edm.String" MaxLength="8" sap:label="Personalnr"/>
             </EntityType>
             <EntityType Name="CR_Step" sap:content-version="1">
                 <Key>
@@ -206,6 +218,11 @@
                     <End EntitySet="DocumentSet" Role="ToRole_CRHeader_Documents"/>
                 </AssociationSet>
             </EntityContainer>
+            <Annotations Target="NYX.BS_IN_CR_GP01_V01_SRV.Document" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Org.OData.Core.V1.AcceptableMediaTypes">
+                    <Collection/>
+                </Annotation>
+            </Annotations>
             <atom:link rel="self" href="http://neylux.cloud.com:8004/sap/opu/odata/nyx/BS_IN_CR_GP01_V01_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
             <atom:link rel="latest-version" href="http://neylux.cloud.com:8004/sap/opu/odata/nyx/BS_IN_CR_GP01_V01_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
         </Schema>

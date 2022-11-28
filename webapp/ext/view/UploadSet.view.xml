@@ -1,4 +1,8 @@
-<mvc:View id="UploadSetView" height="100%" controllerName="NYX.bsincrv01.ext.controller.UploadSet" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:upload="sap.m.upload">
+<mvc:View id="UploadSetView" height="100%" controllerName="NYX.bsincrv01.ext.controller.UploadSet" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:upload="sap.m.upload" xmlns:l="sap.ui.layout" xmlns:u="sap.ui.unified">
+    <l:VerticalLayout id="idUploadSetViewVerticalLayout">
+        <u:FileUploader id="fileUploader" name="myFileUpload" uploadUrl="upload/" tooltip="Upload your file to the local server" uploadComplete="handleUploadComplete" />
+        <Button id="idUploadSetViewButton" text="Upload File" press="handleUploadPress" />
+    </l:VerticalLayout>
     <upload:UploadSet
         id="UploadSet"
         instantUpload="true"
@@ -9,14 +13,14 @@
         maxFileNameLength="64"
         maxFileSize="20"
         uploadUrl="/sap/opu/odata/nyx/BS_IN_CR_GP01_V01_SRV/DocumentSet"
-        items="{path: '/items', templateShareable: false}"
+        items="{path: 'CR_Document', templateShareable: false}"
     >
         <upload:items>
             <upload:UploadSetItem
                 id="UploadSetItem"
-                fileName="{fileName}"
+                fileName="{FileName}"
                 mediaType="{mediaType}"
-                url="{url}"
+                url="{Url}"
                 thumbnailUrl="{thumbnailUrl}"
                 attributes="{path: 'attributes', templateShareable: false}"
                 markers="{path: 'markers', templateShareable: false}"

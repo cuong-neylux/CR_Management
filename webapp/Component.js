@@ -5,7 +5,15 @@ sap.ui.define(
 
         return Component.extend("NYX.bsincrv01.Component", {
             metadata: {
-                manifest: "json"
+                manifest: "json",
+                dependencies: {
+                    libs: ["sap.m",
+                        "sap.se.mi.plm.lib.attachmentservice"
+                    ],
+                    components: [
+                        "sap.se.mi.plm.lib.attachmentservice.attachment.components.stcomponent"
+                    ]
+                }
             }
         });
     }
