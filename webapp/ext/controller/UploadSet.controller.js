@@ -11,12 +11,11 @@ sap.ui.define([
 	"use strict";
 
 	var ListMode = MobileLibrary.ListMode;
-	var Storage;
 	var CustomUploader = Uploader.extend("sap.m.sample.UploadSetCustomUploader.CustomUploader", {
 		metadata: {}
 	});
 
-/* 	CustomUploader.prototype.uploadItem = function (oItem, aHeaders) {
+	CustomUploader.prototype.uploadItem = function (oItem, aHeaders) {
 		var tmpModel = new ODataModel("/sap/opu/odata/nyx/BS_IN_CR_GP01_V01_SRV/", true);
 		tmpModel.setUseBatch(false);
 
@@ -35,7 +34,7 @@ sap.ui.define([
 		this.setDownloadUrl(sNewDownloadUrl);
 
 		Uploader.prototype.downloadItem.call(this, oItem, aHeaders, bAskForLocation);
-	}; */
+	};
 
 	return Controller.extend("sap.m.sample.UploadSet.Page", {
 		onInit: function () {
@@ -61,7 +60,6 @@ sap.ui.define([
 			var oFileUploader = this.getView().byId("fileUploader");
 			var domRef = oFileUploader.getFocusDomRef();
 			var file = domRef.files[0];
-			var crNum;
 			this.fileName = file.name;
 			this.fileType = file.type;
 
@@ -70,19 +68,20 @@ sap.ui.define([
 				debugger;
 				var content = e.currentTarget.result;
 				var myArray = content.split(";base64,");
-				that.content = myArray[1];
+				content = myArray[1];
 				that.postFileToBackend(that.fileName, that.fileType, content);
 			};
 			reader.readAsDataURL(file);
 
 		},
-		postFileToBackend: function(crNum, fileName, fileType, content){
+		postFileToBackend: function(fileName, fileType, content){
 			var ODataModel = this.getOwnerComponent().getModel();
+			var crNum = this.getView().getModel("crNum").getData();
 			var payload = {
-				"CrNum": crNum,
-				"FileName": fileName,
-				"MimeType": fileType,
-				"Content": btoa(encodeURI(content))
+				CrNum: crNum,
+				FileName: fileName,
+				MimeType: fileType,
+				Content: btoa(encodeURI(content))
 			}
 			ODataModel.create("/DocumentSet", payload, {
 				success: function(){

@@ -79,6 +79,9 @@
                     "bundleName": "NYX.bsincrv01.i18n.i18n"
                 }
             },
+            "crNum": {
+                "type": "sap.ui.model.json.JSONModel"
+            },
             "": {
                 "dataSource": "mainService",
                 "preload": true,
