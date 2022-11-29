@@ -35,5 +35,4 @@
             </upload:UploadSetItem>
         </upload:items>
     </upload:UploadSet>
-    <List id="progressList" />
 </mvc:View>

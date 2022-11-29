@@ -16,17 +16,17 @@ sap.ui.define([
 	});
 
 	CustomUploader.prototype.uploadItem = function (oItem, aHeaders) {
-		var oModel = new sap.ui.model.odata.v2.ODataModel ("/sap/opu/odata/nyx/BS_IN_CR_GP01_V01_SRV/", true); 										// Get current ODataModel
+		var oModel = new sap.ui.model.odata.v2.ODataModel("/sap/opu/odata/nyx/BS_IN_CR_GP01_V01_SRV/", true); 										// Get current ODataModel
 		this.setUploadUrl(oItem.getParent().getUploadUrl());
-		aHeaders.push(new Item({key: "SLUG", text: oItem.getFileName()}))
-		aHeaders.push(new Item({key: "x-csrf-token", text: oModel.getSecurityToken()}))
+		aHeaders.push(new Item({ key: "SLUG", text: oItem.getFileName() }))
+		aHeaders.push(new Item({ key: "x-csrf-token", text: oModel.getSecurityToken() }))
 
 		Uploader.prototype.uploadItem.call(this, oItem, aHeaders);
 	};
 
 	CustomUploader.prototype.downloadItem = function (oItem, aHeaders, bAskForLocation) {
 		var sNewDownloadUrl = oItem.getUrl(); // This value may be result of a backend request eg.
-		aHeaders.push(new Item({key: "SomeGetKey", text: "SomeGetText"}));
+		aHeaders.push(new Item({ key: "SomeGetKey", text: "SomeGetText" }));
 		this.setDownloadUrl(sNewDownloadUrl);
 
 		Uploader.prototype.downloadItem.call(this, oItem, aHeaders, bAskForLocation);
@@ -51,7 +51,7 @@ sap.ui.define([
 
 			oUploadSet.getList().setMode(ListMode.MultiSelect);
 		},
-		handleUploadPress: function(oEvent){
+		handleUploadPress: function (oEvent) {
 			var that = this;
 			var oFileUploader = this.getView().byId("fileUploader");
 			var domRef = oFileUploader.getFocusDomRef();
@@ -60,7 +60,7 @@ sap.ui.define([
 			this.fileType = file.type;
 
 			var reader = new FileReader();
-			reader.onload = function (e){
+			reader.onload = function (e) {
 				debugger;
 				var content = e.currentTarget.result;
 				var myArray = content.split(";base64,");
@@ -70,7 +70,7 @@ sap.ui.define([
 			reader.readAsDataURL(file);
 
 		},
-		postFileToBackend: function(fileName, fileType, content){
+		postFileToBackend: function (fileName, fileType, content) {
 			var ODataModel = this.getOwnerComponent().getModel();
 			var crNum = this.getView().getModel("crNum").getData();
 			var payload = {
@@ -80,10 +80,10 @@ sap.ui.define([
 				Content: btoa(encodeURI(content))
 			}
 			ODataModel.create("/DocumentSet", payload, {
-				success: function(){
+				success: function () {
 					sap.m.MessageToast.show("The file is uploaded successfully!");
 				},
-				error: function(error){
+				error: function (error) {
 					sap.m.MessageToast.show(error);
 				}
 			})
@@ -92,46 +92,18 @@ sap.ui.define([
 
 		onUploadStarted: function (oEvent) {
 
-/* 			var oModel = this.getOwnerComponent().getModel();
-			oModel.create("/DocumentSet", oItem, {
-				success: function () {
-					alert("Uploaded successfully!");
-					oModel.refresh();
-				},
-				error: function (error) {
-					alert(error);
-					alert("Failed to upload file!");
-				}
-			}) */
-
-			var oList = this.byId("progressList"),
-				oItem = oEvent.getParameter("item");
-			oList.insertItem(new ListItem({
-				title: "Upload started: " + oItem.getFileName()
-			}));
 		},
 		onUploadProgressed: function (oEvent) {
-			var oList = this.byId("progressList"),
-				oItem = oEvent.getParameter("item");
-			oList.insertItem(new ListItem({
-				//title: "Upload progressed: " + oItem.getFileName()
-			}));
+
 		},
 		onUploadCompleted: function (oEvent) {
-			var oList = this.byId("progressList"),
-				oItem = oEvent.getParameter("item");
-			oList.insertItem(new ListItem({
-				title: "Upload completed: " + oItem.getFileName()
-			}));
+			console.log("Event", oEvent);
+			var sResponse = oEvent.getParameter("response");
+			console.log(sResponse);
 		},
 		onUploadAborted: function (oEvent) {
-			var oList = this.byId("progressList"),
-				oItem = oEvent.getParameter("item");
-			oList.insertItem(new ListItem({
-				title: "Upload aborted: " + oItem.getFileName()
-			}));
 		},
-		onFileRenamed: function(oEvent) {
+		onFileRenamed: function (oEvent) {
 			MessageToast.show("FileRenamed event triggered.");
 		}
 	});
