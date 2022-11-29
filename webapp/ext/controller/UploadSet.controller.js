@@ -6,7 +6,7 @@ sap.ui.define([
 	"sap/m/upload/Uploader",
 	"sap/m/StandardListItem",
 	"sap/m/MessageToast",
-	"sap/ui/model/odata/ODataModel"
+	"sap/ui/model/odata/v2/ODataModel"
 ], function (MobileLibrary, Controller, Item, JSONModel, Uploader, ListItem, MessageToast, ODataModel) {
 	"use strict";
 
@@ -16,14 +16,10 @@ sap.ui.define([
 	});
 
 	CustomUploader.prototype.uploadItem = function (oItem, aHeaders) {
-		var tmpModel = new ODataModel("/sap/opu/odata/nyx/BS_IN_CR_GP01_V01_SRV/", true);
-		tmpModel.setUseBatch(false);
-
-		var sNewUploadUrl = "/sap/opu/odata/nyx/BS_IN_CR_GP01_V01_SRV/DocumentSet"; // This value may be result of a backend request eg.
-		aHeaders.push(new Item({key: "SomePostKey", text: "SomePostText"}));
-		this.setUploadUrl(sNewUploadUrl);
-
-
+		var oModel = new sap.ui.model.odata.v2.ODataModel ("/sap/opu/odata/nyx/BS_IN_CR_GP01_V01_SRV/", true); 										// Get current ODataModel
+		this.setUploadUrl(oItem.getParent().getUploadUrl());
+		aHeaders.push(new Item({key: "SLUG", text: oItem.getFileName()}))
+		aHeaders.push(new Item({key: "x-csrf-token", text: oModel.getSecurityToken()}))
 
 		Uploader.prototype.uploadItem.call(this, oItem, aHeaders);
 	};
