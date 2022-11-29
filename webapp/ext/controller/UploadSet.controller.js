@@ -11,14 +11,14 @@ sap.ui.define([
 	"use strict";
 
 	var ListMode = MobileLibrary.ListMode;
-	var CustomUploader = Uploader.extend("sap.m.sample.UploadSetCustomUploader.CustomUploader", {
+	var CustomUploader = Uploader.extend("...UploadSetCustomUploader.CustomUploader", {
 		metadata: {}
 	});
 
 	CustomUploader.prototype.uploadItem = function (oItem, aHeaders) {
-		var oModel = new sap.ui.model.odata.v2.ODataModel("/sap/opu/odata/nyx/BS_IN_CR_GP01_V01_SRV/", true); 										// Get current ODataModel
+		var oModel = new sap.ui.model.odata.v2.ODataModel("/sap/opu/odata/nyx/BS_IN_CR_GP01_V01_SRV/", true); 											// Get current ODataModel
 		this.setUploadUrl(oItem.getParent().getUploadUrl());
-		aHeaders.push(new Item({ key: "SLUG", text: oItem.getFileName() }))
+		aHeaders.push(new Item({ key: "slug", text: oItem.getFileName() }))
 		aHeaders.push(new Item({ key: "x-csrf-token", text: oModel.getSecurityToken() }))
 
 		Uploader.prototype.uploadItem.call(this, oItem, aHeaders);
@@ -32,7 +32,7 @@ sap.ui.define([
 		Uploader.prototype.downloadItem.call(this, oItem, aHeaders, bAskForLocation);
 	};
 
-	return Controller.extend("sap.m.sample.UploadSet.Page", {
+	return Controller.extend("NYX.bsincrv01.ext.controller.UploadSet", {
 		onInit: function () {
 			var sPath = sap.ui.require.toUrl("mockdata/items.json"),
 				oUploadSet = this.byId("UploadSet"),
