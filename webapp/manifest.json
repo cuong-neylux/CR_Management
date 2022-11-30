@@ -65,7 +65,8 @@
                 "sap.ui.generic.app": {},
                 "sap.suite.ui.generic.template": {},
                 "sap.ui.table": {},
-                "sap.ui.layout": {}
+                "sap.ui.layout": {},
+                "sap.ui.unified": {}
             }
         },
         "contentDensities": {
@@ -159,7 +160,7 @@
                         "BeforeFacet|CR_HeaderSet|op_section_docList": {
                             "type": "XML",
                             "className": "sap.ui.core.mvc.View",
-                            "viewName": "NYX.bsincrv01.ext.view.UploadSet",
+                            "viewName": "NYX.bsincrv01.ext.view.Attachment",
                             "sap.ui.generic.app": {
                                 "title": "File Upload"
                             }

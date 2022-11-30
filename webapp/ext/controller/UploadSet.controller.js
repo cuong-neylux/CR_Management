@@ -11,7 +11,8 @@ sap.ui.define([
 	"use strict";
 
 	var ListMode = MobileLibrary.ListMode;
-	var CustomUploader = Uploader.extend("...UploadSetCustomUploader.CustomUploader", {
+
+	var CustomUploader = Uploader.extend("sap.m.sample.UploadSetCustomUploader.CustomUploader", {
 		metadata: {}
 	});
 
@@ -51,6 +52,26 @@ sap.ui.define([
 
 			oUploadSet.getList().setMode(ListMode.MultiSelect);
 		},
+
+		onUploadStarted: function (oEvent) {
+			sap.m.MessageToast.show(oEvent.sResponse);
+		},
+		onUploadProgressed: function (oEvent) {
+			sap.m.MessageToast.show(oEvent.sResponse);
+		},
+		onUploadCompleted: function (oEvent) {
+			sap.m.MessageToast.show(oEvent.sResponse);
+			console.log("Event", oEvent);
+			var sResponse = oEvent.getParameter("response");
+			console.log(sResponse);
+		},
+		onUploadAborted: function (oEvent) {
+		},
+		onFileRenamed: function (oEvent) {
+			MessageToast.show("FileRenamed event triggered.");
+		},
+		
+		
 		handleUploadPress: function (oEvent) {
 			var that = this;
 			var oFileUploader = this.getView().byId("fileUploader");
@@ -87,24 +108,6 @@ sap.ui.define([
 					sap.m.MessageToast.show(error);
 				}
 			})
-		}
-		,
-
-		onUploadStarted: function (oEvent) {
-
 		},
-		onUploadProgressed: function (oEvent) {
-
-		},
-		onUploadCompleted: function (oEvent) {
-			console.log("Event", oEvent);
-			var sResponse = oEvent.getParameter("response");
-			console.log(sResponse);
-		},
-		onUploadAborted: function (oEvent) {
-		},
-		onFileRenamed: function (oEvent) {
-			MessageToast.show("FileRenamed event triggered.");
-		}
 	});
 });
