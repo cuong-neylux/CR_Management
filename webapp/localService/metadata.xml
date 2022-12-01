@@ -128,8 +128,8 @@
                     <PropertyRef Name="CrNum"/>
                     <PropertyRef Name="TaskNum"/>
                 </Key>
-                <Property Name="CreatorFullname" Type="Edm.String" Nullable="false" MaxLength="64"/>
                 <Property Name="CreateTimestamp" Type="Edm.DateTime" Nullable="false" Precision="0" sap:label="Zeitstempel"/>
+                <Property Name="CreatorFullname" Type="Edm.String" Nullable="false" MaxLength="64"/>
                 <Property Name="TaskStatus" Type="Edm.String" MaxLength="64"/>
                 <Property Name="Creator" Type="Edm.String" Nullable="false" MaxLength="8" sap:label="Personalnr"/>
                 <Property Name="StatusColor" Type="Edm.Byte" sap:label="int"/>
@@ -160,6 +160,14 @@
             <Association Name="CRHeader_Tasks" sap:content-version="1">
                 <End Type="NYX.BS_IN_CR_GP01_V01_SRV.CR_Header" Multiplicity="1" Role="FromRole_CRHeader_Tasks"/>
                 <End Type="NYX.BS_IN_CR_GP01_V01_SRV.Task" Multiplicity="*" Role="ToRole_CRHeader_Tasks"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_CRHeader_Tasks">
+                        <PropertyRef Name="CrNum"/>
+                    </Principal>
+                    <Dependent Role="ToRole_CRHeader_Tasks">
+                        <PropertyRef Name="CrNum"/>
+                    </Dependent>
+                </ReferentialConstraint>
             </Association>
             <Association Name="CRHeader_Comments" sap:content-version="1">
                 <End Type="NYX.BS_IN_CR_GP01_V01_SRV.CR_Header" Multiplicity="1" Role="FromRole_CRHeader_Comments"/>

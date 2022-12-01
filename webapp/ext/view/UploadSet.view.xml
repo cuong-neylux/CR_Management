@@ -7,9 +7,9 @@
         terminationEnabled="true"
         fileTypes="txt,pdf,png,doc,jpg,xlxs"
         maxFileNameLength="30"
-        maxFileSize="200"
+        maxFileSize="20"
         uploadUrl="/sap/opu/odata/nyx/BS_IN_CR_GP01_V01_SRV/DocumentSet"
-        items="{path: '/items', templateShareable: false}"
+        items="{path: 'DocumentSet'}"
     >
         <upload:toolbar>
             <OverflowToolbar id="UploadSet-OverflowToolbar">
@@ -18,18 +18,12 @@
             </OverflowToolbar>
         </upload:toolbar>
         <upload:items>
-            <upload:UploadSetItem id="UploadSet-UploadSetItem"
-                fileName="{fileName}"
-                mediaType="{mediaType}"
-                url="{url}"
-                thumbnailUrl="{thumbnailUrl}"
-                attributes="{path: 'attributes', templateShareable: false}"
-                markers="{path: 'markers', templateShareable: false}"
-                statuses="{path: 'statuses', templateShareable: false}"
-                uploadState="{uploadState}"
-            >
+            <upload:UploadSetItem id="UploadSet-UploadSetItem" fileName="{FileName}" mediaType="{MimeType}" url="{Url}">
                 <upload:attributes>
-                    <ObjectAttribute id="UploadSet-ObjectAttribute" title="{title}" text="{text}" active="{active}" />
+                    <ObjectAttribute id="UploadSet-ObjectAttribute" title="Uploaded By" text="{UploadUserFullname}" />
+                </upload:attributes>
+                <upload:attributes>
+                    <ObjectAttribute id="UploadSet-ObjectAttribute2" title="Uploaded On" text="{UploadTimestamp}" />
                 </upload:attributes>
                 <upload:markers>
                     <ObjectMarker id="UploadSet-ObjectMarker" type="{type}" visibility="{visibility}" />

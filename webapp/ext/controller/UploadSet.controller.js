@@ -23,9 +23,6 @@ sap.ui.define([
 		},
 		onAfterRendering: function () {
 			var oUploadSet = this.byId("UploadSet");
-			oUploadSet.attachBeforeUploadStarts(function (oEvent){
-				debugger;
-			});
 			oUploadSet.attachAfterItemAdded(function (oEvent) {
 				var oItem = oEvent.mParameters.item;
 				this.addIncompleteItem(oItem);
@@ -53,26 +50,14 @@ sap.ui.define([
 					});
 					oUploadSet.addHeaderField(headerField);
 
-					// Add key: CrNum
-					// Get security token
-					headerField = new Item({
-						key: "CrNum",
-						text: crNum
-					});
-					oUploadSet.addHeaderField(headerField);
-
-					// Add key: CrNum
-					var keyData = new CustomData({
-						key: "CrNum",
-						value: crNum
-					});
-					oUploadSet.addCustomData(keyData);
-					oUploadSet.getDefaultFileUploader().addCustomData(keyData);
-
 					// Trigger upload: Send file to backend
 					oUploadSet.uploadItem(oItem);
 					oUploadSet.destroyHeaderFields();
 				}
+			});
+
+			oUploadSet.attachUploadCompleted(function (oEvent){
+
 			});
 		},
 		onDownloadSelectedButton: function () {
