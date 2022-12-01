@@ -2,7 +2,7 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Chang-Request-Management-Application-config1",
+      "name": "CR_Management-config1",
       "cwd": "${workspaceFolder}",
       "runtimeArgs": [
         "fiori",
@@ -22,7 +22,7 @@
       "internalConsoleOptions": "openOnSessionStart",
       "outputCapture": "std",
       "env": {
-        "run.config": "{\"handlerId\":\"fiori_tools\",\"runnableId\":\"/home/user/projects/Chang-Request-Management-Application\"}",
+        "run.config": "{\"handlerId\":\"fiori_tools\",\"runnableId\":\"/home/user/projects/CR_Management\"}",
         "FIORI_TOOLS_BACKEND_CONFIG": "[{\"path\":\"/sap\",\"url\":\"http://neylux.cloud.com:8004\",\"client\":\"001\",\"destination\":\"ERP\"}]",
         "FIORI_TOOLS_URL_PARAMS": "sap-ui-xx-viewCache=false",
         "FIORI_TOOLS_UI5_VERSION": "",
