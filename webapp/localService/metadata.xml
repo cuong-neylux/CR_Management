@@ -16,17 +16,15 @@
         <Schema Namespace="NYX.BS_IN_CR_GP01_V01_SRV" xml:lang="de" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
             <EntityType Name="CR_Header" sap:content-version="1">
                 <Key>
-                    <PropertyRef Name="Mandt"/>
                     <PropertyRef Name="CrNum"/>
                 </Key>
                 <Property Name="CreateTimestamp" Type="Edm.DateTime" Nullable="false" Precision="0" sap:label="Zeitstempel"/>
                 <Property Name="RequesterFullname" Type="Edm.String" Nullable="false" MaxLength="64"/>
-                <Property Name="Mandt" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Mandant"/>
                 <Property Name="LastProcessorFullname" Type="Edm.String" Nullable="false" MaxLength="64"/>
-                <Property Name="Progress" Type="Edm.Decimal" Nullable="false" Precision="5" Scale="2"/>
                 <Property Name="CurrentProcessorFullname" Type="Edm.String" Nullable="false" MaxLength="64"/>
-                <Property Name="ProgressColor" Type="Edm.Int32" Nullable="false" sap:label="Zahl"/>
+                <Property Name="Progress" Type="Edm.Decimal" Nullable="false" Precision="5" Scale="2"/>
                 <Property Name="NextProcessorFullname" Type="Edm.String" Nullable="false" MaxLength="64"/>
+                <Property Name="ProgressColor" Type="Edm.Int32" Nullable="false" sap:label="Zahl"/>
                 <Property Name="TaskDone" Type="Edm.Byte" Nullable="false"/>
                 <Property Name="CrNum" Type="Edm.String" Nullable="false" MaxLength="12"/>
                 <Property Name="LastProcessedTimestamp" Type="Edm.DateTime" Nullable="false" Precision="0" sap:label="Zeitstempel"/>
@@ -53,11 +51,9 @@
             </EntityType>
             <EntityType Name="Comment" sap:content-version="1">
                 <Key>
-                    <PropertyRef Name="Mandt"/>
                     <PropertyRef Name="CrNum"/>
                     <PropertyRef Name="CommentId"/>
                 </Key>
-                <Property Name="Mandt" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Mandant"/>
                 <Property Name="Title" Type="Edm.String" Nullable="false" MaxLength="64"/>
                 <Property Name="CommentUserFullname" Type="Edm.String" Nullable="false" MaxLength="64"/>
                 <Property Name="CrNum" Type="Edm.String" Nullable="false" MaxLength="12"/>
@@ -68,11 +64,9 @@
             </EntityType>
             <EntityType Name="User" sap:content-version="1">
                 <Key>
-                    <PropertyRef Name="Mandt"/>
                     <PropertyRef Name="PersonalNumber"/>
                     <PropertyRef Name="RoleName"/>
                 </Key>
-                <Property Name="Mandt" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Mandant"/>
                 <Property Name="Fullname" Type="Edm.String" Nullable="false" MaxLength="64"/>
                 <Property Name="PhotoPath" Type="Edm.String" MaxLength="64"/>
                 <Property Name="PersonalNumber" Type="Edm.String" Nullable="false" MaxLength="8" sap:label="Personalnr"/>
@@ -81,14 +75,12 @@
             </EntityType>
             <EntityType Name="Document" m:HasStream="true" sap:content-version="1">
                 <Key>
-                    <PropertyRef Name="Mandt"/>
                     <PropertyRef Name="CrNum"/>
                     <PropertyRef Name="DocumentId"/>
                 </Key>
                 <Property Name="MimeType" Type="Edm.String" MaxLength="100" sap:label="Charakter 100"/>
                 <Property Name="Url" Type="Edm.String" Nullable="false" MaxLength="255" sap:label="Text"/>
                 <Property Name="Value" Type="Edm.Binary" Nullable="false" sap:label="binärer String"/>
-                <Property Name="Mandt" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Mandant"/>
                 <Property Name="UploadUserFullname" Type="Edm.String" MaxLength="64"/>
                 <Property Name="UploadTimestamp" Type="Edm.DateTime" Precision="0" sap:label="Zeitstempel"/>
                 <Property Name="CrNum" Type="Edm.String" Nullable="false" MaxLength="12"/>
@@ -107,19 +99,15 @@
             </EntityType>
             <EntityType Name="CR_Classification" sap:content-version="1">
                 <Key>
-                    <PropertyRef Name="Mandt"/>
                     <PropertyRef Name="Classification"/>
                 </Key>
-                <Property Name="Mandt" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Mandant"/>
                 <Property Name="Classification" Type="Edm.String" Nullable="false" MaxLength="64"/>
                 <Property Name="Description" Type="Edm.String" Nullable="false" MaxLength="255" sap:label="Text"/>
             </EntityType>
             <EntityType Name="Project" sap:content-version="1">
                 <Key>
-                    <PropertyRef Name="Mandt"/>
                     <PropertyRef Name="ProjectId"/>
                 </Key>
-                <Property Name="Mandt" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Mandant"/>
                 <Property Name="ProjectId" Type="Edm.String" Nullable="false" MaxLength="7"/>
                 <Property Name="ProjectName" Type="Edm.String" Nullable="false" MaxLength="64"/>
                 <Property Name="CustomerName" Type="Edm.String" Nullable="false" MaxLength="64"/>
@@ -129,17 +117,14 @@
             </EntityType>
             <EntityType Name="Customer" sap:content-version="1">
                 <Key>
-                    <PropertyRef Name="Mandt"/>
                     <PropertyRef Name="NcId"/>
                 </Key>
-                <Property Name="Mandt" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Mandant"/>
                 <Property Name="NcId" Type="Edm.String" Nullable="false" MaxLength="10"/>
                 <Property Name="NcName" Type="Edm.String" Nullable="false" MaxLength="64" sap:label="Kundenname"/>
                 <Property Name="Remark" Type="Edm.String" Nullable="false" MaxLength="255" sap:label="Anmerkung"/>
             </EntityType>
             <EntityType Name="Task" sap:content-version="1">
                 <Key>
-                    <PropertyRef Name="Mandt"/>
                     <PropertyRef Name="CrNum"/>
                     <PropertyRef Name="TaskNum"/>
                 </Key>
@@ -148,7 +133,6 @@
                 <Property Name="TaskStatus" Type="Edm.String" MaxLength="64"/>
                 <Property Name="Creator" Type="Edm.String" Nullable="false" MaxLength="8" sap:label="Personalnr"/>
                 <Property Name="StatusColor" Type="Edm.Byte" sap:label="int"/>
-                <Property Name="Mandt" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Mandant"/>
                 <Property Name="CrNum" Type="Edm.String" Nullable="false" MaxLength="12"/>
                 <Property Name="TaskNum" Type="Edm.String" Nullable="false" MaxLength="7"/>
                 <Property Name="Description" Type="Edm.String" Nullable="false" MaxLength="255" sap:label="Text"/>
@@ -156,10 +140,8 @@
             </EntityType>
             <EntityType Name="Team" sap:content-version="1">
                 <Key>
-                    <PropertyRef Name="Mandt"/>
                     <PropertyRef Name="TeamName"/>
                 </Key>
-                <Property Name="Mandt" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Mandant"/>
                 <Property Name="TeamName" Type="Edm.String" Nullable="false" MaxLength="64"/>
                 <Property Name="Description" Type="Edm.String" Nullable="false" MaxLength="255" sap:label="Text"/>
             </EntityType>
@@ -169,11 +151,9 @@
                 <ReferentialConstraint>
                     <Principal Role="FromRole_CRHeader_Documents">
                         <PropertyRef Name="CrNum"/>
-                        <PropertyRef Name="Mandt"/>
                     </Principal>
                     <Dependent Role="ToRole_CRHeader_Documents">
                         <PropertyRef Name="CrNum"/>
-                        <PropertyRef Name="Mandt"/>
                     </Dependent>
                 </ReferentialConstraint>
             </Association>
@@ -187,11 +167,9 @@
                 <ReferentialConstraint>
                     <Principal Role="FromRole_CRHeader_Comments">
                         <PropertyRef Name="CrNum"/>
-                        <PropertyRef Name="Mandt"/>
                     </Principal>
                     <Dependent Role="ToRole_CRHeader_Comments">
                         <PropertyRef Name="CrNum"/>
-                        <PropertyRef Name="Mandt"/>
                     </Dependent>
                 </ReferentialConstraint>
             </Association>

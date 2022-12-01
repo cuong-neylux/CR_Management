@@ -21,7 +21,6 @@ sap.ui.define(["sap/ui/core/mvc/Controller"],
                 this.extensionAPI.getTransactionController().attachAfterSave(async function (oEvent) {
                     sap.ui.controller("NYX.bsincrv01.ext.controller.TaskTable").test();
                 });
-                console.log("Test", 2+1);
             },
             onSubmitClick: function (oEvent) {
                 alert('onSubmitClick');
