@@ -160,7 +160,7 @@
                         "BeforeFacet|CR_HeaderSet|op_section_docList": {
                             "type": "XML",
                             "className": "sap.ui.core.mvc.View",
-                            "viewName": "NYX.bsincrv01.ext.view.Attachment",
+                            "viewName": "NYX.bsincrv01.ext.view.UploadSet",
                             "sap.ui.generic.app": {
                                 "title": "File Upload"
                             }

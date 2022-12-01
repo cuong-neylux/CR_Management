@@ -87,7 +87,7 @@
                 </Key>
                 <Property Name="MimeType" Type="Edm.String" MaxLength="100" sap:label="Charakter 100"/>
                 <Property Name="Url" Type="Edm.String" Nullable="false" MaxLength="255" sap:label="Text"/>
-                <Property Name="Content" Type="Edm.String" Nullable="false"/>
+                <Property Name="Value" Type="Edm.Binary" Nullable="false" sap:label="binärer String"/>
                 <Property Name="Mandt" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Mandant"/>
                 <Property Name="UploadUserFullname" Type="Edm.String" MaxLength="64"/>
                 <Property Name="UploadTimestamp" Type="Edm.DateTime" Precision="0" sap:label="Zeitstempel"/>

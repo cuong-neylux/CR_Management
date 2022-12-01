@@ -1,0 +1,28 @@
+# yaml-language-server: $schema=https://sap.github.io/ui5-tooling/schema/ui5.yaml.json
+
+specVersion: "2.4"
+
+metadata:
+  name: chang-request-management-application
+
+type: application
+
+builder:
+  resources:
+    excludes:
+      - /test/**
+      - /localService/**
+
+  customTasks:
+    - name: deploy-to-abap
+      afterTask: generateCachebusterInfo
+      configuration:
+        target:
+          destination: ERP
+          url: https://erp3.westeurope.cloudapp.azure.com:8004
+
+        app:
+          name: /NYX/BS_IN_CR_GP01_V01
+          description: Change Request Management App
+          package: /NYX/BS_IN_CR_V01
+          transport: ERPK902692
