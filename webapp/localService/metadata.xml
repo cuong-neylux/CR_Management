@@ -45,9 +45,9 @@
                 <Property Name="NextProcessor" Type="Edm.String" MaxLength="8" sap:label="Personalnr"/>
                 <Property Name="UserAction" Type="Edm.String" Nullable="false" MaxLength="64"/>
                 <Property Name="CurrentNote" Type="Edm.String"/>
-                <NavigationProperty Name="CR_Document" Relationship="NYX.BS_IN_CR_GP01_V01_SRV.CRHeader_Documents" FromRole="FromRole_CRHeader_Documents" ToRole="ToRole_CRHeader_Documents"/>
                 <NavigationProperty Name="CR_Task" Relationship="NYX.BS_IN_CR_GP01_V01_SRV.CRHeader_Tasks" FromRole="FromRole_CRHeader_Tasks" ToRole="ToRole_CRHeader_Tasks"/>
                 <NavigationProperty Name="CR_Comment" Relationship="NYX.BS_IN_CR_GP01_V01_SRV.CRHeader_Comments" FromRole="FromRole_CRHeader_Comments" ToRole="ToRole_CRHeader_Comments"/>
+                <NavigationProperty Name="CR_Documents" Relationship="NYX.BS_IN_CR_GP01_V01_SRV.CR_Documents" FromRole="FromRole_CR_Documents" ToRole="ToRole_CR_Documents"/>
             </EntityType>
             <EntityType Name="Comment" sap:content-version="1">
                 <Key>
@@ -119,7 +119,7 @@
                 <Key>
                     <PropertyRef Name="NcId"/>
                 </Key>
-                <Property Name="NcId" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="NcId" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Customer ID"/>
                 <Property Name="NcName" Type="Edm.String" Nullable="false" MaxLength="64" sap:label="Kundenname"/>
                 <Property Name="Remark" Type="Edm.String" Nullable="false" MaxLength="255" sap:label="Anmerkung"/>
             </EntityType>
@@ -145,18 +145,6 @@
                 <Property Name="TeamName" Type="Edm.String" Nullable="false" MaxLength="64"/>
                 <Property Name="Description" Type="Edm.String" Nullable="false" MaxLength="255" sap:label="Text"/>
             </EntityType>
-            <Association Name="CRHeader_Documents" sap:content-version="1">
-                <End Type="NYX.BS_IN_CR_GP01_V01_SRV.CR_Header" Multiplicity="1" Role="FromRole_CRHeader_Documents"/>
-                <End Type="NYX.BS_IN_CR_GP01_V01_SRV.Document" Multiplicity="*" Role="ToRole_CRHeader_Documents"/>
-                <ReferentialConstraint>
-                    <Principal Role="FromRole_CRHeader_Documents">
-                        <PropertyRef Name="CrNum"/>
-                    </Principal>
-                    <Dependent Role="ToRole_CRHeader_Documents">
-                        <PropertyRef Name="CrNum"/>
-                    </Dependent>
-                </ReferentialConstraint>
-            </Association>
             <Association Name="CRHeader_Tasks" sap:content-version="1">
                 <End Type="NYX.BS_IN_CR_GP01_V01_SRV.CR_Header" Multiplicity="1" Role="FromRole_CRHeader_Tasks"/>
                 <End Type="NYX.BS_IN_CR_GP01_V01_SRV.Task" Multiplicity="*" Role="ToRole_CRHeader_Tasks"/>
@@ -168,6 +156,10 @@
                         <PropertyRef Name="CrNum"/>
                     </Dependent>
                 </ReferentialConstraint>
+            </Association>
+            <Association Name="CR_Documents" sap:content-version="1">
+                <End Type="NYX.BS_IN_CR_GP01_V01_SRV.CR_Header" Multiplicity="1" Role="FromRole_CR_Documents"/>
+                <End Type="NYX.BS_IN_CR_GP01_V01_SRV.Document" Multiplicity="*" Role="ToRole_CR_Documents"/>
             </Association>
             <Association Name="CRHeader_Comments" sap:content-version="1">
                 <End Type="NYX.BS_IN_CR_GP01_V01_SRV.CR_Header" Multiplicity="1" Role="FromRole_CRHeader_Comments"/>
@@ -200,9 +192,9 @@
                     <End EntitySet="CR_HeaderSet" Role="FromRole_CRHeader_Tasks"/>
                     <End EntitySet="TaskSet" Role="ToRole_CRHeader_Tasks"/>
                 </AssociationSet>
-                <AssociationSet Name="CRHeader_Documents" Association="NYX.BS_IN_CR_GP01_V01_SRV.CRHeader_Documents" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
-                    <End EntitySet="CR_HeaderSet" Role="FromRole_CRHeader_Documents"/>
-                    <End EntitySet="DocumentSet" Role="ToRole_CRHeader_Documents"/>
+                <AssociationSet Name="CR_Documents" Association="NYX.BS_IN_CR_GP01_V01_SRV.CR_Documents" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="CR_HeaderSet" Role="FromRole_CR_Documents"/>
+                    <End EntitySet="DocumentSet" Role="ToRole_CR_Documents"/>
                 </AssociationSet>
             </EntityContainer>
             <Annotations Target="NYX.BS_IN_CR_GP01_V01_SRV.Document" xmlns="http://docs.oasis-open.org/odata/ns/edm">

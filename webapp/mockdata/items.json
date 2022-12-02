@@ -1,9 +1,9 @@
 {
 	"items": [
 		{
-			"fileName": "Business Plan Agenda.doc",
-			"mediaType": "application/msword",
-			"url": "demokit/sample/UploadCollection/LinkedDocuments/Business Plan Agenda.doc",
+			"FileName": "Business Plan Agenda.doc",
+			"MimeType": "application/msword",
+			"Url": "demokit/sample/UploadCollection/LinkedDocuments/Business Plan Agenda.doc",
 			"uploadState": "Complete",
 			"attributes": [
 				{
@@ -66,10 +66,10 @@
 			"selected": false
 		},
 		{
-			"fileName": "Picture of a woman.png",
+			"FileName": "Picture of a woman.png",
 			"mimeType": "image/png",
 			"thumbnailUrl": "test-resources/sap/m/images/Woman_04.png",
-			"url": "test-resources/sap/m/images/Woman_04.png",
+			"Url": "test-resources/sap/m/images/Woman_04.png",
 			"uploadState": "Complete"
 		}
 	]

@@ -233,6 +233,12 @@
 
                         <!-- Section 4 -->
                         <!-- Message History -->
+                        <Record Type="UI.ReferenceFacet">
+                            <!-- Document list from document entitySet -->
+                            <PropertyValue Property="Target" AnnotationPath="/NYX.BS_IN_CR_GP01_V01_SRV.Document/@UI.LineItem#op_documentList" />
+                            <PropertyValue Property="Label" String="{@i18n>op_messageHistory}" />
+                            <PropertyValue Property="ID" String="op_section_message_history" />
+                        </Record>
 
                         <!-- Section 5 -->
                         <!-- Information for sending to the next processor -->
