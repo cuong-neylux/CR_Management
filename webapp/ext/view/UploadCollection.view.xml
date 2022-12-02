@@ -40,39 +40,14 @@
 			</toolbar>
 			<items>
 				<UploadCollectionItem id="UploadCollection-UploadCollectionItem"
-					documentId="{documentId}"
-					fileName="{fileName}"
-					mimeType="{mimeType}"
-					thumbnailUrl="{thumbnailUrl}"
-					url="{url}"
+					documentId="{DocumentId}"
+					fileName="{FileName}"
+					mimeType="{MimeType}"
+					url="{Url}"
 					enableEdit="false"
 					enableDelete="false"
 					visibleDelete="false"
-					visibleEdit="false"
-					attributes="{
-						path: 'attributes',
-						templateShareable: false
-					}"
-					statuses="{
-						path: 'statuses',
-						templateShareable: false
-					}"
-					selected="{selected}">
-					<attributes>
-						<ObjectAttribute id="UploadCollection-ObjectAttribute"
-							title="{title}"
-							text="{
-								parts: [ 'text', 'type' ],
-								formatter : '.formatAttribute'
-							}"
-							active="false" />
-					</attributes>
-					<statuses>
-						<ObjectStatus id="UploadCollection-ObjectStatus"
-                            title="{title}"
-							text="{text}"
-							state="{state}" />
-					</statuses>
+					visibleEdit="false">
 				</UploadCollectionItem>
 			</items>
 		</UploadCollection>

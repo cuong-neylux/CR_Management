@@ -1,0 +1,23 @@
+<mvc:View
+	controllerName="NYX.bsincrv01.ext.controller.Link"
+	xmlns:l="sap.ui.layout"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m">
+	<l:VerticalLayout
+        id="Link-VerticalLayout"
+		class="sapUiContentPadding"
+		width="100%">
+		<l:content>
+			<Link id="Link1"
+				text="Open message box"
+				press="handleLinkPress" />
+			<Link id="Link2"
+				text="Disabled link"
+				enabled="false" />
+			<Link id="Link3"
+				text="Open SAP Homepage"
+				target="_blank"
+				href="http://www.sap.com" />
+		</l:content>
+	</l:VerticalLayout>
+</mvc:View>

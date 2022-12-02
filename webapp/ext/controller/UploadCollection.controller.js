@@ -51,11 +51,11 @@ sap.ui.define([
 		},
 
 		onFileSizeExceed: function(oEvent) {
-			MessageToast.show("FileSizeExceed event triggered.");
+			MessageToast.show("The file size is exceeded");
 		},
 
 		onTypeMissmatch: function(oEvent) {
-			MessageToast.show("TypeMissmatch event triggered.");
+			MessageToast.show("The file type is not supported!");
 		},
 
 		onUploadComplete: function(oEvent) {

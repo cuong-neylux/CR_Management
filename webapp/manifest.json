@@ -165,12 +165,29 @@
                                 "title": "Document Upload"
                             }
                         },
+                        "BeforeFacet|CR_HeaderSet|op_section_docList": {
+                            "type": "XML",
+                            "className": "sap.ui.core.mvc.View",
+                            "viewName": "NYX.bsincrv01.ext.view.Link",
+                            "sap.ui.generic.app": {
+                                "title": "References"
+                            }
+                        }
+                        ,
                         "ReplaceFacet|CR_HeaderSet|op_section_message_history": {
                             "type": "XML",
                             "className": "sap.ui.core.mvc.View",
                             "viewName": "NYX.bsincrv01.ext.view.Timeline",
                             "sap.ui.generic.app": {
                                 "title": "Message History"
+                            }
+                        },
+                        "AfterFacet|CR_HeaderSet|op_section_docList": {
+                            "type": "XML",
+                            "className": "sap.ui.core.mvc.View",
+                            "viewName": "NYX.bsincrv01.ext.view.PlanningCalendar",
+                            "sap.ui.generic.app": {
+                                "title": "Planning Calendar"
                             }
                         }
                     }
