@@ -3,10 +3,16 @@
 	xmlns:l="sap.ui.layout"
 	xmlns:mvc="sap.ui.core.mvc"
 	xmlns="sap.m">
+				<Toolbar id="Link-Toolbar">
+				<ToolbarSpacer id="Link-ToolbarSpacer" width="96%"/>
+				<Button id="Link-Button" text="Add Link" press="onPress" type="Emphasized"/>
+				
+			</Toolbar>
 	<l:VerticalLayout
         id="Link-VerticalLayout"
 		class="sapUiContentPadding"
 		width="100%">
+		
 		<l:content>
 			<Link id="Link1"
 				text="Open message box"
