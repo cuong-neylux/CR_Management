@@ -6,7 +6,7 @@
 	xmlns:m="sap.m"
 	width="100%"
 	height="100%">
-	<m:Toolbar id="section4-toolbar" height="90px">
+	<m:Toolbar id="section4-toolbar" height="70px">
 		<m:Label id="section4-label" text="Panel Height:" class="sapUiSmallMarginTop"/>
 		<m:Slider id="idSlider"
 		          showAdvancedTooltip="true"
@@ -40,7 +40,7 @@
 					title="{Title}"
 					text="{Note}"
 					userName="{CommentUserFullname}"
-					userPicture="../sources/images/cr.png">
+					userPicture="https://neylux.com/wp-content/uploads/Image-03_cropped.png">
 				</TimelineItem>
 			</content>
 		</Timeline>

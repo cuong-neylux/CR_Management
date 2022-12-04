@@ -1,9 +1,9 @@
 {
 	"items": [
 		{
-			"documentId": "64469d2f-b3c4-a517-20d6-f91ebf85b9da",
-			"fileName": "Screenshot.jpg",
-			"mimeType": "image/jpg",
+			"DocumentId": "64469d2f-b3c4-a517-20d6-f91ebf85b9da",
+			"FileName": "Screenshot.jpg",
+			"MimeType": "image/jpg",
 			"thumbnailUrl": "",
 			"url": "test-resources/sap/m/demokit/sample/UploadCollection/LinkedDocuments/Screenshot.jpg",
 			"attributes": [

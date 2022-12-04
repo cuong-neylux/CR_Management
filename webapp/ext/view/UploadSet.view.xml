@@ -9,7 +9,7 @@
         maxFileNameLength="64"
         maxFileSize="20"
         uploadUrl="/sap/opu/odata/nyx/BS_IN_CR_GP01_V01_SRV/DocumentSet"
-        items="{path: 'CR_Documents',
+        items="{path: '/items',
 				parameters: {
 				    $orderby: 'createdAt desc'
 				    },

@@ -15,7 +15,7 @@
 			uploadComplete="onUploadComplete"
 			beforeUploadStarts="onBeforeUploadStarts"
 			items="{
-				path: 'CR_Documents',
+				path: '/items',
 				templateShareable: false
 			}"
 			mode="MultiSelect">

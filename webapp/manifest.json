@@ -160,7 +160,7 @@
                         "ReplaceFacet|CR_HeaderSet|op_section_docList": {
                             "type": "XML",
                             "className": "sap.ui.core.mvc.View",
-                            "viewName": "NYX.bsincrv01.ext.view.UploadCollection",
+                            "viewName": "NYX.bsincrv01.ext.view.UploadSet",
                             "sap.ui.generic.app": {
                                 "title": "Document Upload"
                             }
@@ -182,7 +182,7 @@
                                 "title": "Message History"
                             }
                         },
-                        "AfterFacet|CR_HeaderSet|op_section_docList": {
+                        "AfterFacet|CR_HeaderSet|op_section_nextProcesssor": {
                             "type": "XML",
                             "className": "sap.ui.core.mvc.View",
                             "viewName": "NYX.bsincrv01.ext.view.PlanningCalendar",
