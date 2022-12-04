@@ -253,7 +253,7 @@
                         <Record Type="UI.ReferenceFacet">
                             <PropertyValue Property="Label" String="{@i18n>op_calendar}" />
                             <PropertyValue Property="ID" String="op_section_planning_Calendar" />
-                            <PropertyValue Property="Target" AnnotationPath="/NYX.BS_IN_CR_GP01_V01_SRV.Calendar/@UI.LineItem#op_calendar" />
+                            <PropertyValue Property="Target" AnnotationPath="CR_Calendar/@UI.LineItem#op_calendar" />
                         </Record>
                     </Collection>
                 </Annotation>

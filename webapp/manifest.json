@@ -181,7 +181,7 @@
                                 "title": "Message History"
                             }
                         },
-                        "AfterFacet|CR_HeaderSet|op_section_nextProcesssor": {
+                        "ReplaceFacet|CR_HeaderSet|op_section_planning_Calendar": {
                             "type": "XML",
                             "className": "sap.ui.core.mvc.View",
                             "viewName": "NYX.bsincrv01.ext.view.PlanningCalendar",

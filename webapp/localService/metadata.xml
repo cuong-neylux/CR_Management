@@ -48,6 +48,7 @@
                 <NavigationProperty Name="CR_Task" Relationship="NYX.BS_IN_CR_GP01_V01_SRV.CRHeader_Tasks" FromRole="FromRole_CRHeader_Tasks" ToRole="ToRole_CRHeader_Tasks"/>
                 <NavigationProperty Name="CR_Comment" Relationship="NYX.BS_IN_CR_GP01_V01_SRV.CRHeader_Comments" FromRole="FromRole_CRHeader_Comments" ToRole="ToRole_CRHeader_Comments"/>
                 <NavigationProperty Name="CR_Links" Relationship="NYX.BS_IN_CR_GP01_V01_SRV.CR_Links" FromRole="FromRole_CR_Links" ToRole="ToRole_CR_Links"/>
+                <NavigationProperty Name="CR_Calendar" Relationship="NYX.BS_IN_CR_GP01_V01_SRV.CR_Calendar" FromRole="FromRole_CR_Calendar" ToRole="ToRole_CR_Calendar"/>
                 <NavigationProperty Name="CR_DocumentSet" Relationship="NYX.BS_IN_CR_GP01_V01_SRV.CR_Document" FromRole="FromRole_CR_Document" ToRole="ToRole_CR_Document"/>
             </EntityType>
             <EntityType Name="Comment" sap:content-version="1">
@@ -222,6 +223,18 @@
                     </Dependent>
                 </ReferentialConstraint>
             </Association>
+            <Association Name="CR_Calendar" sap:content-version="1">
+                <End Type="NYX.BS_IN_CR_GP01_V01_SRV.CR_Header" Multiplicity="1" Role="FromRole_CR_Calendar"/>
+                <End Type="NYX.BS_IN_CR_GP01_V01_SRV.Calendar" Multiplicity="*" Role="ToRole_CR_Calendar"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_CR_Calendar">
+                        <PropertyRef Name="CrNum"/>
+                    </Principal>
+                    <Dependent Role="ToRole_CR_Calendar">
+                        <PropertyRef Name="Pernr"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
             <Association Name="CRHeader_Comments" sap:content-version="1">
                 <End Type="NYX.BS_IN_CR_GP01_V01_SRV.CR_Header" Multiplicity="1" Role="FromRole_CRHeader_Comments"/>
                 <End Type="NYX.BS_IN_CR_GP01_V01_SRV.Comment" Multiplicity="*" Role="ToRole_CRHeader_Comments"/>
@@ -251,6 +264,10 @@
                 <AssociationSet Name="CRHeader_Comments" Association="NYX.BS_IN_CR_GP01_V01_SRV.CRHeader_Comments" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
                     <End EntitySet="CR_HeaderSet" Role="FromRole_CRHeader_Comments"/>
                     <End EntitySet="CommentSet" Role="ToRole_CRHeader_Comments"/>
+                </AssociationSet>
+                <AssociationSet Name="CR_CalendarSet" Association="NYX.BS_IN_CR_GP01_V01_SRV.CR_Calendar" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="CR_HeaderSet" Role="FromRole_CR_Calendar"/>
+                    <End EntitySet="CalendarSet" Role="ToRole_CR_Calendar"/>
                 </AssociationSet>
                 <AssociationSet Name="CRHeader_Tasks" Association="NYX.BS_IN_CR_GP01_V01_SRV.CRHeader_Tasks" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
                     <End EntitySet="CR_HeaderSet" Role="FromRole_CRHeader_Tasks"/>
