@@ -226,7 +226,7 @@
                         <!-- Section 3 -->
                         <Record Type="UI.ReferenceFacet">
                             <!-- Document list from document entitySet -->
-                            <PropertyValue Property="Target" AnnotationPath="/NYX.BS_IN_CR_GP01_V01_SRV.Document/@UI.LineItem#op_documentList" />
+                            <PropertyValue Property="Target" AnnotationPath="CR_DocumentSet/@UI.LineItem#op_documentList" />
                             <PropertyValue Property="Label" String="{@i18n>op_docList}" />
                             <PropertyValue Property="ID" String="op_section_docList" />
                         </Record>
@@ -235,7 +235,7 @@
                         <!-- Message History -->
                         <Record Type="UI.ReferenceFacet">
                             <!-- Document list from document entitySet -->
-                            <PropertyValue Property="Target" AnnotationPath="/NYX.BS_IN_CR_GP01_V01_SRV.Comment/@UI.LineItem#op_commentList" />
+                            <PropertyValue Property="Target" AnnotationPath="CR_Comment/@UI.LineItem#op_commentList" />
                             <PropertyValue Property="Label" String="{@i18n>op_messageHistory}" />
                             <PropertyValue Property="ID" String="op_section_message_history" />
                         </Record>
@@ -246,6 +246,14 @@
                             <PropertyValue Property="Label" String="{@i18n>op_nextStep}" />
                             <PropertyValue Property="ID" String="op_section_nextProcesssor" />
                             <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#op_sendToNextProcessor" />
+                        </Record>
+
+                        <!-- Section 6 -->
+                        <!-- Personal Planning Calendar -->
+                        <Record Type="UI.ReferenceFacet">
+                            <PropertyValue Property="Label" String="{@i18n>op_calendar}" />
+                            <PropertyValue Property="ID" String="op_section_planning_Calendar" />
+                            <PropertyValue Property="Target" AnnotationPath="/NYX.BS_IN_CR_GP01_V01_SRV.Calendar/@UI.LineItem#op_calendar" />
                         </Record>
                     </Collection>
                 </Annotation>
@@ -533,16 +541,30 @@
                 <Annotation Term="UI.LineItem" Qualifier="op_commentList">
                     <Collection>
                         <Record Type="UI.DataField">
-                            <PropertyValue Property="Value" Path="CommentUser"/>
-                            <PropertyValue Property="Label" String="{@i18n>op_commentUser}"/>
+                            <PropertyValue Property="Value" Path="CommentUser" />
+                            <PropertyValue Property="Label" String="{@i18n>op_commentUser}" />
                         </Record>
                         <Record Type="UI.DataField">
-                            <PropertyValue Property="Value" Path="Note"/>
-                            <PropertyValue Property="Label" String="{@i18n>op_commentNote}"/>
+                            <PropertyValue Property="Value" Path="Note" />
+                            <PropertyValue Property="Label" String="{@i18n>op_commentNote}" />
                         </Record>
                         <Record Type="UI.DataField">
-                            <PropertyValue Property="Value" Path="Title"/>
-                            <PropertyValue Property="Label" String="{@i18n>op_commentTitle}"/>
+                            <PropertyValue Property="Value" Path="Title" />
+                            <PropertyValue Property="Label" String="{@i18n>op_commentTitle}" />
+                        </Record>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="NYX.BS_IN_CR_GP01_V01_SRV.Calendar">
+                <Annotation Term="UI.LineItem" Qualifier="op_calendar">
+                    <Collection>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="Fullname" />
+                            <PropertyValue Property="Label" String="{@i18n>op_calendar_name}" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="PictureUrl" />
+                            <PropertyValue Property="Label" String="{@i18n>op_calendar_url}" />
                         </Record>
                     </Collection>
                 </Annotation>

@@ -6,7 +6,6 @@
 				<Toolbar id="Link-Toolbar">
 				<ToolbarSpacer id="Link-ToolbarSpacer" width="96%"/>
 				<Button id="Link-Button" text="Add Link" press="onPress" type="Emphasized"/>
-				
 			</Toolbar>
 	<l:VerticalLayout
         id="Link-VerticalLayout"

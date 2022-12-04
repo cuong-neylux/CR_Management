@@ -172,8 +172,7 @@
                             "sap.ui.generic.app": {
                                 "title": "References"
                             }
-                        }
-                        ,
+                        },
                         "ReplaceFacet|CR_HeaderSet|op_section_message_history": {
                             "type": "XML",
                             "className": "sap.ui.core.mvc.View",

@@ -47,7 +47,8 @@
                 <Property Name="CurrentNote" Type="Edm.String"/>
                 <NavigationProperty Name="CR_Task" Relationship="NYX.BS_IN_CR_GP01_V01_SRV.CRHeader_Tasks" FromRole="FromRole_CRHeader_Tasks" ToRole="ToRole_CRHeader_Tasks"/>
                 <NavigationProperty Name="CR_Comment" Relationship="NYX.BS_IN_CR_GP01_V01_SRV.CRHeader_Comments" FromRole="FromRole_CRHeader_Comments" ToRole="ToRole_CRHeader_Comments"/>
-                <NavigationProperty Name="CR_Documents" Relationship="NYX.BS_IN_CR_GP01_V01_SRV.CR_Documents" FromRole="FromRole_CR_Documents" ToRole="ToRole_CR_Documents"/>
+                <NavigationProperty Name="CR_Links" Relationship="NYX.BS_IN_CR_GP01_V01_SRV.CR_Links" FromRole="FromRole_CR_Links" ToRole="ToRole_CR_Links"/>
+                <NavigationProperty Name="CR_DocumentSet" Relationship="NYX.BS_IN_CR_GP01_V01_SRV.CR_Document" FromRole="FromRole_CR_Document" ToRole="ToRole_CR_Document"/>
             </EntityType>
             <EntityType Name="Comment" sap:content-version="1">
                 <Key>
@@ -128,8 +129,8 @@
                     <PropertyRef Name="CrNum"/>
                     <PropertyRef Name="TaskNum"/>
                 </Key>
-                <Property Name="CreateTimestamp" Type="Edm.DateTime" Nullable="false" Precision="0" sap:label="Zeitstempel"/>
                 <Property Name="CreatorFullname" Type="Edm.String" Nullable="false" MaxLength="64"/>
+                <Property Name="CreateTimestamp" Type="Edm.DateTime" Nullable="false" Precision="0" sap:label="Zeitstempel"/>
                 <Property Name="TaskStatus" Type="Edm.String" MaxLength="64"/>
                 <Property Name="Creator" Type="Edm.String" Nullable="false" MaxLength="8" sap:label="Personalnr"/>
                 <Property Name="StatusColor" Type="Edm.Byte" sap:label="int"/>
@@ -145,6 +146,54 @@
                 <Property Name="TeamName" Type="Edm.String" Nullable="false" MaxLength="64"/>
                 <Property Name="Description" Type="Edm.String" Nullable="false" MaxLength="255" sap:label="Text"/>
             </EntityType>
+            <EntityType Name="Link" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="CrNum"/>
+                    <PropertyRef Name="LinkId"/>
+                </Key>
+                <Property Name="CrNum" Type="Edm.String" Nullable="false" MaxLength="12"/>
+                <Property Name="LinkId" Type="Edm.String" Nullable="false" MaxLength="7"/>
+                <Property Name="Text" Type="Edm.String" Nullable="false" MaxLength="255" sap:label="Text"/>
+                <Property Name="Url" Type="Edm.String" Nullable="false" MaxLength="255" sap:label="Text"/>
+                <Property Name="Creator" Type="Edm.String" Nullable="false" MaxLength="8" sap:label="Personalnr"/>
+                <Property Name="CreatorFullname" Type="Edm.String" Nullable="false" MaxLength="64"/>
+                <Property Name="CreateTimestamp" Type="Edm.DateTime" Nullable="false" Precision="0" sap:label="Zeitstempel"/>
+            </EntityType>
+            <EntityType Name="Calendar" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Pernr"/>
+                </Key>
+                <Property Name="Pernr" Type="Edm.String" Nullable="false" MaxLength="8" sap:label="Personalnr"/>
+                <Property Name="PictureUrl" Type="Edm.String" MaxLength="255" sap:label="Text"/>
+                <Property Name="Fullname" Type="Edm.String" MaxLength="64"/>
+                <NavigationProperty Name="Calendar_AppointmentSet" Relationship="NYX.BS_IN_CR_GP01_V01_SRV.Calendar_Appointment" FromRole="FromRole_Calendar_Appointment" ToRole="ToRole_Calendar_Appointment"/>
+            </EntityType>
+            <EntityType Name="Appointment" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Pernr"/>
+                    <PropertyRef Name="AppointmentId"/>
+                </Key>
+                <Property Name="Pernr" Type="Edm.String" Nullable="false" MaxLength="8" sap:label="Personalnr"/>
+                <Property Name="AppointmentId" Type="Edm.String" Nullable="false" MaxLength="7"/>
+                <Property Name="StartTimestamp" Type="Edm.DateTime" Precision="0" sap:label="Zeitstempel"/>
+                <Property Name="EndTimestamp" Type="Edm.DateTime" Precision="0" sap:label="Zeitstempel"/>
+                <Property Name="Title" Type="Edm.String" MaxLength="64"/>
+                <Property Name="Info" Type="Edm.String" MaxLength="255" sap:label="Text"/>
+                <Property Name="AppointmentColor" Type="Edm.String" MaxLength="64"/>
+                <Property Name="AppointmentIcon" Type="Edm.String" MaxLength="64"/>
+            </EntityType>
+            <Association Name="Calendar_Appointment" sap:content-version="1">
+                <End Type="NYX.BS_IN_CR_GP01_V01_SRV.Calendar" Multiplicity="1" Role="FromRole_Calendar_Appointment"/>
+                <End Type="NYX.BS_IN_CR_GP01_V01_SRV.Appointment" Multiplicity="*" Role="ToRole_Calendar_Appointment"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_Calendar_Appointment">
+                        <PropertyRef Name="Pernr"/>
+                    </Principal>
+                    <Dependent Role="ToRole_Calendar_Appointment">
+                        <PropertyRef Name="Pernr"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
             <Association Name="CRHeader_Tasks" sap:content-version="1">
                 <End Type="NYX.BS_IN_CR_GP01_V01_SRV.CR_Header" Multiplicity="1" Role="FromRole_CRHeader_Tasks"/>
                 <End Type="NYX.BS_IN_CR_GP01_V01_SRV.Task" Multiplicity="*" Role="ToRole_CRHeader_Tasks"/>
@@ -157,9 +206,21 @@
                     </Dependent>
                 </ReferentialConstraint>
             </Association>
-            <Association Name="CR_Documents" sap:content-version="1">
-                <End Type="NYX.BS_IN_CR_GP01_V01_SRV.CR_Header" Multiplicity="1" Role="FromRole_CR_Documents"/>
-                <End Type="NYX.BS_IN_CR_GP01_V01_SRV.Document" Multiplicity="*" Role="ToRole_CR_Documents"/>
+            <Association Name="CR_Links" sap:content-version="1">
+                <End Type="NYX.BS_IN_CR_GP01_V01_SRV.CR_Header" Multiplicity="1" Role="FromRole_CR_Links"/>
+                <End Type="NYX.BS_IN_CR_GP01_V01_SRV.Link" Multiplicity="*" Role="ToRole_CR_Links"/>
+            </Association>
+            <Association Name="CR_Document" sap:content-version="1">
+                <End Type="NYX.BS_IN_CR_GP01_V01_SRV.CR_Header" Multiplicity="1" Role="FromRole_CR_Document"/>
+                <End Type="NYX.BS_IN_CR_GP01_V01_SRV.Document" Multiplicity="*" Role="ToRole_CR_Document"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_CR_Document">
+                        <PropertyRef Name="CrNum"/>
+                    </Principal>
+                    <Dependent Role="ToRole_CR_Document">
+                        <PropertyRef Name="CrNum"/>
+                    </Dependent>
+                </ReferentialConstraint>
             </Association>
             <Association Name="CRHeader_Comments" sap:content-version="1">
                 <End Type="NYX.BS_IN_CR_GP01_V01_SRV.CR_Header" Multiplicity="1" Role="FromRole_CRHeader_Comments"/>
@@ -184,6 +245,9 @@
                 <EntitySet Name="CustomerSet" EntityType="NYX.BS_IN_CR_GP01_V01_SRV.Customer" sap:content-version="1"/>
                 <EntitySet Name="TaskSet" EntityType="NYX.BS_IN_CR_GP01_V01_SRV.Task" sap:content-version="1"/>
                 <EntitySet Name="TeamSet" EntityType="NYX.BS_IN_CR_GP01_V01_SRV.Team" sap:content-version="1"/>
+                <EntitySet Name="LinkSet" EntityType="NYX.BS_IN_CR_GP01_V01_SRV.Link" sap:content-version="1"/>
+                <EntitySet Name="CalendarSet" EntityType="NYX.BS_IN_CR_GP01_V01_SRV.Calendar" sap:content-version="1"/>
+                <EntitySet Name="AppointmentSet" EntityType="NYX.BS_IN_CR_GP01_V01_SRV.Appointment" sap:content-version="1"/>
                 <AssociationSet Name="CRHeader_Comments" Association="NYX.BS_IN_CR_GP01_V01_SRV.CRHeader_Comments" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
                     <End EntitySet="CR_HeaderSet" Role="FromRole_CRHeader_Comments"/>
                     <End EntitySet="CommentSet" Role="ToRole_CRHeader_Comments"/>
@@ -192,9 +256,17 @@
                     <End EntitySet="CR_HeaderSet" Role="FromRole_CRHeader_Tasks"/>
                     <End EntitySet="TaskSet" Role="ToRole_CRHeader_Tasks"/>
                 </AssociationSet>
-                <AssociationSet Name="CR_Documents" Association="NYX.BS_IN_CR_GP01_V01_SRV.CR_Documents" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
-                    <End EntitySet="CR_HeaderSet" Role="FromRole_CR_Documents"/>
-                    <End EntitySet="DocumentSet" Role="ToRole_CR_Documents"/>
+                <AssociationSet Name="CR_Links" Association="NYX.BS_IN_CR_GP01_V01_SRV.CR_Links" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="CR_HeaderSet" Role="FromRole_CR_Links"/>
+                    <End EntitySet="LinkSet" Role="ToRole_CR_Links"/>
+                </AssociationSet>
+                <AssociationSet Name="CR_DocumentSet" Association="NYX.BS_IN_CR_GP01_V01_SRV.CR_Document" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="CR_HeaderSet" Role="FromRole_CR_Document"/>
+                    <End EntitySet="DocumentSet" Role="ToRole_CR_Document"/>
+                </AssociationSet>
+                <AssociationSet Name="Calendar_AppointmentSet" Association="NYX.BS_IN_CR_GP01_V01_SRV.Calendar_Appointment" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="CalendarSet" Role="FromRole_Calendar_Appointment"/>
+                    <End EntitySet="AppointmentSet" Role="ToRole_Calendar_Appointment"/>
                 </AssociationSet>
             </EntityContainer>
             <Annotations Target="NYX.BS_IN_CR_GP01_V01_SRV.Document" xmlns="http://docs.oasis-open.org/odata/ns/edm">
