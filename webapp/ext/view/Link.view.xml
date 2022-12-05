@@ -1,15 +1,15 @@
 <mvc:View controllerName="NYX.bsincrv01.ext.controller.Link" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:smartField="sap.ui.comp.smartfield" >
-    <Table id="idProductsTable" inset="false" items="{
+    <Table id="idProductsTable" mode="SingleSelectLeft" inset="false" items="{
 			path: 'CR_Links'
 		}">
         <columns>
             <Column id="Linktable-Column1" demandPopin="true" width="10%">
                 <Text id="LinkTable-Text1" text="Creator" />
             </Column>
-            <Column id="Linktable-Column2" demandPopin="true" width="50%">
+            <Column id="Linktable-Column2" demandPopin="true" width="80%">
                 <Text id="LinkTable-Text2" text="Link" />
             </Column>
-			            <Column id="Linktable-Column3" demandPopin="true" width="7%">
+			            <Column id="Linktable-Column3" demandPopin="true" width="10%">
                 <Text id="LinkTable-Text3" text="Create Time" />
             </Column>
         </columns>
