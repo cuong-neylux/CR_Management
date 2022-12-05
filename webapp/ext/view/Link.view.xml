@@ -1,28 +1,28 @@
-<mvc:View
-	controllerName="NYX.bsincrv01.ext.controller.Link"
-	xmlns:l="sap.ui.layout"
-	xmlns:mvc="sap.ui.core.mvc"
-	xmlns="sap.m">
-				<Toolbar id="Link-Toolbar">
-				<ToolbarSpacer id="Link-ToolbarSpacer" width="96%"/>
-				<Button id="Link-Button" text="Add Link" press="onPress" type="Emphasized"/>
-			</Toolbar>
-	<l:VerticalLayout
-        id="Link-VerticalLayout"
-		class="sapUiContentPadding"
-		width="100%">
-		
-		<l:content>
-			<Link id="Link1"
-				text="Open message box"
-				press="handleLinkPress" />
-			<Link id="Link2"
-				text="Disabled link"
-				enabled="false" />
-			<Link id="Link3"
-				text="Open SAP Homepage"
-				target="_blank"
-				href="http://www.sap.com" />
-		</l:content>
-	</l:VerticalLayout>
+<mvc:View controllerName="NYX.bsincrv01.ext.controller.Link" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:smartField="sap.ui.comp.smartfield" >
+    <Table id="idProductsTable" inset="false" items="{
+			path: 'CR_Links'
+		}">
+        <columns>
+            <Column id="Linktable-Column1" demandPopin="true" width="10%">
+                <Text id="LinkTable-Text1" text="Creator" />
+            </Column>
+            <Column id="Linktable-Column2" demandPopin="true" width="50%">
+                <Text id="LinkTable-Text2" text="Link" />
+            </Column>
+			            <Column id="Linktable-Column3" demandPopin="true" width="7%">
+                <Text id="LinkTable-Text3" text="Time" />
+            </Column>
+        </columns>
+        <ColumnListItem id="LinkTable-ColumnsListItem">
+            <Text id="LinkTable-creator" text="{CreatorFullname}" />
+            <Link id="LinkTable-Link" target="_blank" text="{Text}" subtle="true" href="{Url}" />
+            <Text id="LinkTable-time" text="{
+				path: 'CreateTimestamp',
+				type: 'sap.ui.model.type.DateTime',
+				formatOptions: {
+					style: 'short'
+					}
+			}" />
+        </ColumnListItem>
+    </Table>
 </mvc:View>

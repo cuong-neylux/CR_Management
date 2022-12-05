@@ -7,8 +7,11 @@ sap.ui.define([
         return {
             onInit: function (Controller, UploadSetItem) {
                 var oPromise;
+                
+                
                 // Attach a handler to the PageDataLoaded event. This event is fired each time the object page is navigated to or the object to be displayed is changed Note.
                 this.extensionAPI.attachPageDataLoaded(function (oEvent) {
+                    debugger;
                     console.log("OP: Page Loaded!");
                     var crObject = oEvent.context.sPath;
                     //Store current CrNum in model
@@ -18,13 +21,13 @@ sap.ui.define([
                 }.bind(this));
             },
             onBeforeRendering: function (oEvent) {
-                console.log("OP: onBeforeRendering!");
-            },
-            onAfterRendering: function (oEvent) {
                 console.log("OP: onAfterRendering!");
                 this.extensionAPI.getTransactionController().attachAfterSave(async function (oEvent) {
                     sap.ui.controller("NYX.bsincrv01.ext.controller.TaskTable").test();
                 });
+            },
+            onAfterRendering: function (oEvent) {
+
             },
             onSubmitClick: function (oEvent) {
                 alert('onSubmitClick');
