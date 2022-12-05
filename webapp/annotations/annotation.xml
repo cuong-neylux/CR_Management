@@ -224,6 +224,14 @@
                         </Record>
 
                         <!-- Section 3 -->
+                        <!-- Todo List from task entitySet -->
+                        <Record Type="UI.ReferenceFacet">
+                            <PropertyValue Property="Target" AnnotationPath="CR_Links/@UI.LineItem#op_link" />
+                            <PropertyValue Property="Label" String="{@i18n>op_linkList}" />
+                            <PropertyValue Property="ID" String="op_section_linkList" />
+                        </Record>
+
+                        <!-- Section 4 -->
                         <Record Type="UI.ReferenceFacet">
                             <!-- Document list from document entitySet -->
                             <PropertyValue Property="Target" AnnotationPath="CR_DocumentSet/@UI.LineItem#op_documentList" />
@@ -231,7 +239,7 @@
                             <PropertyValue Property="ID" String="op_section_docList" />
                         </Record>
 
-                        <!-- Section 4 -->
+                        <!-- Section 5 -->
                         <!-- Message History -->
                         <Record Type="UI.ReferenceFacet">
                             <!-- Document list from document entitySet -->
@@ -240,7 +248,7 @@
                             <PropertyValue Property="ID" String="op_section_message_history" />
                         </Record>
 
-                        <!-- Section 5 -->
+                        <!-- Section 6 -->
                         <!-- Information for sending to the next processor -->
                         <Record Type="UI.ReferenceFacet">
                             <PropertyValue Property="Label" String="{@i18n>op_nextStep}" />
@@ -248,7 +256,7 @@
                             <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#op_sendToNextProcessor" />
                         </Record>
 
-                        <!-- Section 6 -->
+                        <!-- Section 7 -->
                         <!-- Personal Planning Calendar -->
                         <Record Type="UI.ReferenceFacet">
                             <PropertyValue Property="Label" String="{@i18n>op_calendar}" />
@@ -567,24 +575,38 @@
                             <PropertyValue Property="Label" String="{@i18n>op_calendar_url}" />
                         </Record>
                         <Record Type="UI.DataField">
-                            <PropertyValue Property="Value" Path="Calendar_AppointmentSet/Title"/>
-                            <PropertyValue Property="Label" String="{@i18n>op_calendar_title}"/>
+                            <PropertyValue Property="Value" Path="Calendar_AppointmentSet/Title" />
+                            <PropertyValue Property="Label" String="{@i18n>op_calendar_title}" />
                         </Record>
                         <Record Type="UI.DataField">
-                            <PropertyValue Property="Value" Path="Calendar_AppointmentSet/Info"/>
-                            <PropertyValue Property="Label" String="{@i18n>op_calendar_info}"/>
+                            <PropertyValue Property="Value" Path="Calendar_AppointmentSet/Info" />
+                            <PropertyValue Property="Label" String="{@i18n>op_calendar_info}" />
                         </Record>
                     </Collection>
                 </Annotation>
                 <Annotation Term="UI.LineItem">
                     <Collection>
                         <Record Type="UI.DataField">
-                            <PropertyValue Property="Value" Path="Calendar_AppointmentSet/Title"/>
-                            <PropertyValue Property="Label" String="{@i18n>op_calendar_title}"/>
+                            <PropertyValue Property="Value" Path="Calendar_AppointmentSet/Title" />
+                            <PropertyValue Property="Label" String="{@i18n>op_calendar_title}" />
                         </Record>
                         <Record Type="UI.DataField">
-                            <PropertyValue Property="Value" Path="Calendar_AppointmentSet/Info"/>
-                            <PropertyValue Property="Label" String="{@i18n>op_calendar_info}"/>
+                            <PropertyValue Property="Value" Path="Calendar_AppointmentSet/Info" />
+                            <PropertyValue Property="Label" String="{@i18n>op_calendar_info}" />
+                        </Record>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="NYX.BS_IN_CR_GP01_V01_SRV.Link">
+                <Annotation Term="UI.LineItem" Qualifier="op_link">
+                    <Collection>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="Text" />
+                            <PropertyValue Property="Label" String="{@i18n>op_link_text}" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="Url" />
+                            <PropertyValue Property="Label" String="{@i18n>op_link_url}" />
                         </Record>
                     </Collection>
                 </Annotation>

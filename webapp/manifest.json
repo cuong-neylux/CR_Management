@@ -165,7 +165,7 @@
                                 "title": "Document Upload"
                             }
                         },
-                        "BeforeFacet|CR_HeaderSet|op_section_docList": {
+                        "ReplaceFacet|CR_HeaderSet|op_section_linkList": {
                             "type": "XML",
                             "className": "sap.ui.core.mvc.View",
                             "viewName": "NYX.bsincrv01.ext.view.Link",
