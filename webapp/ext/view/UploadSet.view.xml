@@ -9,10 +9,7 @@
         maxFileNameLength="64"
         maxFileSize="20"
         uploadUrl="/sap/opu/odata/nyx/BS_IN_CR_GP01_V01_SRV/DocumentSet"
-        items="{path: '/items',
-				parameters: {
-				    $orderby: 'createdAt desc'
-				    },
+        items="{path: '/uploadItems',
 				templateShareable: false}"
     >
         <upload:toolbar>
@@ -24,7 +21,22 @@
 
         <upload:items>
             <upload:UploadSetItem id="UploadSet-UploadSetItem" fileName="{FileName}" mediaType="{MimeType}" url="{Url}">
+                <upload:attributes>
+					<ObjectAttribute
+                        id="UploadSetItem-Attribute1"
+								title="Uploaded By"
+								text="{UploadUserFullname}"/>
+                    <ObjectAttribute
+                        id="UploadSetItem-Attribute2"
+								title="Uploaded On"
+								text="{ path: 'UploadTimestamp',
+				                        type: 'sap.ui.model.type.DateTime',
+				                        formatOptions: {
+					                    style: 'short'}}"/>
+				</upload:attributes>
             </upload:UploadSetItem>
+
         </upload:items>
+
     </upload:UploadSet>
 </mvc:View>

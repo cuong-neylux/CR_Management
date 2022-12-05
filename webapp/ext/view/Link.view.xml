@@ -10,7 +10,7 @@
                 <Text id="LinkTable-Text2" text="Link" />
             </Column>
 			            <Column id="Linktable-Column3" demandPopin="true" width="7%">
-                <Text id="LinkTable-Text3" text="Time" />
+                <Text id="LinkTable-Text3" text="Create Time" />
             </Column>
         </columns>
         <ColumnListItem id="LinkTable-ColumnsListItem">

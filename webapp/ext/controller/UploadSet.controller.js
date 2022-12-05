@@ -9,11 +9,11 @@ sap.ui.define([
 
 	return Controller.extend("NYX.bsincrv01.ext.controller.UploadSet", {
 		onInit: function () {
+			debugger;
 			// Mock data, two files should be shown in the list
 			var sPath = "../mockdata" + "/items.json";
 			this.getView().setModel(new JSONModel(sPath));
 
-			var oModel = new sap.ui.model.odata.v2.ODataModel("/sap/opu/odata/nyx/BS_IN_CR_GP01_V01_SRV/", true);
 			var oUploadSet = this.byId("UploadSet");
 			oUploadSet.getList().setMode(MobileLibrary.ListMode.MultiSelect);
 
@@ -21,27 +21,18 @@ sap.ui.define([
 			oUploadSet.getDefaultFileUploader().setButtonOnly(false);
 			oUploadSet.getDefaultFileUploader().setIcon("sap-icon://attachment");
 
-/* 			var oModel = new sap.ui.model.odata.v2.ODataModel("/sap/opu/odata/nyx/BS_IN_CR_GP01_V01_SRV/", true);
-			var oUploadSet = this.byId("UploadSet");
-			var oUploadItem = this.byId("UploadSet-UploadSetItem");
-			oModel.read("/DocumentSet",
-				{
-					success: function (oData) {
-						debugger;
-						var documents = oData.results;
-						documents.forEach(element => {
-							oUploadItem.setFileName(element.FileName);
-							oUploadItem.setMediaType(element.MimeType);
-							oUploadItem.setUrl(element.Url);
-							oUploadSet.addItem(oUploadItem);
-						});
-						
-					},
-					error: function (error) {
+			var oModel = new sap.ui.model.odata.v2.ODataModel("/sap/opu/odata/nyx/BS_IN_CR_GP01_V01_SRV/", true);
+			var that = this;
+			oModel.read("/DocumentSet", {
+				success: function(oData){
+					debugger;
+					var newModel = new JSONModel({"uploadItems" : oData.results});
+					that.getView().setModel(newModel);
+				},
+				error: function(error){
 
-					}
-				});
-			oModel.refresh; */
+				}
+			});
 		},
 		onAfterRendering: function () {
 			console.log("UploadSet: onAfterRendering!");
@@ -54,6 +45,7 @@ sap.ui.define([
 
 		},
 		onUploadSelectedButton: function () {
+			debugger;
 			var oModel = new sap.ui.model.odata.v2.ODataModel("/sap/opu/odata/nyx/BS_IN_CR_GP01_V01_SRV/", true);
 			var crNum = this.getView().getModel("crNum").getData();
 			var oUploadSet = this.byId("UploadSet");
@@ -90,6 +82,17 @@ sap.ui.define([
 			oUploadSet.getItems().forEach(function (oItem) {
 				if (oItem.getListItem().getSelected()) {
 					oItem.download(true);
+				}
+			});
+		},
+		loadDocumentSet(crNum){
+			var oModel = new sap.ui.model.odata.v2.ODataModel("/sap/opu/odata/nyx/BS_IN_CR_GP01_V01_SRV/", true);
+			var that = this;
+			oModel.read("/CR_HeaderSet('" + crNum +"')/CR_DocumentSet", {
+				success: function(oData){
+				},
+				error: function(error){
+
 				}
 			});
 		}
