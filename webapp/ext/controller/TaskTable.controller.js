@@ -4,8 +4,8 @@ sap.ui.define([
 	"sap/m/MessageToast",
 	"sap/m/ToolbarSpacer",
 	"sap/ui/table/Row",
-	"jquery.sap.sjax"
-], function (Controller, JSONModel, MessageToast, ToolbarSpacer, TableRow, jQuery) {
+    "sap/ui/core/Fragment"
+], function (Controller, JSONModel, MessageToast, ToolbarSpacer, TableRow, Fragment) {
 	"use strict";
 	return Controller.extend("NYX.bsincrv01.ext.controller.TaskTable", {
 		getSelectedRowContext: function (sTableId, fnCallback) {
@@ -115,6 +115,25 @@ sap.ui.define([
 				var oTable1 = this.byId("table1");
 				oTable1.setSelectedIndex( -1 );
 			});
+		},
+		onAddTaskClick: function(){
+			Fragment.load({
+				name: 'NYX.bsincrv01.ext.fragment.CreateTaskDialog',
+				controller: this,
+			}).then(function (oDialog) {
+				this._oDialogAddTransit = oDialog;
+				this.getView().addDependent(this._oDialogCreateTask);
+				this._oDialogCreateTask.open()
+			}.bind(this));
+		},
+		onDeleteTaskClick: function(){
+
+		},
+		onOKClick: function(){
+
+		},
+		onCancelClick: function(){
+
 		}
 	});
 
