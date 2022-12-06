@@ -9,11 +9,6 @@ sap.ui.define([
 
 	return Controller.extend("NYX.bsincrv01.ext.controller.UploadSet", {
 		onInit: function () {
-			debugger;
-			// Mock data, two files should be shown in the list
-			var sPath = "../mockdata" + "/items.json";
-			this.getView().setModel(new JSONModel(sPath));
-
 			var oUploadSet = this.byId("UploadSet");
 			oUploadSet.getList().setMode(MobileLibrary.ListMode.MultiSelect);
 
@@ -21,18 +16,6 @@ sap.ui.define([
 			oUploadSet.getDefaultFileUploader().setButtonOnly(false);
 			oUploadSet.getDefaultFileUploader().setIcon("sap-icon://attachment");
 
-			var oModel = new sap.ui.model.odata.v2.ODataModel("/sap/opu/odata/nyx/BS_IN_CR_GP01_V01_SRV/", true);
-			var that = this;
-			oModel.read("/DocumentSet", {
-				success: function(oData){
-					debugger;
-					var newModel = new JSONModel({"uploadItems" : oData.results});
-					that.getView().setModel(newModel);
-				},
-				error: function(error){
-
-				}
-			});
 		},
 		onAfterRendering: function () {
 			console.log("UploadSet: onAfterRendering!");
