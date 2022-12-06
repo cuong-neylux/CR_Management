@@ -121,7 +121,7 @@ sap.ui.define([
 				name: 'NYX.bsincrv01.ext.fragment.CreateTaskDialog',
 				controller: this,
 			}).then(function (oDialog) {
-				this._oDialogAddTransit = oDialog;
+				this._oDialogCreateTask = oDialog;
 				this.getView().addDependent(this._oDialogCreateTask);
 				this._oDialogCreateTask.open()
 			}.bind(this));
