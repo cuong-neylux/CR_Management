@@ -6,9 +6,6 @@ sap.ui.define([
 
         return {
             onInit: function (Controller, UploadSetItem) {
-                var oPromise;
-                
-                
                 // Attach a handler to the PageDataLoaded event. This event is fired each time the object page is navigated to or the object to be displayed is changed Note.
                 this.extensionAPI.attachPageDataLoaded(function (oEvent) {
                     debugger;
