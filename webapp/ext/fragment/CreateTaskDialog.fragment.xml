@@ -1,14 +1,15 @@
 <core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:l="sap.ui.layout">
-    <Dialog title="{@i18n>tasktable_dialog}" id="createTaskDialog" beginButton="OK" endButton="Cancel">
+    <Dialog title="{@i18n>tasktable_dialog}" id="createTaskDialog">
         <l:VerticalLayout id="_IDGenVerticalLayout1" class="sapUiSmallMarginBeginEnd" width="550px">
             <l:content>
-                <Label id="createTaskDialog-Text" text="Text" labelFor="taskTextInput" />
+                <Label id="createTaskDialog-Text" design="Bold" text="Text" labelFor="taskTextInput" />
                 <Input id="taskTextInput" placeholder="Enter Task" />
 
-                <Label id="createTaskDialog-AssignedTeam" text="Assign To" labelFor="taskAssignedTeam" />
+                <Label id="createTaskDialog-AssignedTeam" design="Bold" text="Assign To" labelFor="taskAssignedTeam" />
                 <ComboBox
                 id="taskAssignedTeam"
-				items="{path: 'TeamSet'}">
+				items="{path: 'CR_TeamSet'}"
+                placeholder="Assigned Team">
                 <core:Item id="createTaskDialog-Item" key="{TeamName}" text="{TeamName}" />
 			</ComboBox>
             </l:content>

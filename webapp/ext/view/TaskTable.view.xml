@@ -41,7 +41,6 @@
                     <m:Title id="title2" text="DONE" textAlign="Center" titleStyle="H5" width="85%" />
                     <m:Button id="addTask" text="Add" press="onAddTaskClick" />
                     <m:Button id="deleteTask" text="Delete" press="onDeleteTaskClick"/>
-                    <m:ToolbarSpacer id="taskViewToolbarSpacer" />
                 </m:OverflowToolbar>
             </extension>
             <columns>

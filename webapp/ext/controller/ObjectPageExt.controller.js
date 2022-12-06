@@ -8,7 +8,6 @@ sap.ui.define([
             onInit: function (Controller, UploadSetItem) {
                 // Attach a handler to the PageDataLoaded event. This event is fired each time the object page is navigated to or the object to be displayed is changed Note.
                 this.extensionAPI.attachPageDataLoaded(function (oEvent) {
-                    debugger;
                     console.log("OP: Page Loaded!");
                     var crObject = oEvent.context.sPath;
                     //Store current CrNum in model

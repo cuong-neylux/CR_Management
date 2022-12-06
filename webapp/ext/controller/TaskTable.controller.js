@@ -8,6 +8,15 @@ sap.ui.define([
 ], function (Controller, JSONModel, MessageToast, ToolbarSpacer, TableRow, Fragment) {
 	"use strict";
 	return Controller.extend("NYX.bsincrv01.ext.controller.TaskTable", {
+		onInit: function(){
+			Fragment.load({
+				name: 'NYX.bsincrv01.ext.fragment.CreateTaskDialog',
+				controller: this,
+			}).then(function (oDialog) {
+				this._oDialogCreateTask = oDialog;
+				this.getView().addDependent(this._oDialogCreateTask);
+			}.bind(this));
+		},
 		getSelectedRowContext: function (sTableId, fnCallback) {
 			var oTable = this.byId(sTableId);
 			var iSelectedIndex = oTable.getSelectedIndex();
@@ -117,23 +126,16 @@ sap.ui.define([
 			});
 		},
 		onAddTaskClick: function(){
-			Fragment.load({
-				name: 'NYX.bsincrv01.ext.fragment.CreateTaskDialog',
-				controller: this,
-			}).then(function (oDialog) {
-				this._oDialogCreateTask = oDialog;
-				this.getView().addDependent(this._oDialogCreateTask);
-				this._oDialogCreateTask.open()
-			}.bind(this));
+			this._oDialogCreateTask.open()
 		},
 		onDeleteTaskClick: function(){
 
 		},
 		onOKClick: function(){
-
+			debugger;
 		},
 		onCancelClick: function(){
-
+			this._oDialogCreateTask.close();
 		}
 	});
 
