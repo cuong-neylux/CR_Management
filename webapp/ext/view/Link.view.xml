@@ -1,5 +1,5 @@
 <mvc:View controllerName="NYX.bsincrv01.ext.controller.Link" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:smartField="sap.ui.comp.smartfield">
-    <Table id="idProductsTable" mode="SingleSelectLeft" inset="false" items="{
+    <Table id="linkTable" mode="SingleSelectLeft" inset="false" items="{
 			path: 'CR_Links'
 		}">
         <headerToolbar>
