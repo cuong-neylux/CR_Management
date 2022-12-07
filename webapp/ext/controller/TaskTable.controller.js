@@ -9,6 +9,8 @@ sap.ui.define([
 	"use strict";
 	return Controller.extend("NYX.bsincrv01.ext.controller.TaskTable", {
 		onInit: function(){
+			this._otable1 = this.byId("table1");
+			this._otable2 = this.byId("table2");
 			// Initiate the Dialog
 			Fragment.load({
 				name: 'NYX.bsincrv01.ext.fragment.CreateTask_Dialog',
@@ -130,13 +132,64 @@ sap.ui.define([
 			this._oDialogCreateTask.open();
 		},
 		onDeleteTaskClick: function(){
+			// Delete selected element in the left table
+			this.getSelectedRowContext("table1", function (oSelectedRowContext) {
+				var oModel = this.getOwnerComponent().getModel();
+				var sPath = oSelectedRowContext.sPath;
+				oModel.remove(sPath, {
+					success: function () {
+						oModel.refresh();
+						MessageToast.show("Deleted the task!")
+					},
+					error: function () {
+						MessageToast.show("Could not delete the task!")
+					}
+				});
+				var oTable1 = this.byId("table1");
+				oTable1.setSelectedIndex( -1 );
+			});
 
+			// Delete selected task in the right table
+			this.getSelectedRowContext("table2", function (oSelectedRowContext) {
+				var oModel = this.getOwnerComponent().getModel();
+				var sPath = oSelectedRowContext.sPath;
+				oModel.remove(sPath, {
+					success: function () {
+						oModel.refresh();
+						MessageToast.show("Deleted the task!")
+					},
+					error: function () {
+						MessageToast.show("Could not delete the task!")
+					}
+				});
+				var oTable2 = this.byId("table2");
+				oTable2.setSelectedIndex( -1 );
+			});
 		},
 		onOKClick: function(){
+			this._oDialogCreateTask.close();
+			var oModel = this.getOwnerComponent().getModel();
+			var crNum = this.getView().getModel("crNum").getData();
 			var taskText = this._oDialogCreateTask.getContent()[0].getContent()[1]._lastValue;
 			var assignedTeam = this._oDialogCreateTask.getContent()[0].getContent()[3].getSelectedKey();
+			var oEntry = {
+				CrNum: crNum,
+				Description: taskText,
+				AssignedTeam: assignedTeam
+			}
 			
 			// Create a new Task
+			oModel.create("/TaskSet", oEntry, {
+				method: "POST",
+				success: function(oData){
+					oModel.refresh(true);
+					MessageToast.show("Created task successfully!");
+				},
+				error: function(){
+					MessageToast.show("Could not create task!");
+				}
+			});
+			
 		},
 		onCancelClick: function(){
 			this._oDialogCreateTask.close();

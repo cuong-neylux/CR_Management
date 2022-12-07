@@ -18,39 +18,39 @@
                 <Key>
                     <PropertyRef Name="CrNum"/>
                 </Key>
-                <Property Name="CreateTimestamp" Type="Edm.DateTime" Nullable="false" Precision="0" sap:label="Zeitstempel"/>
-                <Property Name="RequesterFullname" Type="Edm.String" Nullable="false" MaxLength="64"/>
-                <Property Name="LastProcessorFullname" Type="Edm.String" Nullable="false" MaxLength="64"/>
-                <Property Name="CurrentProcessorFullname" Type="Edm.String" Nullable="false" MaxLength="64"/>
-                <Property Name="Progress" Type="Edm.Decimal" Nullable="false" Precision="5" Scale="2"/>
-                <Property Name="NextProcessorFullname" Type="Edm.String" Nullable="false" MaxLength="64"/>
-                <Property Name="ProgressColor" Type="Edm.Int32" Nullable="false" sap:label="Zahl"/>
-                <Property Name="TaskDone" Type="Edm.Byte" Nullable="false"/>
+                <Property Name="CreateTimestamp" Type="Edm.DateTime" Precision="0" sap:label="Zeitstempel"/>
+                <Property Name="RequesterFullname" Type="Edm.String" MaxLength="64"/>
+                <Property Name="LastProcessorFullname" Type="Edm.String" MaxLength="64"/>
+                <Property Name="CurrentProcessorFullname" Type="Edm.String" MaxLength="64"/>
+                <Property Name="Progress" Type="Edm.Decimal" Precision="5" Scale="2"/>
+                <Property Name="NextProcessorFullname" Type="Edm.String" MaxLength="64"/>
+                <Property Name="ProgressColor" Type="Edm.Int32" sap:label="Zahl"/>
+                <Property Name="TaskDone" Type="Edm.Byte"/>
                 <Property Name="CrNum" Type="Edm.String" Nullable="false" MaxLength="12"/>
-                <Property Name="LastProcessedTimestamp" Type="Edm.DateTime" Nullable="false" Precision="0" sap:label="Zeitstempel"/>
-                <Property Name="TaskTotal" Type="Edm.Byte" Nullable="false"/>
+                <Property Name="LastProcessedTimestamp" Type="Edm.DateTime" Precision="0" sap:label="Zeitstempel"/>
+                <Property Name="TaskTotal" Type="Edm.Byte"/>
                 <Property Name="CloseTimestamp" Type="Edm.DateTime" Precision="0" sap:label="Zeitstempel"/>
                 <Property Name="Requester" Type="Edm.String" Nullable="false" MaxLength="8" sap:label="Personalnr"/>
-                <Property Name="StatusColor" Type="Edm.Int32" Nullable="false" sap:label="Zahl"/>
-                <Property Name="Status" Type="Edm.String" Nullable="false" MaxLength="64"/>
-                <Property Name="CustomerName" Type="Edm.String" Nullable="false" MaxLength="64"/>
-                <Property Name="ProjectName" Type="Edm.String" Nullable="false" MaxLength="64"/>
+                <Property Name="StatusColor" Type="Edm.Int32" sap:label="Zahl"/>
+                <Property Name="Status" Type="Edm.String" MaxLength="64"/>
+                <Property Name="CustomerName" Type="Edm.String" MaxLength="64"/>
+                <Property Name="ProjectName" Type="Edm.String" MaxLength="64"/>
                 <Property Name="CrHeading" Type="Edm.String" Nullable="false" MaxLength="255" sap:label="Text"/>
-                <Property Name="CrClassification" Type="Edm.String" Nullable="false" MaxLength="64"/>
+                <Property Name="CrClassification" Type="Edm.String" MaxLength="64"/>
                 <Property Name="CrDetails" Type="Edm.String"/>
-                <Property Name="EffortEstimate" Type="Edm.Int16" Nullable="false" sap:label="Int2"/>
+                <Property Name="EffortEstimate" Type="Edm.Int16" sap:label="Int2"/>
                 <Property Name="Step" Type="Edm.String" MaxLength="64"/>
-                <Property Name="LastProcessor" Type="Edm.String" Nullable="false" MaxLength="8" sap:label="Personalnr"/>
-                <Property Name="CurrentProcessor" Type="Edm.String" Nullable="false" MaxLength="8" sap:label="Personalnr"/>
+                <Property Name="LastProcessor" Type="Edm.String" MaxLength="8" sap:label="Personalnr"/>
+                <Property Name="CurrentProcessor" Type="Edm.String" MaxLength="8" sap:label="Personalnr"/>
                 <Property Name="NextProcessor" Type="Edm.String" MaxLength="8" sap:label="Personalnr"/>
-                <Property Name="UserAction" Type="Edm.String" Nullable="false" MaxLength="64"/>
+                <Property Name="UserAction" Type="Edm.String" MaxLength="64"/>
                 <Property Name="CurrentNote" Type="Edm.String"/>
-                <NavigationProperty Name="CR_TeamSet" Relationship="NYX.BS_IN_CR_GP01_V01_SRV.CR_Team" FromRole="FromRole_CR_Team" ToRole="ToRole_CR_Team"/>
                 <NavigationProperty Name="CR_Task" Relationship="NYX.BS_IN_CR_GP01_V01_SRV.CRHeader_Tasks" FromRole="FromRole_CRHeader_Tasks" ToRole="ToRole_CRHeader_Tasks"/>
                 <NavigationProperty Name="CR_Comment" Relationship="NYX.BS_IN_CR_GP01_V01_SRV.CRHeader_Comments" FromRole="FromRole_CRHeader_Comments" ToRole="ToRole_CRHeader_Comments"/>
                 <NavigationProperty Name="CR_Links" Relationship="NYX.BS_IN_CR_GP01_V01_SRV.CR_Links" FromRole="FromRole_CR_Links" ToRole="ToRole_CR_Links"/>
                 <NavigationProperty Name="CR_DocumentSet" Relationship="NYX.BS_IN_CR_GP01_V01_SRV.CR_Document" FromRole="FromRole_CR_Document" ToRole="ToRole_CR_Document"/>
                 <NavigationProperty Name="CR_Calendar" Relationship="NYX.BS_IN_CR_GP01_V01_SRV.CR_Calendar" FromRole="FromRole_CR_Calendar" ToRole="ToRole_CR_Calendar"/>
+                <NavigationProperty Name="CR_TeamSet" Relationship="NYX.BS_IN_CR_GP01_V01_SRV.CR_Team" FromRole="FromRole_CR_Team" ToRole="ToRole_CR_Team"/>
             </EntityType>
             <EntityType Name="Comment" sap:content-version="1">
                 <Key>
@@ -131,10 +131,10 @@
                     <PropertyRef Name="CrNum"/>
                     <PropertyRef Name="TaskNum"/>
                 </Key>
-                <Property Name="CreatorFullname" Type="Edm.String" Nullable="false" MaxLength="64"/>
-                <Property Name="CreateTimestamp" Type="Edm.DateTime" Nullable="false" Precision="0" sap:label="Zeitstempel"/>
+                <Property Name="CreateTimestamp" Type="Edm.DateTime" Precision="0" sap:label="Zeitstempel"/>
+                <Property Name="CreatorFullname" Type="Edm.String" MaxLength="64"/>
                 <Property Name="TaskStatus" Type="Edm.String" MaxLength="64"/>
-                <Property Name="Creator" Type="Edm.String" Nullable="false" MaxLength="8" sap:label="Personalnr"/>
+                <Property Name="Creator" Type="Edm.String" MaxLength="8" sap:label="Personalnr"/>
                 <Property Name="StatusColor" Type="Edm.Byte" sap:label="int"/>
                 <Property Name="CrNum" Type="Edm.String" Nullable="false" MaxLength="12"/>
                 <Property Name="TaskNum" Type="Edm.String" Nullable="false" MaxLength="7"/>
