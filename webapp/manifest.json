@@ -83,6 +83,9 @@
             "crNum": {
                 "type": "sap.ui.model.json.JSONModel"
             },
+            "newTask": {
+                "type": "sap.ui.model.json.JSONModel"
+            },
             "": {
                 "dataSource": "mainService",
                 "preload": true,

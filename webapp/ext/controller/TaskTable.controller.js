@@ -9,6 +9,7 @@ sap.ui.define([
 	"use strict";
 	return Controller.extend("NYX.bsincrv01.ext.controller.TaskTable", {
 		onInit: function(){
+			// Initiate the Dialog
 			Fragment.load({
 				name: 'NYX.bsincrv01.ext.fragment.CreateTask_Dialog',
 				controller: this,
@@ -126,7 +127,10 @@ sap.ui.define([
 			});
 		},
 		onAddTaskClick: function(){
-			this._oDialogCreateTask.open()
+			this._oDialogCreateTask.open();
+			this._oDialogCreateTask.attachBeforeClose(function(oEvent){
+				debugger;
+			});
 		},
 		onDeleteTaskClick: function(){
 

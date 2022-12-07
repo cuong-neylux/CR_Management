@@ -2,10 +2,10 @@
     <Dialog title="{@i18n>tasktable_dialog}" id="createLinkDialog">
         <l:VerticalLayout id="createLinkDialog-VerticalLayout" class="sapUiSmallMarginBeginEnd" width="550px">
             <l:content>
-                <Label id="createLinkDialog-Text" design="Bold" text="Text" labelFor="taskTextInput" />
+                <Label id="createLinkDialog-Text" required="true" design="Bold" text="Text" labelFor="taskTextInput" />
                 <Input id="linkTextInput" placeholder="Enter Text" />
 
-                <Label id="createLinkDialog-URL" design="Bold" text="Text" labelFor="taskTextInput" />
+                <Label id="createLinkDialog-URL" required="true" design="Bold" text="Text" labelFor="taskTextInput" />
                 <Input id="linkURLInput" placeholder="Enter URL" />
             </l:content>
         </l:VerticalLayout>
