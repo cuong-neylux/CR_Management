@@ -102,7 +102,7 @@
                             <PropertyValue Property="Label" String="{@i18n>op_cr_general_info}" />
                             <PropertyValue Property="ID" String="op_cr_general_info" />
                         </Record>
-                        <!-- First column in the the object page: General information -->
+                        <!-- First column in the the object page: Last process information -->
                         <Record Type="UI.ReferenceFacet">
                             <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#op_cr_last_process" />
                             <PropertyValue Property="Label" String="{@i18n>op_cr_last_process}" />
@@ -135,10 +135,6 @@
                                 <Record Type="UI.DataField">
                                     <PropertyValue Property="Label" String="{@i18n>crCreateDate}" />
                                     <PropertyValue Property="Value" Path="CreateTimestamp" />
-                                </Record>
-                                <Record Type="UI.DataField">
-                                    <PropertyValue Property="Label" String="{@i18n>crNum}" />
-                                    <PropertyValue Property="Value" Path="CrNum" />
                                 </Record>
                             </Collection>
                         </PropertyValue>
@@ -279,10 +275,6 @@
                                 <Record Type="UI.DataField">
                                     <PropertyValue Property="Label" String="{@i18n>op_crDescription}" />
                                     <PropertyValue Property="Value" Path="CrDetails" />
-                                </Record>
-                                <Record Type="UI.DataField">
-                                    <PropertyValue Property="Label" String="{@i18n>crNum}" />
-                                    <PropertyValue Property="Value" Path="CrNum" />
                                 </Record>
                             </Collection>
                         </PropertyValue>
