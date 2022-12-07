@@ -1,6 +1,6 @@
 <core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:l="sap.ui.layout">
     <Dialog title="{@i18n>tasktable_dialog}" id="createTaskDialog">
-        <l:VerticalLayout id="_IDGenVerticalLayout1" class="sapUiSmallMarginBeginEnd" width="550px">
+        <l:VerticalLayout id="createTaskDialog-VerticalLayout" class="sapUiSmallMarginBeginEnd" width="550px">
             <l:content>
                 <Label id="createTaskDialog-Text" design="Bold" text="Text" labelFor="taskTextInput" />
                 <Input id="taskTextInput" placeholder="Enter Task" />
@@ -16,10 +16,10 @@
         </l:VerticalLayout>
 
         <beginButton>
-            <Button text="{@i18n>OKButton}" press="onOKClick" id="dialog-OKButton" />
+            <Button text="{@i18n>OKButton}" press="onOKClick" id="Task-Dialog-OKButton" />
         </beginButton>
         <endButton>
-            <Button text="{@i18n>CancelButton}" press="onCancelClick" id="dialog-CancelButton" />
+            <Button text="{@i18n>CancelButton}" press="onCancelClick" id="Task-Dialog-CancelButton" />
         </endButton>
     </Dialog>
 </core:FragmentDefinition>

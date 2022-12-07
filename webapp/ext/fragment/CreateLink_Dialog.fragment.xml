@@ -1,0 +1,20 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:l="sap.ui.layout">
+    <Dialog title="{@i18n>tasktable_dialog}" id="createLinkDialog">
+        <l:VerticalLayout id="createLinkDialog-VerticalLayout" class="sapUiSmallMarginBeginEnd" width="550px">
+            <l:content>
+                <Label id="createLinkDialog-Text" design="Bold" text="Text" labelFor="taskTextInput" />
+                <Input id="linkTextInput" placeholder="Enter Text" />
+
+                <Label id="createLinkDialog-URL" design="Bold" text="Text" labelFor="taskTextInput" />
+                <Input id="linkURLInput" placeholder="Enter URL" />
+            </l:content>
+        </l:VerticalLayout>
+
+        <beginButton>
+            <Button text="{@i18n>OKButton}" press="onOKClick" id="Link-Dialog-OKButton" />
+        </beginButton>
+        <endButton>
+            <Button text="{@i18n>CancelButton}" press="onCancelClick" id="Link-Dialog-CancelButton" />
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>

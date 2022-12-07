@@ -38,7 +38,7 @@
 					}" visibleRowCount="7" visibleRowCountMode="Interactive" noData="Please drag-and-drop tasks here." editable="true">
             <extension>
                 <m:OverflowToolbar id="taskViewTable2OverflowToolbar" style="Clear">
-                    <m:Title id="title2" text="DONE" textAlign="Center" titleStyle="H5" width="85%" />
+                    <m:Title id="title2" text="DONE" textAlign="Center" titleStyle="H5" width="86%" />
                     <m:Button id="addTask" text="Add" press="onAddTaskClick" />
                     <m:Button id="deleteTask" text="Delete" press="onDeleteTaskClick"/>
                 </m:OverflowToolbar>

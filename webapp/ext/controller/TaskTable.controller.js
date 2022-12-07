@@ -10,7 +10,7 @@ sap.ui.define([
 	return Controller.extend("NYX.bsincrv01.ext.controller.TaskTable", {
 		onInit: function(){
 			Fragment.load({
-				name: 'NYX.bsincrv01.ext.fragment.CreateTaskDialog',
+				name: 'NYX.bsincrv01.ext.fragment.CreateTask_Dialog',
 				controller: this,
 			}).then(function (oDialog) {
 				this._oDialogCreateTask = oDialog;
