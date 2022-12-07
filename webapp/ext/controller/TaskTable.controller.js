@@ -128,15 +128,15 @@ sap.ui.define([
 		},
 		onAddTaskClick: function(){
 			this._oDialogCreateTask.open();
-			this._oDialogCreateTask.attachBeforeClose(function(oEvent){
-				debugger;
-			});
 		},
 		onDeleteTaskClick: function(){
 
 		},
 		onOKClick: function(){
-			debugger;
+			var taskText = this._oDialogCreateTask.getContent()[0].getContent()[1]._lastValue;
+			var assignedTeam = this._oDialogCreateTask.getContent()[0].getContent()[3].getSelectedKey();
+			
+			// Create a new Task
 		},
 		onCancelClick: function(){
 			this._oDialogCreateTask.close();
