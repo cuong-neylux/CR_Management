@@ -132,39 +132,49 @@ sap.ui.define([
 			this._oDialogCreateTask.open();
 		},
 		onDeleteTaskClick: function(){
-			// Delete selected element in the left table
-			this.getSelectedRowContext("table1", function (oSelectedRowContext) {
-				var oModel = this.getOwnerComponent().getModel();
-				var sPath = oSelectedRowContext.sPath;
-				oModel.remove(sPath, {
-					success: function () {
-						oModel.refresh();
-						MessageToast.show("Deleted the task!")
-					},
-					error: function () {
-						MessageToast.show("Could not delete the task!")
-					}
-				});
-				var oTable1 = this.byId("table1");
-				oTable1.setSelectedIndex( -1 );
-			});
+			// General variables
+			var oModel = this.getView().getModel();
+			var oTable;
 
-			// Delete selected task in the right table
-			this.getSelectedRowContext("table2", function (oSelectedRowContext) {
-				var oModel = this.getOwnerComponent().getModel();
-				var sPath = oSelectedRowContext.sPath;
-				oModel.remove(sPath, {
-					success: function () {
-						oModel.refresh();
-						MessageToast.show("Deleted the task!")
+			// Check the first table
+			oTable = this.byId("table1");
+			var iSelectedIndex = oTable.getSelectedIndex();
+
+			if (iSelectedIndex !== -1) {
+				// An item in the left table is selected
+				var oSelectedContext = oTable.getContextByIndex(iSelectedIndex);
+				var sPath = oSelectedContext.sPath;
+				oModel.remove(sPath,{
+					success: function(){
+						oModel.refresh(true);
+						MessageToast.show("Deleted task successfully!");
 					},
-					error: function () {
-						MessageToast.show("Could not delete the task!")
+					error: function(){
+						MessageToast.show("Could not delete task!");
 					}
 				});
-				var oTable2 = this.byId("table2");
-				oTable2.setSelectedIndex( -1 );
-			});
+				oTable.setSelectedIndex( -1 );
+			}
+
+			// Check the second table
+			oTable = this.byId("table2");
+			var iSelectedIndex = oTable.getSelectedIndex();
+
+			if (iSelectedIndex !== -1) {
+				// An item in the left table is selected
+				var oSelectedContext = oTable.getContextByIndex(iSelectedIndex);
+				var sPath = oSelectedContext.sPath;
+				oModel.remove(sPath,{																								// Delete the task
+					success: function(){
+						oModel.refresh(true);
+						MessageToast.show("Deleted task successfully!");
+					},
+					error: function(){
+						MessageToast.show("Could not delete task!");
+					}
+				});
+				oTable.setSelectedIndex( -1 );
+			}
 		},
 		onOKClick: function(){
 			this._oDialogCreateTask.close();
