@@ -9,36 +9,43 @@ sap.ui.define([
 
 	return Controller.extend("NYX.bsincrv01.ext.controller.UploadSet", {
 		onInit: function () {
-			var oUploadSet = this.byId("UploadSet");
-			oUploadSet.getList().setMode(MobileLibrary.ListMode.MultiSelect);
+			this._oUploadSet = this.byId("UploadSet");
+			this._oUploadSet.getList().setMode(MobileLibrary.ListMode.MultiSelect);
 
 			// Modify "add file" button
-			oUploadSet.getDefaultFileUploader().setButtonOnly(false);
-			oUploadSet.getDefaultFileUploader().setIcon("sap-icon://attachment");
+			this._oUploadSet.getDefaultFileUploader().setButtonOnly(false);
+			this._oUploadSet.getDefaultFileUploader().setIcon("sap-icon://attachment");
+
+			this._oUploadSetItem = this.byId("UploadSet-UploadSetItem");
 
 		},
 		onAfterRendering: function () {
 			console.log("UploadSet: onAfterRendering!");
-			var oUploadSet = this.byId("UploadSet");
 
-			oUploadSet.attachAfterItemAdded(function (oEvent) {
+			this._oUploadSet.attachAfterItemAdded(function (oEvent) {
 				var oItem = oEvent.mParameters.item;
 				this.addIncompleteItem(oItem);
 			});
 
+			this._oUploadSetItem.attachOpenPressed(function(oEvent){
+				var sUrl = oEvent.getSource().mProperties.url;
+				var oNewWindow = window.open('', '_blank');
+				oNewWindow.location = sUrl;
+			});
+
 		},
 		onUploadSelectedButton: function () {
-			debugger;
 			var oModel = new sap.ui.model.odata.v2.ODataModel("/sap/opu/odata/nyx/BS_IN_CR_GP01_V01_SRV/", true);
 			var crNum = this.getView().getModel("crNum").getData();
-			var oUploadSet = this.byId("UploadSet");
-
-			oUploadSet.getIncompleteItems().forEach(function (oItem) {
+			var oUploadSet = this._oUploadSet;
+			this._oUploadSet.getIncompleteItems().forEach(function (oItem) {
 				if (oItem.getListItem().getSelected()) {
+					debugger;
 					// Get the file name
+					var fileSize = oItem._fFileSize.toFixed(2);
 					var headerField = new Item({
 						key: "slug",
-						text: oItem.getFileName() + ";" + crNum
+						text: oItem.getFileName() + ";" + crNum + ";" + fileSize
 					});
 					oUploadSet.addHeaderField(headerField);
 
@@ -55,14 +62,13 @@ sap.ui.define([
 				}
 			});
 
-			oUploadSet.attachUploadCompleted(function (oEvent) {
-
+			this._oUploadSet.attachUploadCompleted(function (oEvent) {
+				oModel.refresh(true);
 			});
 		},
 		onDownloadSelectedButton: function () {
-			var oUploadSet = this.byId("UploadSet");
 
-			oUploadSet.getItems().forEach(function (oItem) {
+			this._oUploadSet.getItems().forEach(function (oItem) {
 				if (oItem.getListItem().getSelected()) {
 					oItem.download(true);
 				}
@@ -78,6 +84,9 @@ sap.ui.define([
 
 				}
 			});
+		},
+		convertByteToMB:function(bytes){
+			return bytes / 1048576;
 		}
 	});
 });
