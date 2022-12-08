@@ -29,6 +29,7 @@ sap.ui.define([
 
             },
             onEditClick(){
+                debugger;
                 this._oToolbar.setVisible(true);
             },
             onSubmitClick: function (oEvent) {
