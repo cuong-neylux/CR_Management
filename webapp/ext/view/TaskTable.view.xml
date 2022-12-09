@@ -13,7 +13,7 @@
                 <Column id="taskViewTable1Column1">
                     <m:Text id="taskViewTable1Column1ColumnName" text="Task" />
                     <template>
-                        <m:Text id="taskViewTable1Column1Content" text="{Description}" wrapping="true" />
+                        <m:Text id="taskViewTable1Column1Content" text="{Title}" wrapping="true" />
                     </template>
                 </Column>
                 <Column id="taskViewTable1Column2" filterProperty="AssignedTeam" width="20%">
@@ -47,7 +47,7 @@
                 <Column id="taskViewTable2Column1">
                     <m:Text id="taskViewTable2Column1ColumnName" text="Task" />
                     <template>
-                        <m:Text id="taskViewTable2Column1Content" text="{Description}" wrapping="true" />
+                        <m:Text id="taskViewTable2Column1Content" text="{Title}" wrapping="true" />
                     </template>
                 </Column>
                 <Column id="taskViewTable2Column2" filterProperty="AssignedTeam" width="20%">

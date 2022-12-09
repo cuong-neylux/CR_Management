@@ -4,11 +4,11 @@ sap.ui.define([
 	"sap/m/MessageToast",
 	"sap/m/ToolbarSpacer",
 	"sap/ui/table/Row",
-    "sap/ui/core/Fragment"
+	"sap/ui/core/Fragment"
 ], function (Controller, JSONModel, MessageToast, ToolbarSpacer, TableRow, Fragment) {
 	"use strict";
 	return Controller.extend("NYX.bsincrv01.ext.controller.TaskTable", {
-		onInit: function(){
+		onInit: function () {
 			this._otable1 = this.byId("table1");
 			this._otable2 = this.byId("table2");
 			// Initiate the Dialog
@@ -19,7 +19,31 @@ sap.ui.define([
 				this._oDialogCreateTask = oDialog;
 				this.getView().addDependent(this._oDialogCreateTask);
 			}.bind(this));
+
+			var oView = this.getView();
+			this._pPopover = Fragment.load({
+				id: oView.getId(),
+				name: "NYX.bsincrv01.ext.fragment.Task_details_Popover",
+				controller: this
+			}).then(function (oPopover) {
+				oView.addDependent(oPopover);
+			});
 		},
+		onAfterRendering() {
+			var oView = this.getView();
+			this._otable1.attachRowSelectionChange(function(oEvent){
+				this._pPopover = Fragment.load({
+					id: oView.getId(),
+					name: "NYX.bsincrv01.ext.fragment.Task_details_Popover",
+					controller: this
+				}).then(function (oPopover) {
+					oView.addDependent(oPopover);
+				});
+
+				this._pPopover.open();
+			});
+		}
+		,
 		getSelectedRowContext: function (sTableId, fnCallback) {
 			var oTable = this.byId(sTableId);
 			var iSelectedIndex = oTable.getSelectedIndex();
@@ -83,7 +107,7 @@ sap.ui.define([
 					}
 				});
 				var oTable2 = this.byId("table2");
-				oTable2.setSelectedIndex( -1 );
+				oTable2.setSelectedIndex(-1);
 			});
 		},
 
@@ -125,13 +149,13 @@ sap.ui.define([
 					}
 				})
 				var oTable1 = this.byId("table1");
-				oTable1.setSelectedIndex( -1 );
+				oTable1.setSelectedIndex(-1);
 			});
 		},
-		onAddTaskClick: function(){
+		onAddTaskClick: function () {
 			this._oDialogCreateTask.open();
 		},
-		onDeleteTaskClick: function(){
+		onDeleteTaskClick: function () {
 			// General variables
 			var oModel = this.getView().getModel();
 			var oTable;
@@ -144,16 +168,16 @@ sap.ui.define([
 				// An item in the left table is selected
 				var oSelectedContext = oTable.getContextByIndex(iSelectedIndex);
 				var sPath = oSelectedContext.sPath;
-				oModel.remove(sPath,{
-					success: function(){
+				oModel.remove(sPath, {
+					success: function () {
 						oModel.refresh(true);
 						MessageToast.show("Deleted task successfully!");
 					},
-					error: function(){
+					error: function () {
 						MessageToast.show("Could not delete task!");
 					}
 				});
-				oTable.setSelectedIndex( -1 );
+				oTable.setSelectedIndex(-1);
 			}
 
 			// Check the second table
@@ -164,44 +188,46 @@ sap.ui.define([
 				// An item in the left table is selected
 				var oSelectedContext = oTable.getContextByIndex(iSelectedIndex);
 				var sPath = oSelectedContext.sPath;
-				oModel.remove(sPath,{																								// Delete the task
-					success: function(){
+				oModel.remove(sPath, {																								// Delete the task
+					success: function () {
 						oModel.refresh(true);
 						MessageToast.show("Deleted task successfully!");
 					},
-					error: function(){
+					error: function () {
 						MessageToast.show("Could not delete task!");
 					}
 				});
-				oTable.setSelectedIndex( -1 );
+				oTable.setSelectedIndex(-1);
 			}
 		},
-		onOKClick: function(){
+		onOKClick: function () {
 			this._oDialogCreateTask.close();
 			var oModel = this.getOwnerComponent().getModel();
 			var crNum = this.getView().getModel("crNum").getData();
-			var taskText = this._oDialogCreateTask.getContent()[0].getContent()[1]._lastValue;
-			var assignedTeam = this._oDialogCreateTask.getContent()[0].getContent()[3].getSelectedKey();
+			var title = this._oDialogCreateTask.getContent()[0].getContent()[1]._lastValue;
+			var details = this._oDialogCreateTask.getContent()[0].getContent()[3]._lastValue;
+			var assignedTeam = this._oDialogCreateTask.getContent()[0].getContent()[5].getSelectedKey();
 			var oEntry = {
 				CrNum: crNum,
-				Description: taskText,
+				Title: title,
+				Details: details,
 				AssignedTeam: assignedTeam
 			}
-			
+
 			// Create a new Task
-			oModel.create("/TaskSet", oEntry, {
+			oModel.create("/CR_HeaderSet('" + crNum + "')/CR_Task", oEntry, {
 				method: "POST",
-				success: function(oData){
+				success: function () {
 					oModel.refresh(true);
 					MessageToast.show("Created task successfully!");
 				},
-				error: function(){
+				error: function () {
 					MessageToast.show("Could not create task!");
 				}
 			});
-			
+
 		},
-		onCancelClick: function(){
+		onCancelClick: function () {
 			this._oDialogCreateTask.close();
 		}
 	});

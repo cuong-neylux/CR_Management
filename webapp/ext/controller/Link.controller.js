@@ -52,7 +52,7 @@ var LinkGroupController = Controller.extend("NYX.bsincrv01.ext.controller.Link",
         }
         
         // Create a new Task
-        oModel.create("/LinkSet", oEntry, {
+        oModel.create("/CR_HeaderSet('" + crNum + "')/CR_Links", oEntry, {
             method: "POST",
             success: function(oData){
                 oModel.refresh(true);
