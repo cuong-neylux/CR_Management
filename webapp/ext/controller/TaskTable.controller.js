@@ -199,6 +199,13 @@ sap.ui.define([
 			var title = this._oDialogCreateTask.getContent()[0].getContent()[1]._lastValue;
 			var details = this._oDialogCreateTask.getContent()[0].getContent()[3]._lastValue;
 			var assignedTeam = this._oDialogCreateTask.getContent()[0].getContent()[5].getSelectedKey();
+
+			// Check the content before sending to the backend
+			if(title === "" || details === "" || assignedTeam === ""){
+				MessageToast.show("Please fill all the mandatory fields!");
+				return;
+			}
+
 			var oEntry = {
 				CrNum: crNum,
 				Title: title,

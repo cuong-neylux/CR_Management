@@ -3,10 +3,10 @@
         <l:VerticalLayout id="createLinkDialog-VerticalLayout" class="sapUiSmallMarginBeginEnd" width="550px">
             <l:content>
                 <Label id="createLinkDialog-Text" required="true" design="Bold" text="Text" labelFor="taskTextInput" />
-                <Input id="linkTextInput" placeholder="Enter Text" />
+                <TextArea id="linkTextInput" placeholder="Enter Text" width="100%" maxLength="255" required="true"/>
 
                 <Label id="createLinkDialog-URL" required="true" design="Bold" text="Text" labelFor="taskTextInput" />
-                <Input id="linkURLInput" placeholder="Enter URL" />
+                <TextArea id="linkURLInput" placeholder="Enter URL" width="100%" maxLength="255" required="true"/>
             </l:content>
         </l:VerticalLayout>
 

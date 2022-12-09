@@ -3,10 +3,10 @@
         <l:VerticalLayout id="createTaskDialog-VerticalLayout" class="sapUiSmallMarginBeginEnd" width="550px">
             <l:content>
                 <Label id="createTaskDialog-Title" design="Bold" required="true" text="Title" labelFor="taskTextInput" />
-                <Input id="taskTitleInput" placeholder="Enter Task Title" />
+                <TextArea id="taskTitleInput" placeholder="Enter Task Title" width="100%" required="true" maxLength="64"/>
 
                  <Label id="createTaskDialog-details" design="Bold" required="true" text="Details" labelFor="taskTextInput" />
-                <Input id="taskDetailsInput" placeholder="Enter Task Details" />
+                <TextArea id="taskDetailsInput" placeholder="Enter Task Details" width="100%" maxLength="255" required="true"/>
 
                 <Label id="createTaskDialog-AssignedTeam" design="Bold" required="true" text="Assign To" labelFor="taskAssignedTeam" />
                 <ComboBox
