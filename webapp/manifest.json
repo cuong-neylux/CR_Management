@@ -176,14 +176,6 @@
                             "sap.ui.generic.app": {
                                 "title": "Message History"
                             }
-                        },
-                        "ReplaceFacet|CR_HeaderSet|op_section_planning_Calendar": {
-                            "type": "XML",
-                            "className": "sap.ui.core.mvc.View",
-                            "viewName": "NYX.bsincrv01.ext.view.PlanningCalendar",
-                            "sap.ui.generic.app": {
-                                "title": "Planning Calendar"
-                            }
                         }
                     }
                 }

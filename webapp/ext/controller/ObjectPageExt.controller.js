@@ -6,9 +6,12 @@ sap.ui.define([
         return {
             onInit: function (Controller) {
                 this._oToolbar = this.getView().byId("NYX.bsincrv01::sap.suite.ui.generic.template.ObjectPage.view.Details::CR_HeaderSet--template::ObjectPage::FooterToolbar");
-                this._submitButton = this.getView().byId("NYX.bsincrv01::sap.suite.ui.generic.template.ObjectPage.view.Details::CR_HeaderSet--submitButton");
-                this._submitButton.setType("Emphasized");
-                this._editButton = this.getView().byId("NYX.bsincrv01::sap.suite.ui.generic.template.ObjectPage.view.Details::CR_HeaderSet--edit");
+                this._oSubmitButton = this.getView().byId("NYX.bsincrv01::sap.suite.ui.generic.template.ObjectPage.view.Details::CR_HeaderSet--submitButton");
+                this._oSubmitButton.setType("Emphasized");
+                this._oEditButton = this.getView().byId("NYX.bsincrv01::sap.suite.ui.generic.template.ObjectPage.view.Details::CR_HeaderSet--edit");
+                this._oCancelButton = this.getView().byId("NYX.bsincrv01::sap.suite.ui.generic.template.ObjectPage.view.Details::CR_HeaderSet--cancel");
+                this._oSaveButton = this.getView().byId("NYX.bsincrv01::sap.suite.ui.generic.template.ObjectPage.view.Details::CR_HeaderSet--save");
+                
                 // Attach a handler to the PageDataLoaded event. This event is fired each time the object page is navigated to or the object to be displayed is changed Note.
                 this.extensionAPI.attachPageDataLoaded(function (oEvent) {
                     var crObject = oEvent.context.sPath;
@@ -20,10 +23,14 @@ sap.ui.define([
             },
             onBeforeRendering: function (oEvent) {
                 this._oToolbar.setVisible(false);
-                this._editButton.attachPress(this.onEditClick, this);
+                this._oEditButton.attachPress(this.onEditClick, this);
+                this._oCancelButton.attachPress(this.invisibleToolBar, this);
+                this._oSubmitButton.attachPress(this.invisibleToolBar, this);
+                this._oSaveButton.attachPress(this.invisibleToolBar, this);
                 this.extensionAPI.getTransactionController().attachAfterSave(async function (oEvent) {
                     sap.ui.controller("NYX.bsincrv01.ext.controller.TaskTable").test();
                 });
+                
             },
             onAfterRendering: function (oEvent) {
 
@@ -34,6 +41,12 @@ sap.ui.define([
             },
             onSubmitClick: function (oEvent) {
                 alert('onSubmitClick');
+            },
+            invisibleToolBar: function(){
+                this._oToolbar.setVisible(false);
+            },
+            invisiblleButtons: function(){
+                
             }
         };
     });

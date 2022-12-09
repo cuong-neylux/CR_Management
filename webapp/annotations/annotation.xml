@@ -16,10 +16,6 @@
                 <Annotation Term="UI.LineItem">
                     <Collection>
                         <Record Type="UI.DataField">
-                            <PropertyValue Property="Value" Path="CrHeading" />
-                            <PropertyValue Property="Label" String="{@i18n>crHeading}" />
-                        </Record>
-                        <Record Type="UI.DataField">
                             <PropertyValue Property="Value" Path="CrNum" />
                             <PropertyValue Property="Label" String="{@i18n>crNum}" />
                         </Record>
@@ -250,14 +246,6 @@
                             <PropertyValue Property="Label" String="{@i18n>op_nextStep}" />
                             <PropertyValue Property="ID" String="op_section_nextProcesssor" />
                             <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#op_sendToNextProcessor" />
-                        </Record>
-
-                        <!-- Section 7 -->
-                        <!-- Personal Planning Calendar -->
-                        <Record Type="UI.ReferenceFacet">
-                            <PropertyValue Property="Label" String="{@i18n>op_calendar}" />
-                            <PropertyValue Property="ID" String="op_section_planning_Calendar" />
-                            <PropertyValue Property="Target" AnnotationPath="CR_Calendar/@UI.LineItem#op_calendar" />
                         </Record>
                     </Collection>
                 </Annotation>
