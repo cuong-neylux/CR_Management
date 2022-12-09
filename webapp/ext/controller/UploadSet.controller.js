@@ -11,7 +11,6 @@ sap.ui.define([
 	return Controller.extend("NYX.bsincrv01.ext.controller.UploadSet", {
 		onInit: function () {
 			this._oUploadSet = this.byId("UploadSet");
-			this._oModel = this.getView().getModel();
 			this._oUploadSet.getList().setMode(MobileLibrary.ListMode.MultiSelect);
 
 			// Modify "add file" button
@@ -22,8 +21,6 @@ sap.ui.define([
 
 		},
 		onAfterRendering: function(){
-			var oModel = this._oModel;
-
 			this._oUploadSet.attachAfterItemAdded(function (oEvent) {
 				var oItem = oEvent.mParameters.item;
 				this.addIncompleteItem(oItem);
@@ -46,14 +43,10 @@ sap.ui.define([
 			});
 		},
 		onUploadSelectedButton: function () {
-			var oModel = new sap.ui.model.odata.v2.ODataModel("/sap/opu/odata/nyx/BS_IN_CR_GP01_V01_SRV/", true);
+			var oModel = this.getView().getModel();
 			var crNum = this.getView().getModel("crNum").getData();
 			var oUploadSet = this._oUploadSet;
-			var that = this;
 			
-
-
-
 			this._oUploadSet.getIncompleteItems().forEach(function (oItem) {
 				if (oItem.getListItem().getSelected()) {
 					debugger;
@@ -82,6 +75,14 @@ sap.ui.define([
 				debugger
 				this.addItem(oEvent.mParameters.item);
 				// TODO: Load the DocumentSet again and refresh the model
+				oModel.read("/CR_HeaderSet('" + crNum + "')/CR_DocumentSet",{
+					success: function(){
+						oModel.refresh(true);
+					},
+					error: function(){
+
+					}
+				})
 			});
 
 
