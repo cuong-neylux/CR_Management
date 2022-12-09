@@ -4,13 +4,16 @@ sap.ui.define([
 	"sap/m/MessageToast",
 	"sap/m/ToolbarSpacer",
 	"sap/ui/table/Row",
-	"sap/ui/core/Fragment"
-], function (Controller, JSONModel, MessageToast, ToolbarSpacer, TableRow, Fragment) {
+	"sap/ui/core/Fragment",
+	"sap/m/MessageBox"
+], function (Controller, JSONModel, MessageToast, ToolbarSpacer, TableRow, Fragment, MessageBox) {
 	"use strict";
 	return Controller.extend("NYX.bsincrv01.ext.controller.TaskTable", {
 		onInit: function () {
+			this._oTitleColumn = this.byId("taskViewTable1Column1");
 			this._otable1 = this.byId("table1");
 			this._otable2 = this.byId("table2");
+			this._oDeleteButton = this.byId("deleteTask");
 			// Initiate the Dialog
 			Fragment.load({
 				name: 'NYX.bsincrv01.ext.fragment.CreateTask_Dialog',
@@ -19,29 +22,18 @@ sap.ui.define([
 				this._oDialogCreateTask = oDialog;
 				this.getView().addDependent(this._oDialogCreateTask);
 			}.bind(this));
-
-			var oView = this.getView();
-			this._pPopover = Fragment.load({
-				id: oView.getId(),
-				name: "NYX.bsincrv01.ext.fragment.Task_details_Popover",
-				controller: this
-			}).then(function (oPopover) {
-				oView.addDependent(oPopover);
-			});
 		},
 		onAfterRendering() {
-			var oView = this.getView();
 			this._otable1.attachRowSelectionChange(function(oEvent){
-				this._pPopover = Fragment.load({
-					id: oView.getId(),
-					name: "NYX.bsincrv01.ext.fragment.Task_details_Popover",
-					controller: this
-				}).then(function (oPopover) {
-					oView.addDependent(oPopover);
+				debugger;
+				var details = oEvent.mParameters.rowContext.getObject().Details;
+				MessageToast.show("Task Details: " + details,{
+					duration: 60000,
+					width: "20%",
+					autoClose: true
 				});
-
-				this._pPopover.open();
 			});
+
 		}
 		,
 		getSelectedRowContext: function (sTableId, fnCallback) {
