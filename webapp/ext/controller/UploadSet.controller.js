@@ -74,15 +74,7 @@ sap.ui.define([
 			this._oUploadSet.attachUploadCompleted(function (oEvent) {
 				debugger
 				this.addItem(oEvent.mParameters.item);
-				// TODO: Load the DocumentSet again and refresh the model
-				oModel.read("/CR_HeaderSet('" + crNum + "')/CR_DocumentSet",{
-					success: function(){
-						oModel.refresh(true);
-					},
-					error: function(){
-
-					}
-				})
+				oModel.refresh(true);
 			});
 
 
