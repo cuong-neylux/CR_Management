@@ -41,10 +41,13 @@ sap.ui.define([
         },
         onOKClick: function () {
             this._oDialogCreateLink.close();
+            var oDialog = this._oDialogCreateLink;
             var oModel = this.getOwnerComponent().getModel();
             var crNum = this.getView().getModel("crNum").getData();
             var linkText = this._oDialogCreateLink.getContent()[0].getContent()[1]._lastValue;
             var url = this._oDialogCreateLink.getContent()[0].getContent()[3]._lastValue;
+
+
 
             // Check the content before sending to the backend
             if (linkText === "" || url === "") {
@@ -64,6 +67,10 @@ sap.ui.define([
                 success: function (oData) {
                     oModel.refresh(true);
                     MessageToast.show("Created reference successfully!");
+
+                    // Delete content after getting the data, so that next time the dialog is opened, the field are reset
+                    oDialog.getContent()[0].getContent()[1].setValue("");
+                    oDialog.getContent()[0].getContent()[3].setValue("");
                 },
                 error: function () {
                     MessageToast.show("Could not reference task!");

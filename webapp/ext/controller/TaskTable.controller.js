@@ -194,6 +194,7 @@ sap.ui.define([
 		},
 		onOKClick: function () {
 			this._oDialogCreateTask.close();
+			var oDialog = this._oDialogCreateTask;
 			var oModel = this.getOwnerComponent().getModel();
 			var crNum = this.getView().getModel("crNum").getData();
 			var title = this._oDialogCreateTask.getContent()[0].getContent()[1]._lastValue;
@@ -219,6 +220,11 @@ sap.ui.define([
 				success: function () {
 					oModel.refresh(true);
 					MessageToast.show("Created task successfully!");
+
+					// Delete content of dialog
+					oDialog.getContent()[0].getContent()[1].setValue("");
+					oDialog.getContent()[0].getContent()[3].setValue("");
+					oDialog.getContent()[0].getContent()[5].setSelectedKey("");
 				},
 				error: function () {
 					MessageToast.show("Could not create task!");
