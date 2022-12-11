@@ -340,7 +340,7 @@
                             <PropertyValue Property="Label" String="{@i18n>op_taskCreator}" />
                         </Record>
                         <Record Type="UI.DataField">
-                            <PropertyValue Property="Value" Path="Description" />
+                            <PropertyValue Property="Value" Path="Title" />
                             <PropertyValue Property="Label" String="{@i18n>op_taskDetails}" />
                         </Record>
                         <Record Type="UI.DataField">
@@ -590,6 +590,18 @@
                         </Record>
                     </Collection>
                 </Annotation>
+            </Annotations>
+
+            <!-- Annotate the CR description field to Textarea instead of text input -->
+            <Annotations Target="NYX.BS_IN_CR_GP01_V01_SRV.CR_Header/CrDetails">
+                <Annotation Term="Common.Label" String="{@i18n>op_crDescription}"/>
+                <Annotation Term="UI.MultiLineText" Bool="true"/>
+            </Annotations>
+
+            <!-- Annotate the CR current message field to Textarea instead of text input -->
+            <Annotations Target="NYX.BS_IN_CR_GP01_V01_SRV.CR_Header/CurrentNote">
+                <Annotation Term="Common.Label" String="{@i18n>op_message}"/>
+                <Annotation Term="UI.MultiLineText" Bool="true"/>
             </Annotations>
         </Schema>
     </edmx:DataServices>
